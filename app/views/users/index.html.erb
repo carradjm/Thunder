@@ -1,0 +1,13 @@
+<h1>All Users</h1>
+<ul>
+	<% @users.each do |user| %>
+		<% if user.username.nil? %>
+			<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
+		<% else %>
+			<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
+		<% end %>
+	<% end %>
+</ul>
+<br>
+
+<a href="<%= user_url(current_user) %>">Profile</a>

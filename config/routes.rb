@@ -1,12 +1,12 @@
 FinalProject::Application.routes.draw do
   
   root to: "sessions#new"
-  resources :users, only: [:new, :create, :show] do
-    resources :songs, only: [:new, :create, :show, :destroy]
+  resources :users do
+    resources :songs, only: [:new, :create, :destroy]
     resources :playlists, only: [:new, :create, :edit, :destroy]
-    resources :user_follows, only: [:new, :create, :destroy]
+    resource :follows, only: [:new, :create, :destroy], controller: "user_follows"
   end
-  resources :user_follows, only: [:new, :create, :destroy]
+  resources :songs, only: [:show]
   resource :session, only: [:new, :create, :destroy]
   
   # The priority is based upon order of creation: first created -> highest priority.

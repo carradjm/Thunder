@@ -1,4 +1,8 @@
-<h1><%= @user.email %></h1>
+<% if @user.username.nil? %>
+	<h1><%= @user.email %></h1>
+<% else %>
+	<h1><%= @user.username %></h1>
+<% end %>
 
 <h2>Songs</h2>
 	<ul>
@@ -7,9 +11,43 @@
 		<% end %>
 	</ul>
 	<a href="<%= new_user_song_url(@user.id) %>">Upload New Song</a>
+	
+<h2>Playlists</h2>
+	<ul>
+		<% @songs.each do |song| %>
+			<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+		<% end %>
+	</ul>
+	<a href="<%= new_user_song_url(@user.id) %>">Upload New Song</a>	
+	
+	
+<h2>Following</h2>
+<% unless current_user.following.empty? %>
+	<ul>
+		<% @following.each do |user| %>
+			<% if @user.username.nil? %>
+				<li><a href="<%= users_url(user) %>"><%= user.username %></a></li>
+			<% else %>
+				<li><a href="<%= users_url(user) %>"><%= user.email %></a></li>
+			<% end %>			
+		<% end %>
+	</ul>	
+<% end %>
+
 
 <% unless @user == current_user %>
-	<form action="<%= new_user_follow %>" method="post">
-		<button>Follow User</button>
-	</form>
+	<% if current_user.following?(@user) %>
+		<%= render "user_follows/destroy", user: @user %>	
+	<% else %>
+		<%= render "user_follows/follow", user: @user %>
+	<% end %>
 <% end %>
+<br>
+<br>
+
+<% if @user == current_user %>
+	<a href="<%= edit_user_url(@user) %>">Edit Profile</a>
+<% end %>
+<br>
+<br>
+<a href="<%= users_url %>">Users Index</a>

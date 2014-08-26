@@ -1,0 +1,56 @@
+<h1>Edit User</h1>
+
+<% if flash[:errors]%>
+	<% flash[:errors].each do |error| %>
+		<%= error %>
+	<% end %>
+<% end %>
+
+<form action="<%= user_url(@user) %>" method="post">
+	<input type="hidden" name="_method" value="put">
+	<%= auth_token %>
+	
+	<label>
+		E-mail
+		<input type="text" name="user[email]" value="<%= @user.email %>" placeholder="email">
+	</label>
+	<br>
+	<br>
+	
+	<label>
+		Username
+		<input type="text" name="user[username]" value="<%= @user.username %>" placeholder="username">
+	</label>
+	<br>
+	<br>
+	
+	<label>
+		First Name
+		<input type="text" name="user[first_name]" value="<%= @user.first_name %>" placeholder="First Name">
+	</label>
+	<br>
+	<br>
+	
+	<label>
+		Last Name
+		<input type="text" name="user[last_name]" value="<%= @user.last_name %>" placeholder="Last Name">
+	</label>
+	<br>
+	<br>
+	
+	<label>
+		City
+		<input type="text" name="user[city]" value="<%= @user.city %>" placeholder="City">
+	</label>
+	<br>
+	<br>
+	
+	<label>
+		Country
+		<input type="text" name="user[country]" value="<%= @user.country %>" placeholder="Country">
+	</label>
+	<br>
+	<br>
+	
+	<button>Edit Profile</button>
+</form>

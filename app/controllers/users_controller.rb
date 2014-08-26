@@ -17,19 +17,45 @@ class UsersController < ApplicationController
     end
   end
   
+  def index
+    @users = User.all
+    render :index
+  end
+  
   def show
     @user = User.find(params[:id])
     @songs = @user.songs
-    # @playlist = @user.playlists
-    # @followers = @user.followers
-    # @following = @user.following
-    #
+    # @playlist = @user.playlists.first
+    # @followers = @user.followers.first
+    @following = @user.following
+
     render :show
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+    
+    render :edit
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    
+    if @user.update(user_update_params)
+      redirect_to user_url(@user)
+    else
+      flash.now[:errors] = @user.errors.full_messages
+      render :edit
+    end
   end
   
   private
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+  
+  def user_update_params
+    params.require(:user).permit(:email, :password, :username, :first_name, :last_name, :country, :city)
   end
 
 end

@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
   has_many(
     :user_following,
     class_name: "UserFollow",
-    foreign_key: :following_id,
-    primary_key: :id
+    foreign_key: :follower_id,
+    primary_key: :id,
+    inverse_of: :following
   )
   
   has_many :following, through: :user_following, source: :following
@@ -18,8 +19,9 @@ class User < ActiveRecord::Base
   has_many(
     :user_followers,
     class_name: "UserFollow",
-    foreign_key: :follower_id,
-    primary_key: :id
+    foreign_key: :following_id,
+    primary_key: :id,
+    inverse_of: :follower
   )
   
   has_many :followers, through: :user_followers, source: :follower
@@ -45,6 +47,10 @@ class User < ActiveRecord::Base
     self.session_token = SecureRandom.urlsafe_base64(16)
     self.save!
     self.session_token
+  end
+  
+  def following?(user)
+    self.following.include?(user)
   end
   
   private

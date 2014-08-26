@@ -1,7 +1,12 @@
-<h1><%= @song.Title %></h1>
+<h1><%= @song.title %></h1>
 
 <h2><%= @song.artist %></h2>
 
-<h3><%= @song.description %></h3>
-	
+<h3>Description</h3>
+<%= @song.description %>
+
+<h3>Genre</h3>
+<%= @song.description %>
+<br>
+<br>
 <a href="<%= user_url(@user) %>">Back To User Page</a>

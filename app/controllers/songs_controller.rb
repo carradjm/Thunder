@@ -9,7 +9,7 @@ class SongsController < ApplicationController
     @song = current_user.songs.new(song_params)
     
     if @song.save
-      redirect_to user_song_url(@song)
+      redirect_to song_url(@song)
     else
       flash.now[:errors] = @song.errors.full_messages
       render :new
@@ -17,6 +17,10 @@ class SongsController < ApplicationController
   end
   
   def show
+    @song = Song.find(params[:id])
+    @user = current_user
+    
+    render :show
   end
   
   def destroy
@@ -24,6 +28,6 @@ class SongsController < ApplicationController
   
   private
   def song_params
-    params.require(:song).permit(:title, :artist, :description)
+    params.require(:song).permit(:title, :artist, :description, :genre)
   end
 end

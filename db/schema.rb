@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20140826181704) do
     t.datetime "updated_at"
   end
 
+  add_index "user_follows", ["follower_id", "following_id"], name: "index_user_follows_on_follower_id_and_following_id", unique: true, using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",           null: false
     t.string   "password_digest", null: false

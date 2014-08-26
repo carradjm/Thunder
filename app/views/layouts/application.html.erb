@@ -9,7 +9,6 @@
 <body>
 	
 	<% if logged_in? %>
-		<%= current_user.username %>
 		<%= button_to "Sign Out", new_session_url, method: :destroy %>	
 	<% else %>
 		<%= link_to "Sign In", new_session_url%>
