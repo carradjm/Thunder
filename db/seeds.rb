@@ -12,4 +12,4 @@ user3 = User.create!(email: "paul@wme.com", password_digest: "$2a$10$/O9XZlvuT0Y
                      first_name: nil, last_name: nil, full_name: nil, country: nil, city: nil)
 
 follow1 = UserFollow.create!(follower_id: user1.id, following_id: user2.id)
-follow2 = UserFollow.create!(follower_id: user1.id, following_id: user2.id)
+follow2 = UserFollow.create!(follower_id: user1.id, following_id: user3.id)
