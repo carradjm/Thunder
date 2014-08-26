@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'bcrypt'
 
+gem 'seed_dump'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -39,6 +41,10 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
