@@ -1,0 +1,15 @@
+<h1><%= @user.email %></h1>
+
+<h2>Songs</h2>
+	<ul>
+		<% @songs.each do |song| %>
+			<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+		<% end %>
+	</ul>
+	<a href="<%= new_user_song_url(@user.id) %>">Upload New Song</a>
+
+<% unless @user == current_user %>
+	<form action="<%= new_user_follow %>" method="post">
+		<button>Follow User</button>
+	</form>
+<% end %>

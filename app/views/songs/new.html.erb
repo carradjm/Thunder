@@ -1,0 +1,31 @@
+<h1>Upload New Song</h1>
+
+<% if flash[:errors]%>
+	<% flash[:errors].each do |error| %>
+		<%= error %>
+	<% end %>
+<% end %>
+
+<form action="<%= user_songs_url %>" method="post">
+	<%= auth_token %>
+	
+	<label>
+		Title
+		<input type="text" name="song[title]" value="<%= @song.title %>" placeholder="title">
+	</label>
+	<br>
+	
+	<label>
+		Artist
+		<input type="text" name="song[artist]" value="<%= @song.artist %>" placeholder="artist">
+	</label>
+	<br>
+	
+	<label>
+		Description
+		<textarea name="song[description]" value="<%= @song.description %>" placeholder="description"></textarea>
+	</label>
+	<br>
+	
+	<button>Upload New Song</button>
+</form>
