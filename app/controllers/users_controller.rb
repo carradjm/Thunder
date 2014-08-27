@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :require_logged_in!, only: [:show, :index]
+  
   def new
     @user = User.new
     render :new
@@ -22,11 +24,12 @@ class UsersController < ApplicationController
     render :index
   end
   
-  def show
+  def show 
     @user = User.find(params[:id])
     @songs = @user.songs
+    @likes = @user.likes
     @playlists = @user.playlists
-    # @followers = @user.followers.first
+    @followers = @user.followers
     @following = @user.following
     
     render :show

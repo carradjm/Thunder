@@ -1,0 +1,5 @@
+<% if current_user.liked_song?(song) %>
+	<%= button_to "Unlike", song_unlike_url(song), {method: :delete, action: "unlike"} %>
+<% else %>
+	<%= button_to "Like", song_like_url(song), {method: :post, action: "like"} %>
+<% end %>

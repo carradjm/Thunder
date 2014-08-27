@@ -1,9 +1,15 @@
 class PlaylistsController < ApplicationController
   
+  before_filter :require_logged_in!
+  
   def new
     @playlist = Playlist.new
     
     render :new
+  end
+  
+  def choose
+    render :choose
   end
   
   def create

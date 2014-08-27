@@ -6,7 +6,7 @@
 	<% end %>
 <% end %>
 
-<form action="<%= user_playlist_url %>" method="post">
+<form action="<%= playlists_url %>" method="post">
 	<%= auth_token %>
 	
 	<label>
@@ -14,24 +14,29 @@
 		<input type="text" name="playlist[title]" value="<%= @playlist.title %>" placeholder="title">
 	</label>
 	<br>
+	<br>
 	
 	<label>
 		Description
-		<textarea name="song[description]" value="<%= @song.description %>" placeholder="description"></textarea>
+		<textarea name="playlist[description]" value="<%= @playlist.description %>" placeholder="description"></textarea>
 	</label>
+	<br>
 	<br>
 	
 	<label>
 		Genre
-		<textarea name="song[genre]" value="<%= @song.genre %>" placeholder="genre"></textarea>
+		<textarea name="playlist[genre]" value="<%= @playlist.genre %>" placeholder="genre"></textarea>
 	</label>
 	<br>
+	<br>
+	
 	<label>
 		Songs
-	<input type="checkbox" name="cat[colors][]" id="cat_color_black" value="black">
+	<input type="checkbox" name="playlist[songs][]" id="cat_color_black" value="black">
 	  <label for="cat_color_black">Black</label>
-	  <br>
 	</label>
+  <br>
+	<br>
 	
 	<button>Upload New Song</button>
 </form>

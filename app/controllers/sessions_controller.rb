@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     
     unless @user.nil?
       login_user(@user)
-      redirect_to @user 
+      redirect_to user_url(@user)
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    logout_user(@user)
+    logout_user
     redirect_to new_session_url
   end
 end

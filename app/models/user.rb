@@ -5,7 +5,11 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
   
   has_many :songs
+  has_many :song_likes, inverse_of: :user
+  has_many :likes, through: :song_likes, source: :song
+  
   has_many :playlists
+  
   has_many(
     :user_following,
     class_name: "UserFollow",
@@ -13,8 +17,6 @@ class User < ActiveRecord::Base
     primary_key: :id,
     inverse_of: :following
   )
-  
-  has_many :following, through: :user_following, source: :following
   
   has_many(
     :user_followers,
@@ -24,6 +26,7 @@ class User < ActiveRecord::Base
     inverse_of: :follower
   )
   
+  has_many :following, through: :user_following, source: :following
   has_many :followers, through: :user_followers, source: :follower
   
   attr_reader :password
@@ -51,6 +54,10 @@ class User < ActiveRecord::Base
   
   def following?(user)
     self.following.include?(user)
+  end
+  
+  def liked_song?(song)
+    self.likes.include?(song)
   end
   
   private

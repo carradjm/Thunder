@@ -8,12 +8,9 @@ class Song < ActiveRecord::Base
     primary_key: :id,
   )
   
-  has_many(
-    :playlist_songs,
-    class_name: "PlaylistSong",
-    foreign_key: :song_id,
-    primary_key: :id
-  )
+  has_many :playlist_songs, inverse_of: :song
+  
+  has_many :song_likes, inverse_of: :song
   
   has_many :playlists, through: :playlist_songs, source: :playlist
 end

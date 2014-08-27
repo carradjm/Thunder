@@ -1,7 +1,7 @@
 class UserFollowsController < ApplicationController
   
   def create
-    user_follow = UserFollow.new(following_id: params[:user_follow][:following_id], follower_id: current_user.id)
+    user_follow = current_user.user_following.new(following_id: params[:user_follow][:following_id])
     
     user_follow.save
       

@@ -1,5 +1,7 @@
 class SongsController < ApplicationController
   
+  before_filter :require_logged_in!
+  
   def new
     @song = Song.new
     render :new
@@ -21,6 +23,22 @@ class SongsController < ApplicationController
     @user = current_user
     
     render :show
+  end
+  
+  def like
+    song = Song.find(params[:song_id])
+    song_like = SongLike.new(song_id: song.id, user_id: current_user.id)
+    
+    song_like.save
+    redirect_to song_url(song)
+  end
+  
+  def unlike
+    song = Song.find(params[:song_id])
+    song_like = SongLike.find_by_ids(song.id, current_user.id)
+    
+    song_like.destroy
+    redirect_to song_url(song)
   end
   
   def destroy

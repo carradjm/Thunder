@@ -4,9 +4,15 @@ FinalProject::Application.routes.draw do
   resources :users do
     resource :follows, only: [:new, :create, :destroy], controller: "user_follows"
   end
-  resources :songs, only: [:new, :create, :destroy, :show]
-  resources :playlists
-  post 'playlists/:id' => 'playlists#remove_song'
+  resources :songs, only: [:new, :create, :destroy, :show] do
+    delete 'like', to: 'songs#unlike', as: :unlike
+    post 'like', to: 'songs#like', as: :like
+  end
+  resources :playlists do
+    post 'songs', to: 'playlists#add_song'
+    delete 'songs', to: 'playlists#remove_song'
+  end
+  
   resource :session, only: [:new, :create, :destroy]
   
   # The priority is based upon order of creation: first created -> highest priority.
