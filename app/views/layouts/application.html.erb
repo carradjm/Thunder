@@ -6,27 +6,33 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-	<nav>
-		<div>
-		<% if current_user.username.nil? %>
-			<a href="<%= user_url(current_user) %>"><%= current_user.email %></a>
-		<% else %>
-			<a href="<%= user_url(current_user) %>"><%= current_user.email %></a>
-		<% end %>
-		</div>
-	|
-		<div>
-		<% if logged_in? %>
-			<%= button_to "Sign Out", session_url, :method => :delete %>	
-		<% else %>
-			<%= link_to "Sign In", new_session_url%>
-			<%= link_to "Sign Up", new_user_url%>
-		<% end %>
-		</div>
+<header>
+	<nav class="group">
+    <div class="nav-left">
+    	<% if current_user %>
+        <% if current_user.username.nil? %>
+      		<a href="<%= user_url(current_user) %>"><%= current_user.email %></a>
+      	<% else %>
+      		<a href="<%= user_url(current_user) %>"><%= current_user.username %></a>
+      	<% end %>
+          <a href="<%= songs_url %>">Stream</a>
+          <a href="<%= songs_url %>">Explore</a>
+      <% end %>
+    </div>
+    <div class="nav-right">
+      <a href="<%= users_url %>">Users Index</a>
+    	<% if logged_in? %>
+    		<%= link_to "Sign Out", session_url, :method => :delete %>	
+    	<% else %>
+    		<%= link_to "Sign In", new_session_url%>
+    		<%= link_to "Sign Up", new_user_url%>
+    	<% end %>
+      </div>
 	</nav>
-
-<%= yield %>
-
+</header>
+<body>
+  <div class="page group">
+    <%= yield %>
+  </div>
 </body>
 </html>

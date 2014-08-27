@@ -6,7 +6,7 @@ class UserFollowsController < ApplicationController
     
     user_follow.save
       
-    redirect_to user_url(followed_user.id)
+    redirect_to :back
   end
   
   def destroy
@@ -14,7 +14,7 @@ class UserFollowsController < ApplicationController
     user_follow = UserFollow.find_by_ids(current_user.id, user.id) #UserFollow class method
     
     user_follow.destroy
-    redirect_to user_url(user)
+    redirect_to :back
   end
   
 end

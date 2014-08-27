@@ -12,90 +12,79 @@
 	<br>
 </div>
 
-<div class="show group">
-	<div class="show-section">
-		<h2>Uploaded Songs</h2>
-		<div class="show-content">
-			<% unless @songs.empty? %>
-				<ul>
-					<% @songs.each do |song| %>
-						<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
-            <%= song.track.path %>
-					<% end %>
-				</ul>
-			<% end %>
-			<br>
-			<a href="<%= new_song_url %>">Upload New Song</a>
-		</div>
-	</div>
+<section class="show group">
+	<div class="show-headers group">
+		<div class="show-title">Uploaded Songs</div>
+    <div class="show-title">Likes</div>
+    <div class="show-title">Playlists</div>
+    <div class="show-title">Following</div>
+    <div class="show-title">Followers</div>
+  </div>
+  
+  <section class="show-content group">
+  	<div class="uploaded-songs">
+  		<% unless @uploads.empty? %>
+  			<ul>
+  				<% @uploads.each do |song| %>
+  					<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+  				<% end %>
+  			</ul>
+  		<% end %>
+  		<br>
+  		<a href="<%= new_song_url %>">Upload New Song</a>
+  	</div>
+		
+  	<div class="likes">
+  	<% unless @likes.empty? %>
+  		<ul>
+  			<% @likes.each do |song| %>
+  				<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+  			<% end %>
+  		</ul>
+  	<% end %>
+  	</div>
 	
-	<div class="show-section">
-		<h2>Liked Songs</h2>
-		<div class="show-content">
-		<% unless @likes.empty? %>
-			<ul>
-				<% @likes.each do |song| %>
-					<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
-				<% end %>
-			</ul>
-		<% end %>
-		</div>
-	</div>
+  	<div class="playlists">
+  	<% unless @playlists.empty? %>
+  		<ul>
+  			<% @playlists.each do |playlist| %>
+  				<li><a href="<%= playlist_url(playlist) %>"><%= playlist.title %></a></li>
+  			<% end %>
+  		</ul>
+  	<% end %>
+  	<br>
+  	<a href="<%= new_playlist_url %>">Create New Playlist</a>	
+  	</div>
+
+  	<div class="following">
+  	<% unless @following.empty? %>	
+  		<ul>
+  			<% @following.each do |user| %>
+  				<% if user.username.nil? %>
+  					<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
+  				<% else %>
+  					<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
+  				<% end %>			
+  			<% end %>
+  		</ul>	
+  	<% end %>
+  	</div>
 	
-	<div class="show-section">
-		<h2>Playlists</h2>
-		<div class="show-content">
-		<% unless @songs.empty? %>
-			<ul>
-				<% @playlists.each do |playlist| %>
-					<li><a href="<%= playlist_url(playlist) %>"><%= playlist.title %></a></li>
-				<% end %>
-			</ul>
-		<% end %>
-		<br>
-		<a href="<%= new_playlist_url %>">Create New Playlist</a>	
-		</div>
-	</div>
-	
-	<div class="show-section">
-		<h2>Following</h2>
-		<div class="show-content">
-		<% unless @following.empty? %>	
-			<ul>
-				<% @following.each do |user| %>
-					<% if user.username.nil? %>
-						<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
-					<% else %>
-						<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
-					<% end %>			
-				<% end %>
-			</ul>	
-		<% end %>
-		</div>
-	</div>
+  	<div class="followers">
+  	<% unless @followers.empty? %>
+  		<ul>
+  			<% @followers.each do |user| %>
+  				<% if user.username.nil? %>
+  					<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
+  				<% else %>
+  					<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
+  				<% end %>			
+  			<% end %>
+  		</ul>	
+  	<% end %>
+  	</div>
+  </section>
+</section>
 
-	<div class="show-section">
-		<h2>Followers</h2>
-		<div class="show-content">
-		<% unless @followers.empty? %>
-			<ul>
-				<% @followers.each do |user| %>
-					<% if user.username.nil? %>
-						<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
-					<% else %>
-						<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
-					<% end %>			
-				<% end %>
-			</ul>	
-		<% end %>
-		</div>
-	</div>
-
-</div>
-
-<% if @user == current_user %>
-	<a href="<%= edit_user_url(@user) %>">Edit Profile</a>
-<% end %>
 <br>
 <br>
-<a href="<%= users_url %>">Users Index</a>

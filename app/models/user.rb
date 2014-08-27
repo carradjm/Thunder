@@ -5,7 +5,12 @@ class User < ActiveRecord::Base
   
   before_validation :ensure_session_token
   
-  has_many :songs
+  has_many(
+    :uploaded_songs,
+    class_name: "Song",
+    foreign_key: :user_id
+  )
+  
   has_many :song_likes, inverse_of: :user
   has_many :likes, through: :song_likes, source: :song
   

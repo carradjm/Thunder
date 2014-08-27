@@ -2,20 +2,12 @@ class SongsController < ApplicationController
   
   before_filter :require_logged_in!
   
-  def new
-    @song = Song.new
-    render :new
-  end
-  
-  def create
-    @song = current_user.songs.new(song_params)
+  def index
+    @songs = Song.all
+    # @followed_songs = current_user.followers.songs
+    @playlists = current_user.playlists
     
-    if @song.save
-      redirect_to song_url(@song)
-    else
-      flash.now[:errors] = @song.errors.full_messages
-      render :new
-    end
+    render :index
   end
   
   def show
@@ -26,6 +18,23 @@ class SongsController < ApplicationController
     render :show
   end
     
+  
+  def new
+    @song = Song.new
+    render :new
+  end
+  
+  def create
+    @song = current_user.uploaded_songs.new(song_params)
+    
+    if @song.save
+      redirect_to song_url(@song)
+    else
+      flash.now[:errors] = @song.errors.full_messages
+      render :new
+    end
+  end
+  
   def destroy
   end
   

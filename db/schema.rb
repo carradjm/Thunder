@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827154224) do
+ActiveRecord::Schema.define(version: 20140827203817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "genres", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "genres", ["name"], name: "index_genres_on_name", unique: true, using: :btree
 
   create_table "playlist_songs", force: true do |t|
     t.integer "playlist_id"
@@ -42,6 +50,15 @@ ActiveRecord::Schema.define(version: 20140827154224) do
 
   add_index "song_likes", ["song_id", "user_id"], name: "index_song_likes_on_song_id_and_user_id", unique: true, using: :btree
 
+  create_table "song_tags", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "song_tags", ["tag_id", "song_id"], name: "index_song_tags_on_tag_id_and_song_id", unique: true, using: :btree
+
   create_table "songs", force: true do |t|
     t.string   "title",              null: false
     t.string   "artist",             null: false
@@ -61,6 +78,14 @@ ActiveRecord::Schema.define(version: 20140827154224) do
   add_index "songs", ["genre"], name: "index_songs_on_genre", using: :btree
   add_index "songs", ["title"], name: "index_songs_on_title", using: :btree
   add_index "songs", ["user_id"], name: "index_songs_on_user_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "user_follows", force: true do |t|
     t.integer  "follower_id",  null: false

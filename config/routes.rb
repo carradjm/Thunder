@@ -5,7 +5,7 @@ FinalProject::Application.routes.draw do
     post 'follow', to: 'user_follows#create'
     delete 'follow', to: 'user_follows#destroy'
   end
-  resources :songs, only: [:new, :create, :destroy, :show] do
+  resources :songs, only: [:new, :create, :destroy, :show, :index] do
     post 'like', to: 'song_likes#create'
     delete 'like', to: 'song_likes#destroy'
   end

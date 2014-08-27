@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   
   def show 
     @user = User.find(params[:id])
-    @songs = @user.songs
+    @uploads = @user.uploaded_songs
     @likes = @user.likes
     @playlists = @user.playlists
     @followers = @user.followers

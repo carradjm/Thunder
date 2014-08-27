@@ -7,7 +7,7 @@ class PlaylistSongsController < ApplicationController
     playlist_song = PlaylistSong.new(playlist_id: playlist.id, song_id: song.id)
     
     playlist_song.save
-    redirect_to song_url(song)
+    redirect_to :back
   end
   
   def destroy
@@ -17,7 +17,7 @@ class PlaylistSongsController < ApplicationController
     playlist_song = PlaylistSong.find_by_ids(playlist.id, song.id)
     
     playlist_song.destroy
-    redirect_to playlist_url(playlist)
+    redirect_to :back
   end
   
 end

@@ -19,4 +19,12 @@ class Song < ActiveRecord::Base
   has_many :song_likes, inverse_of: :song
   
   has_many :playlists, through: :playlist_songs, source: :playlist
+  
+  # def following_recent_songs
+  #   current_user.following.each do |user|
+  #     user.uploaded_songs.each do |song|
+  #
+  #   end
+  #
+  # end
 end
