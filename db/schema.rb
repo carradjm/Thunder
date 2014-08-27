@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827012327) do
+ActiveRecord::Schema.define(version: 20140827154224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,14 +43,18 @@ ActiveRecord::Schema.define(version: 20140827012327) do
   add_index "song_likes", ["song_id", "user_id"], name: "index_song_likes_on_song_id_and_user_id", unique: true, using: :btree
 
   create_table "songs", force: true do |t|
-    t.string   "title",       null: false
-    t.string   "artist",      null: false
-    t.integer  "user_id",     null: false
+    t.string   "title",              null: false
+    t.string   "artist",             null: false
+    t.integer  "user_id",            null: false
     t.text     "description"
     t.string   "genre"
     t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "track_file_name"
+    t.string   "track_content_type"
+    t.integer  "track_file_size"
+    t.datetime "track_updated_at"
   end
 
   add_index "songs", ["artist"], name: "index_songs_on_artist", using: :btree

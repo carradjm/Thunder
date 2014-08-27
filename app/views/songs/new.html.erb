@@ -6,7 +6,7 @@
 	<% end %>
 <% end %>
 
-<form action="<%= songs_url %>" method="post">
+<form action="<%= songs_url %>" method="post" enctype="multipart/form-data">
 	<%= auth_token %>
 	
 	<label>
@@ -32,6 +32,11 @@
 		<textarea name="song[genre]" value="<%= @song.genre %>" placeholder="genre"></textarea>
 	</label>
 	<br>
+  
+  <label>
+    Choose File
+    <input type="file" name="song[track]">
+  </label>
 	
 	<button>Upload New Song</button>
 </form>

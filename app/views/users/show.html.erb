@@ -20,6 +20,7 @@
 				<ul>
 					<% @songs.each do |song| %>
 						<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+            <%= song.track.path %>
 					<% end %>
 				</ul>
 			<% end %>
