@@ -1,0 +1,37 @@
+<h1>Create New Playlist</h1>
+
+<% if flash[:errors]%>
+	<% flash[:errors].each do |error| %>
+		<%= error %>
+	<% end %>
+<% end %>
+
+<form action="<%= user_playlist_url %>" method="post">
+	<%= auth_token %>
+	
+	<label>
+		Title
+		<input type="text" name="playlist[title]" value="<%= @playlist.title %>" placeholder="title">
+	</label>
+	<br>
+	
+	<label>
+		Description
+		<textarea name="song[description]" value="<%= @song.description %>" placeholder="description"></textarea>
+	</label>
+	<br>
+	
+	<label>
+		Genre
+		<textarea name="song[genre]" value="<%= @song.genre %>" placeholder="genre"></textarea>
+	</label>
+	<br>
+	<label>
+		Songs
+	<input type="checkbox" name="cat[colors][]" id="cat_color_black" value="black">
+	  <label for="cat_color_black">Black</label>
+	  <br>
+	</label>
+	
+	<button>Upload New Song</button>
+</form>

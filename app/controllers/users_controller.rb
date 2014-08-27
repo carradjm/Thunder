@@ -25,10 +25,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @songs = @user.songs
-    # @playlist = @user.playlists.first
+    @playlists = @user.playlists
     # @followers = @user.followers.first
     @following = @user.following
-
+    
     render :show
   end
   

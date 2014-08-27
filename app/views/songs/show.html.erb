@@ -9,4 +9,12 @@
 <%= @song.description %>
 <br>
 <br>
+
+<a href="<%= new_user_playlist(@user.id) %>">Add To Playlist</a>
+<!-- need a dropdown menu to choose an existing playlist, then add it to that playlist
+	 	 by creating a new PlaylistSong in the database -->
+<a href="<%= new_user_playlist(@user.id) %>">Create</a>
+<!-- render the new Playlist form, allow user to choose from other songs they've liked with this one
+	   preselected-->
+
 <a href="<%= user_url(@user) %>">Back To User Page</a>

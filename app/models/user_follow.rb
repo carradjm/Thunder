@@ -20,7 +20,7 @@ class UserFollow < ActiveRecord::Base
   #find the user_follow by both follower_id and following_id
   #finds the unique user_follow because there is a uniqueness validation on the combo
   def self.find_by_ids(follower_id, following_id)
-    UserFollow.where("follower_id = ? AND following_id = ?", follower_id, following_id)
+    UserFollow.where("follower_id = ? AND following_id = ?", follower_id, following_id).first
   end
   
 end

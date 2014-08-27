@@ -10,7 +10,7 @@ class UserFollowsController < ApplicationController
   
   def destroy
     user = User.find(params[:user_follow][:following_id])
-    user_follow = UserFollow.find_by_ids(current_user.id, user.id).first #UserFollow class method
+    user_follow = UserFollow.find_by_ids(current_user.id, user.id) #UserFollow class method
     
     user_follow.destroy
     redirect_to user_url(user)

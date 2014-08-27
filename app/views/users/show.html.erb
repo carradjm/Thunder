@@ -10,15 +10,15 @@
 			<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
 		<% end %>
 	</ul>
-	<a href="<%= new_user_song_url(@user.id) %>">Upload New Song</a>
+	<a href="<%= new_song_url %>">Upload New Song</a>
 	
 <h2>Playlists</h2>
 	<ul>
-		<% @songs.each do |song| %>
-			<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+		<% @playlists.each do |playlist| %>
+			<li><a href="<%= playlist_url(playlist) %>"><%= playlist.title %></a></li>
 		<% end %>
 	</ul>
-	<a href="<%= new_user_song_url(@user.id) %>">Upload New Song</a>	
+	<a href="<%= new_playlist_url %>">Create New Playlist</a>	
 	
 	
 <h2>Following</h2>
@@ -26,9 +26,9 @@
 	<ul>
 		<% @following.each do |user| %>
 			<% if @user.username.nil? %>
-				<li><a href="<%= users_url(user) %>"><%= user.username %></a></li>
+				<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
 			<% else %>
-				<li><a href="<%= users_url(user) %>"><%= user.email %></a></li>
+				<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
 			<% end %>			
 		<% end %>
 	</ul>	
