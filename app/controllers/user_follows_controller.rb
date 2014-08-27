@@ -1,15 +1,16 @@
 class UserFollowsController < ApplicationController
-  
+
   def create
-    user_follow = current_user.user_following.new(following_id: params[:user_follow][:following_id])
+    followed_user = User.find(params[:user_id])
+    user_follow = UserFollow.new(following_id: followed_user.id, follower_id: current_user.id)
     
     user_follow.save
       
-    redirect_to user_url(params[:user_follow][:following_id])
+    redirect_to user_url(followed_user.id)
   end
   
   def destroy
-    user = User.find(params[:user_follow][:following_id])
+    user = User.find(params[:user_id])
     user_follow = UserFollow.find_by_ids(current_user.id, user.id) #UserFollow class method
     
     user_follow.destroy

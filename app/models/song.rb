@@ -1,5 +1,7 @@
 class Song < ActiveRecord::Base
   validates :title, :artist, presence: true
+  has_attached_file :track
+  has_attached_file :logo
   
   belongs_to(
     :uploader,

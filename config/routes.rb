@@ -2,15 +2,16 @@ FinalProject::Application.routes.draw do
   
   root to: "sessions#new"
   resources :users do
-    resource :follows, only: [:new, :create, :destroy], controller: "user_follows"
+    post 'follow', to: 'user_follows#create'
+    delete 'follow', to: 'user_follows#destroy'
   end
   resources :songs, only: [:new, :create, :destroy, :show] do
-    delete 'like', to: 'songs#unlike', as: :unlike
-    post 'like', to: 'songs#like', as: :like
+    post 'like', to: 'song_likes#create'
+    delete 'like', to: 'song_likes#destroy'
   end
   resources :playlists do
-    post 'songs', to: 'playlists#add_song'
-    delete 'songs', to: 'playlists#remove_song'
+    post 'songs', to: 'playlist_songs#create'
+    delete 'songs', to: 'playlist_songs#destroy'
   end
   
   resource :session, only: [:new, :create, :destroy]

@@ -32,26 +32,6 @@ class PlaylistsController < ApplicationController
   def destroy
   end
   
-  def add_song
-    song = Song.find(params[:song_id])
-    playlist = Playlist.find(params[:playlist_id])
-      
-    playlist_song = PlaylistSong.new(playlist_id: playlist.id, song_id: song.id)
-    
-    playlist_song.save
-    redirect_to song_url(song)
-  end
-  
-  def remove_song
-    song = Song.find(params[:song_id])
-    playlist = Playlist.find(params[:playlist_id])
-    
-    playlist_song = PlaylistSong.find_by_ids(playlist.id, song.id)
-    
-    playlist_song.destroy
-    redirect_to playlist_url(playlist)
-  end
-  
   private
   def playlist_params
     params.require(:playlist).permit(:title, :description, :genre, :song_ids => [])

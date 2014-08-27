@@ -7,13 +7,7 @@
 </div>
 
 <div class="follow-button">
-	<% unless @user == current_user %>
-		<% if current_user.following?(@user) %>
-			<%= render "user_follows/destroy", user: @user %>	
-		<% else %>
-			<%= render "user_follows/follow", user: @user %>
-		<% end %>
-	<% end %>
+	<%= render "follow", user: @user %>
 	<br>
 	<br>
 </div>
@@ -97,7 +91,6 @@
 	</div>
 
 </div>
-
 
 <% if @user == current_user %>
 	<a href="<%= edit_user_url(@user) %>">Edit Profile</a>

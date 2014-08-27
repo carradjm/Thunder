@@ -19,5 +19,15 @@ module FinalProject
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.paperclip_defaults = {                                   
+      :storage => :s3,                                              
+      :s3_protocol => 'http',                                       
+      :url =>':s3_domain_url',                                      
+      :s3_credentials => {                                          
+        :bucket => ENV['AWS_BUCKET_PROD'], #these values safely stored in application.yml thanks to figaro!                
+        :access_key_id => ENV['ACCESS_KEY_ID'],                 
+        :secret_access_key => ENV['SECRET_ACCESS_KEY']          
+      }                                                             
+    }      
   end
 end
