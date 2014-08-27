@@ -1,74 +1,103 @@
-<% if @user.username.nil? %>
-	<h1><%= @user.email %></h1>
-<% else %>
-	<h1><%= @user.username %></h1>
-<% end %>
-
-<h2>Uploaded Songs</h2>
-<% unless @songs.empty? %>
-	<ul>
-		<% @songs.each do |song| %>
-			<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
-		<% end %>
-	</ul>
-<% end %>
-<a href="<%= new_song_url %>">Upload New Song</a>
-	
-<h2>Liked Songs</h2>
-<% unless @likes.empty? %>
-	<ul>
-		<% @likes.each do |song| %>
-			<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
-		<% end %>
-	</ul>
-<% end %>
-	
-<h2>Playlists</h2>
-<% unless @songs.empty? %>
-	<ul>
-		<% @playlists.each do |playlist| %>
-			<li><a href="<%= playlist_url(playlist) %>"><%= playlist.title %></a></li>
-		<% end %>
-	</ul>
-	<a href="<%= new_playlist_url %>">Create New Playlist</a>	
-<% end %>
-	
-<h2>Following</h2>
-<% unless @following.empty? %>	
-	<ul>
-		<% @following.each do |user| %>
-			<% if user.username.nil? %>
-				<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
-			<% else %>
-				<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
-			<% end %>			
-		<% end %>
-	</ul>	
-<% end %>
-
-<h2>Followers</h2>
-<% unless @followers.empty? %>
-	<ul>
-		<% @followers.each do |user| %>
-			<% if user.username.nil? %>
-				<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
-			<% else %>
-				<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
-			<% end %>			
-		<% end %>
-	</ul>	
-<% end %>
-
-
-<% unless @user == current_user %>
-	<% if current_user.following?(@user) %>
-		<%= render "user_follows/destroy", user: @user %>	
+<div class="username">
+	<% if @user.username.nil? %>
+		<h1><%= @user.email %></h1>
 	<% else %>
-		<%= render "user_follows/follow", user: @user %>
+		<h1><%= @user.username %></h1>
 	<% end %>
-<% end %>
-<br>
-<br>
+</div>
+
+<div class="follow-button">
+	<% unless @user == current_user %>
+		<% if current_user.following?(@user) %>
+			<%= render "user_follows/destroy", user: @user %>	
+		<% else %>
+			<%= render "user_follows/follow", user: @user %>
+		<% end %>
+	<% end %>
+	<br>
+	<br>
+</div>
+
+<div class="show group">
+	<div class="show-section">
+		<h2>Uploaded Songs</h2>
+		<div class="show-content">
+			<% unless @songs.empty? %>
+				<ul>
+					<% @songs.each do |song| %>
+						<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+					<% end %>
+				</ul>
+			<% end %>
+			<br>
+			<a href="<%= new_song_url %>">Upload New Song</a>
+		</div>
+	</div>
+	
+	<div class="show-section">
+		<h2>Liked Songs</h2>
+		<div class="show-content">
+		<% unless @likes.empty? %>
+			<ul>
+				<% @likes.each do |song| %>
+					<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+				<% end %>
+			</ul>
+		<% end %>
+		</div>
+	</div>
+	
+	<div class="show-section">
+		<h2>Playlists</h2>
+		<div class="show-content">
+		<% unless @songs.empty? %>
+			<ul>
+				<% @playlists.each do |playlist| %>
+					<li><a href="<%= playlist_url(playlist) %>"><%= playlist.title %></a></li>
+				<% end %>
+			</ul>
+		<% end %>
+		<br>
+		<a href="<%= new_playlist_url %>">Create New Playlist</a>	
+		</div>
+	</div>
+	
+	<div class="show-section">
+		<h2>Following</h2>
+		<div class="show-content">
+		<% unless @following.empty? %>	
+			<ul>
+				<% @following.each do |user| %>
+					<% if user.username.nil? %>
+						<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
+					<% else %>
+						<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
+					<% end %>			
+				<% end %>
+			</ul>	
+		<% end %>
+		</div>
+	</div>
+
+	<div class="show-section">
+		<h2>Followers</h2>
+		<div class="show-content">
+		<% unless @followers.empty? %>
+			<ul>
+				<% @followers.each do |user| %>
+					<% if user.username.nil? %>
+						<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
+					<% else %>
+						<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
+					<% end %>			
+				<% end %>
+			</ul>	
+		<% end %>
+		</div>
+	</div>
+
+</div>
+
 
 <% if @user == current_user %>
 	<a href="<%= edit_user_url(@user) %>">Edit Profile</a>
