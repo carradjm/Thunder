@@ -12,6 +12,18 @@
 
 <%= render partial: "like_button", locals: {song: @song} %>
 
-<h2>Create New Playlist</h2>
+<h2>Playlists</h2>
+	<ul>
+		<% @playlists.each do |playlist| %>
+			<% unless playlist.songs.include?(@song) %>
+			<li><%= playlist.title %></li>
+			<%= button_to "Add Song to Playlist", 
+					playlist_songs_url(playlist_id: playlist.id, song_id: @song.id), 
+					{method: :post, action: "add_song"} %>
+			<% end %>
+		<% end %>
+	</ul>
+
+
 <%= link_to "Create New Playlist", new_playlist_url(song: @song) %>
 <br>

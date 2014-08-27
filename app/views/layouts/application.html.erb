@@ -7,18 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<nav></nav>
-	<% if logged_in? %>
-		<%= button_to "Sign Out", session_url, :method => :delete %>	
-	<% else %>
-		<%= link_to "Sign In", new_session_url%>
-		<%= link_to "Sign Up", new_user_url%>
-	<% end %>
+	<nav>
+		<div>
+		<% if current_user.username.nil? %>
+			<a href="<%= user_url(current_user) %>"><%= current_user.email %></a>
+		<% else %>
+			<a href="<%= user_url(current_user) %>"><%= current_user.email %></a>
+		<% end %>
+		</div>
+	|
+		<div>
+		<% if logged_in? %>
+			<%= button_to "Sign Out", session_url, :method => :delete %>	
+		<% else %>
+			<%= link_to "Sign In", new_session_url%>
+			<%= link_to "Sign Up", new_user_url%>
+		<% end %>
+		</div>
+	</nav>
 
 <%= yield %>
-<br>
-<br>
-<a href="<%= user_url(current_user) %>">Profile</a>
 
 </body>
 </html>
