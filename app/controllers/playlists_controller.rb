@@ -13,7 +13,7 @@ class PlaylistsController < ApplicationController
   end
   
   def create
-    @playlist = current_user.playlists.new(playlist_params)
+    @playlist = current_user.playlists.build(playlist_params)
     
     if @playlist.save
       redirect_to user_url(@playlist.user)

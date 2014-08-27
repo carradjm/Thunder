@@ -12,4 +12,6 @@
 
 <%= render partial: "like_button", locals: {song: @song} %>
 
-<a href="<%= user_url(@user) %>">Back to Profile</a>
+<h2>Create New Playlist</h2>
+<%= link_to "Create New Playlist", new_playlist_url(song: @song) %>
+<br>

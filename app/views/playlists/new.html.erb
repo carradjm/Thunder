@@ -32,8 +32,13 @@
 	
 	<label>
 		Songs
-	<input type="checkbox" name="playlist[songs][]" id="cat_color_black" value="black">
-	  <label for="cat_color_black">Black</label>
+		<br>
+		<input type="hidden" name="playlist[song_ids][]" value="">
+		<% current_user.likes.each do |song| %>
+			<input type="checkbox" name="playlist[song_ids][]" value="<%= song.id %>">
+	  		<label><%= song.title %></label>
+				<br>
+		<% end %>
 	</label>
   <br>
 	<br>

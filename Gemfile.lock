@@ -26,6 +26,11 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    aws-sdk (1.52.0)
+      aws-sdk-v1 (= 1.52.0)
+    aws-sdk-v1 (1.52.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -33,6 +38,10 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -44,6 +53,9 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.2.1)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (1.5.3)
@@ -58,8 +70,16 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     multi_json (1.10.1)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
+    paperclip (4.2.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     polyglot (0.3.5)
     pry (0.10.0)
@@ -133,12 +153,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   bcrypt
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
+  figaro
   jbuilder (~> 1.2)
   jquery-rails
+  paperclip
   pg
   pry-rails
   quiet_assets

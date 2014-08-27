@@ -4,7 +4,9 @@
 <ul>
 	<% @songs.each do |song| %>
 		<li><%= song.title %></li>
-		<%= button_to "Remove from Playlist", playlist_song_url(playlist_id: @playlist.id, song_id: song.id), action: :remove_song %>
+		<%= button_to "Remove from Playlist", 
+				playlist_songs_url(playlist_id: @playlist.id, song_id: song.id), 
+				{method: :delete, action: "remove_song"} %>
 	<% end %>
 </ul>
 
