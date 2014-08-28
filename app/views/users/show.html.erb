@@ -12,6 +12,14 @@
 	<br>
 </div>
 
+<div class="user-show-image">
+  <% if @user.picture.path.nil? %>
+    <img src="<%= asset_path("Daft-Punk.jpg") %>" width="200" height="200" alt="Daft Punk">
+  <% else %>
+    <%= image_tag @user.picture.url(:standard) %>
+  <% end %>
+</div>
+
 <section class="show group">
 	<div class="show-headers group">
 		<div class="show-title">Uploaded Songs</div>

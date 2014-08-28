@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   validates :email, :password_digest, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
+  
   has_attached_file :picture, :styles => { :standard => "200x200" }
   validates_attachment_content_type(
           :picture,
