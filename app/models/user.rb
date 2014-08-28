@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :likes, through: :song_likes, source: :song
   
   has_many :playlists
+  has_many :comments
   
   has_many(
     :user_following,

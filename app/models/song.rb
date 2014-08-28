@@ -12,7 +12,6 @@ class Song < ActiveRecord::Base
           :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
         )
   
-  
   belongs_to(
     :uploader,
     class_name: "User",
@@ -20,7 +19,11 @@ class Song < ActiveRecord::Base
     primary_key: :id,
   )
   
+  belongs_to :genre
+  
   has_many :playlist_songs, inverse_of: :song
+  
+  has_many :comments
   
   has_many :song_likes, inverse_of: :song
   

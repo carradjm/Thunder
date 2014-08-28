@@ -20,9 +20,9 @@
       <% end %>
     </div>
     <div class="nav-right">
-      <a href="<%= edit_user_url(current_user) %>">Edit Profile</a>
-      <a href="<%= users_url %>">Users Index</a>
     	<% if logged_in? %>
+        <a href="<%= edit_user_url(current_user) %>">Edit Profile</a> 
+        <a href="<%= users_url %>">Users Index</a>
     		<%= link_to "Sign Out", session_url, :method => :delete %>	
     	<% else %>
     		<%= link_to "Sign In", new_session_url%>

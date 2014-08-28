@@ -1,45 +1,29 @@
-<header class="song-header">
-  <div class="song-artist">
-    <%= @song.artist %>
-  </div>
-  <div class="song-title">
-    <%= @song.title %>
-  </div>
-  <section class="music-player group">
-      <div class="music-player-widget">
-        music player widget
-      </div>
-      <div class="like-button"><%= render partial: "like_button", locals: {song: @song} %></div>
-      <div class="add-to-playlist">
-      	<ul>
-      		<% @playlists.each do |playlist| %>
-      			<% unless playlist.songs.include?(@song) %>
-      			<li><%= playlist.title %></li>
-      			<%= button_to "Add Song to Playlist", 
-      					playlist_songs_url(playlist_id: playlist.id, song_id: @song.id) %>
-      			<% end %>
-      		<% end %>
-      	</ul>
-        <%= link_to "Create New Playlist", new_playlist_url(song: @song) %>
-      </div>
-    </section>
-</header>
-
-<section class="song-info group">
-  <div class="band-logo">
+<section class="song-stream group">
+  <div class="song-image">
     <% if @song.image.path.nil? %>
       <img src="<%= asset_path("Daft-Punk.jpg") %>" width="200" height="200" alt="Daft Punk">
     <% else %>
       <%= image_tag @song.image.url(:standard) %>
     <% end %>
   </div>
-
-  <div class="song-main">
-    <div>
-      <%= @song.description %>
-    </div>
-    <div>
-      <%= @song.genre %>
-    </div>
+  
+  <div class="song-info">
+    <ul class="group">
+      <div class="song-artist-title">
+        <li class="song-artist"><%= @song.artist %></li>
+    
+        <li class="song-title"><%= @song.title %></li>
+      </div>
+      
+      <div class="music-player-widget">
+        <li>Music Player</li>
+      </div> 
+      
+      <div class="song-buttons group">
+        <li><%= render partial: "like_button", locals: {song: @song} %></li>
+      
+        <li><%= link_to "Add to Playlist", new_playlist_song_url%></li>
+      </div>
+    </ul>
   </div>
-</section>
+<section>

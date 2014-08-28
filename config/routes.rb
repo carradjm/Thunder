@@ -1,5 +1,4 @@
 FinalProject::Application.routes.draw do
-  
   root to: "sessions#new"
   resources :users do
     post 'follow', to: 'user_follows#create'
