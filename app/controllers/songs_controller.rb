@@ -14,6 +14,7 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     @user = current_user
     @playlists = current_user.playlists
+    @comments = @song.comments
     
     render :show
   end

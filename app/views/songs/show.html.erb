@@ -27,4 +27,13 @@
       <%= image_tag @song.image.url(:standard) %>
     <% end %>
   </div>
+  
+  <div class="song-comments">
+    <h3>Comments</h3>
+    <ul>
+      <% @comments.each do |comment| %>
+        <%= comment.body %> | <strong><%= comment.user.username %></strong>
+      <% end %>
+    </ul>
+  </div>
 <section>

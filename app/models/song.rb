@@ -6,7 +6,7 @@ class Song < ActiveRecord::Base
           :content_type => ['audio/mpeg', 'audio/mp3', 'audio/mp4', 'audio/wav', 'audio/m4p']
         )
         
-  has_attached_file :image, :styles => { :standard => "200x200>" }
+  has_attached_file :image, :styles => { :standard => "200x200" }
   validates_attachment_content_type(
           :image,
           :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
