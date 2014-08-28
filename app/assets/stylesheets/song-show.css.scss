@@ -1,6 +1,23 @@
+input[type="button"], input[type="submit"],
+input[type="reset"], input[type="file"], button {
+  -webkit-appearance: button;
+  display: inline-block;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 5px;
+  border: 0;
+  outline: 0;
+  width: auto;
+  font: inherit;
+  vertical-align: baseline;
+  background: black;
+  color: red;
+  position: relative;
+}
+
 .song-stream {
   display: block;
-  margin: 10px;
+  margin: 10px auto;
   padding: 10px;
 }
 
@@ -34,7 +51,20 @@
   border-bottom: 2px solid #ddd;
 }
 
-.song-artist-title {
+.song-title {
+  font-size: 50px;
+}
+
+.song-artist {
+  font-size: 25px;
+}
+
+.song-show-title {
+  font-size: 50px;
+}
+
+.song-show-artist {
+  font-size: 25px;
 }
 
 .music-player-widget {
@@ -48,111 +78,64 @@
   margin: 5px 5px 5px 0;
 }
 
-
-
-
-
-input[type="button"], input[type="submit"],
-input[type="reset"], input[type="file"], button {
-  -webkit-appearance: button;
-    display: inline-block;
-    box-sizing: content-box;
-    margin: 0;
-    padding: 5px;
-    border: 0;
-    outline: 0;
-    width: auto;
-    font: inherit;
-    vertical-align: baseline;
-    background: black;
-    color: red;
-    position: relative;
-  }
-
 ul {
   list-style: none;
 }
 
-.group:after {
-  content: "";
-  display: block;
-  clear: both;
+
+.song-show > div {
+  margin: 20px 0 20px 0;
 }
 
-.username {
-  width: 1200px;
-  font-size: 25px;
-  margin: 25px auto;
+.song-show-top {
+
 }
 
-.show {
-  margin: 10px auto;
+.song-show-top > div {
+  
 }
 
-.song-header {
-  width: auto;
-  padding: 10px;
-  margin: 10px auto;
-}
-
-.song-stream {
-  margin: 5px auto;
-}
-
-.song-header > div {
-  border: inherit;
-}
-
-.song-title {
-  font-size: 50px;
-}
-
-.song-artist {
-  font-size: 25px;
-}
-
-.music-player > div {
-  margin: 10px;
-  padding: 10px;
-}
-
-.music-player-widget {
-  float: left;
-}
-
-.like-button {
-  float: left;
-}
-
-.add-to-playlist {
-  float: left;
-}
-
-.band-logo {
-  width: 200px;
-}
-
-.band-logo > img {
-  float: left;
-  image-width: 50px;
-  image-height: 50px;
-}
-
-.song-main {
-  float: left;
-  display: block;
-  width: 300px;
-  margin: 10px auto;
-}
-
-.song-info {
-}
-
-.show-content > a {
-  color: white;
+.add-comment {
+  border: 1px solid black;
   padding: 5px;
-  margin: 10px;
-  background: blue;
-  border-radius: 5px;
-  text-decoration: none;
+  background: #ccc;
 }
+
+.song-show-image {
+}
+
+.song-show-info {
+}
+
+.song-show-info > ul {
+}
+
+.song-show-info > ul > div {
+}
+
+.song-show-info > ul > div > li {
+}
+
+.song-show-artist-title > li.song-show-artist {
+  font-size: 15px;
+  color: #aaa;
+}
+
+.song-show-artist-title > li.song-show-title {
+  font-size: 40px;
+}
+
+.show-music-player-widget {
+  width: 100%;
+  height: 110px;
+  background: black;
+}
+
+.song-show-buttons > li{
+    float: left;
+    margin: 5px;
+}
+
+
+
+

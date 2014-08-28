@@ -7,6 +7,7 @@ FinalProject::Application.routes.draw do
   resources :songs, only: [:new, :create, :destroy, :show, :index] do
     post 'like', to: 'song_likes#create'
     delete 'like', to: 'song_likes#destroy'
+    post 'comment', to: "comments#create"
   end
   resources :playlists do
     post 'songs', to: 'playlist_songs#create'

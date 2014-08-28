@@ -19,9 +19,12 @@ ActiveRecord::Schema.define(version: 20140828012206) do
   create_table "comments", force: true do |t|
     t.integer  "song_id"
     t.integer  "user_id"
+    t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["song_id", "user_id"], name: "index_comments_on_song_id_and_user_id", unique: true, using: :btree
 
   create_table "genres", force: true do |t|
     t.string   "name"

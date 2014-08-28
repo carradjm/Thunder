@@ -12,6 +12,12 @@ html, body {
     height: 100%;
 }
 
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 input[type="button"], input[type="submit"],
 input[type="reset"], input[type="file"], button {
   -webkit-appearance: button;
