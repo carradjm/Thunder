@@ -14,6 +14,8 @@ FinalProject::Application.routes.draw do
     delete 'songs', to: 'playlist_songs#destroy'
   end
   
+  resource :playlist_song, only: [:new]
+  
   resource :session, only: [:new, :create, :destroy]
   
   # The priority is based upon order of creation: first created -> highest priority.

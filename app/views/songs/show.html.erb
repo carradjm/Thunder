@@ -27,7 +27,11 @@
 
 <section class="song-info group">
   <div class="band-logo">
-    <img src="<%= asset_path("Daft-Punk.jpg") %>" width="200" height="200" alt="Daft Punk">
+    <% if @song.image.path.nil? %>
+      <img src="<%= asset_path("Daft-Punk.jpg") %>" width="200" height="200" alt="Daft Punk">
+    <% else %>
+      <%= image_tag @song.image.url(:standard) %>
+    <% end %>
   </div>
 
   <div class="song-main">

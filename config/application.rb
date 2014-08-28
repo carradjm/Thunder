@@ -20,7 +20,8 @@ module FinalProject
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.paperclip_defaults = {                                   
-      :storage => :s3,                                                                        
+      :storage => :s3, 
+      :command_path => "/usr/local/bin/convert",                                                                    
       :s3_credentials => {                                          
         :bucket => ENV['AWS_BUCKET'], #these values safely stored in application.yml thanks to figaro!
         :access_key_id => ENV['ACCESS_KEY_ID'],                 

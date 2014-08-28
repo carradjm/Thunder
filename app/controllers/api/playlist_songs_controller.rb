@@ -1,5 +1,9 @@
 class PlaylistSongsController < ApplicationController
   
+  def new
+    render :new
+  end
+  
   def create
     song = Song.find(params[:song_id])
     playlist = Playlist.find(params[:playlist_id])
