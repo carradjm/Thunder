@@ -8,19 +8,21 @@ class User < ActiveRecord::Base
           :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
         )
   
-  before_validation :ensure_session_token
+  has_many :notifications, inverse_of: :user, dependent: :destroy
   
   has_many(
     :uploaded_songs,
     class_name: "Song",
-    foreign_key: :user_id
+    foreign_key: :user_id,
+    inverse_of: :uploader,
+    dependent: :destroy
   )
   
   has_many :song_likes, inverse_of: :user
   has_many :likes, through: :song_likes, source: :song
   
-  has_many :playlists
-  has_many :comments
+  has_many :playlists, dependent: :destroy
+  has_many :comments, inverse_of: :user, dependent: :destroy
   
   has_many(
     :user_following,
@@ -40,6 +42,8 @@ class User < ActiveRecord::Base
   
   has_many :following, through: :user_following, source: :following
   has_many :followers, through: :user_followers, source: :follower
+  
+  before_validation :ensure_session_token
   
   attr_reader :password
 

@@ -17,4 +17,3 @@ Genre.create!([
   {name: "Singer-Songwriter"},
   {name: "R&B"}
 ])
-

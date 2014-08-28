@@ -16,9 +16,36 @@ FinalProject::Application.routes.draw do
   
   resources :genres, only: [:index, :show] 
   
+  resources :notifications, only: [:index, :show]
+  
   resource :playlist_song, only: [:new]
   
   resource :session, only: [:new, :create, :destroy]
+  
+  namespace :api do
+    root to: "sessions#new"
+    resources :users do
+      post 'follow', to: 'user_follows#create'
+      delete 'follow', to: 'user_follows#destroy'
+    end
+    resources :songs, only: [:new, :create, :destroy, :show, :index] do
+      post 'like', to: 'song_likes#create'
+      delete 'like', to: 'song_likes#destroy'
+      post 'comment', to: "comments#create"
+    end
+    resources :playlists do
+      post 'songs', to: 'playlist_songs#create'
+      delete 'songs', to: 'playlist_songs#destroy'
+    end
+  
+    resources :genres, only: [:index, :show] 
+  
+    resources :notifications, only: [:index, :show]
+  
+    resource :playlist_song, only: [:new]
+  
+    resource :session, only: [:new, :create, :destroy]
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
