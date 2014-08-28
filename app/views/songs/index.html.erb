@@ -1,5 +1,5 @@
 <ul>
-<% @songs.each do |song| %>
-  <li><%= render partial: "stream", locals: {song: song, playlists: @playlists} %></li>
-<% end %>
+  <% @songs.each do |song| %>
+    <li><%= render partial: "stream", locals: {song: song, playlists: @playlists} %></li>
+  <% end %>
 </ul>

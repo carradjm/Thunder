@@ -1,9 +1,5 @@
 <div class="username">
-	<% if @user.username.nil? %>
-		<h1><%= @user.email %></h1>
-	<% else %>
-		<h1><%= @user.username %></h1>
-	<% end %>
+  <h1><%= @user.username %></h1>
 </div>
 
 <div class="follow-button">

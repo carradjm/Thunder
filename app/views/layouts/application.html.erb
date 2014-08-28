@@ -10,13 +10,9 @@
 	<nav class="group">
     <div class="nav-left">
     	<% if current_user %>
-        <% if current_user.username.nil? %>
-      		<a href="<%= user_url(current_user) %>"><%= current_user.email %></a>
-      	<% else %>
-      		<a href="<%= user_url(current_user) %>"><%= current_user.username %></a>
-      	<% end %>
-          <a href="<%= songs_url %>">Stream</a>
-          <a href="<%= songs_url %>">Explore</a>
+    		<a href="<%= user_url(current_user) %>"><%= current_user.username %></a>
+        <a href="<%= songs_url %>">Stream</a>
+        <a href="<%= genres_url %>">Explore</a>
       <% end %>
     </div>
     <div class="nav-right">

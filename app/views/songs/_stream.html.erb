@@ -10,9 +10,8 @@
   <div class="song-info">
     <ul class="group">
       <div class="song-artist-title">
-        <li class="song-artist"><%= song.artist %></li>
-    
-        <li class="song-title"><%= song.title %></li>
+        <li class="song-artist"><a href="<%= user_url(song.uploader) %>"><%= song.uploader.username %></a></li>
+        <li class="song-title"><a href="<%= song_url(song.id) %>"><%= song.title %></li>
       </div>
       
       <div class="music-player-widget">
@@ -20,9 +19,11 @@
       </div> 
       
       <div class="song-buttons group">
-        <li><%= render partial: "like_button", locals: {song: song} %></li>
+        <li><%= render partial: "songs/like_button", locals: {song: song} %></li>
       
         <li><%= link_to "Add to Playlist", new_playlist_song_url%></li>
+        
+        <li><%= song.genre.name %></li>
       </div>
     </ul>
   </div>

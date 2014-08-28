@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828141215) do
+ActiveRecord::Schema.define(version: 20140828160258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140828141215) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["song_id", "user_id"], name: "index_comments_on_song_id_and_user_id", unique: true, using: :btree
+  add_index "comments", ["song_id"], name: "index_comments_on_song_id", using: :btree
 
   create_table "genres", force: true do |t|
     t.string   "name"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20140828141215) do
   end
 
   add_index "genres", ["name"], name: "index_genres_on_name", unique: true, using: :btree
+
+  create_table "notifications", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.integer  "event_id"
+    t.boolean  "is_read"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "playlist_songs", force: true do |t|
     t.integer "playlist_id"
@@ -71,10 +81,8 @@ ActiveRecord::Schema.define(version: 20140828141215) do
 
   create_table "songs", force: true do |t|
     t.string   "title",              null: false
-    t.string   "artist",             null: false
     t.integer  "user_id",            null: false
     t.text     "description"
-    t.string   "genre"
     t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -86,10 +94,9 @@ ActiveRecord::Schema.define(version: 20140828141215) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "genre_id"
   end
 
-  add_index "songs", ["artist"], name: "index_songs_on_artist", using: :btree
-  add_index "songs", ["genre"], name: "index_songs_on_genre", using: :btree
   add_index "songs", ["title"], name: "index_songs_on_title", using: :btree
   add_index "songs", ["user_id"], name: "index_songs_on_user_id", using: :btree
 

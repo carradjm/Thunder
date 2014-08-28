@@ -1,17 +1,10 @@
 class Song < ActiveRecord::Base
-  validates :title, :artist, presence: true
+  validates :title, :track, presence: true
   has_attached_file :track
-  validates_attachment_content_type(
-          :track,
-          :content_type => ['audio/mpeg', 'audio/mp3', 'audio/mp4', 'audio/wav', 'audio/m4p']
-        )
-        
+  do_not_validate_attachment_file_type :track
+      
   has_attached_file :image, :styles => { :standard => "200x200" }
-  validates_attachment_content_type(
-          :image,
-          :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
-        )
-  
+  do_not_validate_attachment_file_type :image
   belongs_to(
     :uploader,
     class_name: "User",
@@ -19,7 +12,12 @@ class Song < ActiveRecord::Base
     primary_key: :id,
   )
   
-  belongs_to :genre
+  belongs_to(
+    :genre,
+    class_name: "Genre",
+    foreign_key: :genre_id,
+    primary_key: :id
+  )
   
   has_many :playlist_songs, inverse_of: :song
   

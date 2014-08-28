@@ -18,19 +18,22 @@ class SongsController < ApplicationController
     
     render :show
   end
-    
   
   def new
     @song = Song.new
+    @genres = Genre.all.order(:name)
+    
     render :new
   end
   
   def create
-    @song = current_user.uploaded_songs.new(song_params)
+    @song = Song.new(song_params)
+    @song.uploader = current_user
     
     if @song.save
       redirect_to song_url(@song)
     else
+      fail
       flash.now[:errors] = @song.errors.full_messages
       render :new
     end
@@ -41,6 +44,6 @@ class SongsController < ApplicationController
   
   private
   def song_params
-    params.require(:song).permit(:title, :artist, :description, :genre, :track, :image)
+    params.require(:song).permit(:title, :artist, :description, :genre_id, :track, :image)
   end
 end

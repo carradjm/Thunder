@@ -2,9 +2,9 @@
   <div class="song-show-info">
     <ul class="song-show-top group">
       <div class="song-show-artist-title">
-        <li class="song-show-artist"><%= @song.artist %></li>
+        <li class="song-show-artist"><a href="<%= user_url(@song.uploader) %>"><%= @song.uploader.username %></a></li>
     
-        <li class="song-show-title"><%= @song.title %></li>
+        <li class="song-show-title"><a href="<%= song_url(@song.id) %>"><%= @song.title %></li>
       </div>
       
       <div class="show-music-player-widget"></div> 
@@ -32,7 +32,7 @@
     <h3>Comments</h3>
     <ul>
       <% @comments.each do |comment| %>
-        <%= comment.body %> | <strong><%= comment.user.username %></strong>
+        <li><%= comment.body %> | <strong><%= comment.user.username %></strong> | <strong><%= Date.parse(comment.created_at.to_s) %></strong> </li>
       <% end %>
     </ul>
   </div>
