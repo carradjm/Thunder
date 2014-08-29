@@ -3,17 +3,7 @@ window.FinalProject = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
-    FinalProject.songs = new FinalProject.Collections.Songs();
-    FinalProject.songs.fetch({
-      success: function () {
-        new FinalProject.Routers.router({
-         $rootEl: $(".main"),
-        });
-        Backbone.history.start();
-      }
-    });
-  }
+  initialize: function() {  }
 };
 
 $(document).ready(function(){

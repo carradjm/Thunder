@@ -1,9 +1,22 @@
 <script>
-  var song = FinalProject.Models.Song;
-  var showView = new FinalProject.Views.SongsShow({
-    model: song
+$(document).ready(function(){
+  var $el = $(".song-show");
+  var $id = $('#song_id').attr('data_id')
+  var song = new FinalProject.Models.Song({id: $id});
+  song.fetch({
+    success: function() {
+      var showView = new FinalProject.Views.SongsShow({
+        model: song
+      });
+      $el.html(showView.render().$el)
+    }
   });
+});
 </script>
+
+<div id="song_id" data_id="<%= @song.id %>">
+  
+</div>
 
 <section class="song-show group">
   <div class="song-show-info">
