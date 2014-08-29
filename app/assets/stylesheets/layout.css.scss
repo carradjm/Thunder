@@ -35,6 +35,18 @@ input[type="reset"], input[type="file"], button {
     color: yellow;
   }
   
+.root-page {
+  font-size: 50px;
+  image-width: 900px;
+  image-height: 900px;
+}
+
+.root-page > img {
+  margin: auto;
+  width: 400px;
+  height: 500px;
+}
+  
 nav a {
   margin: 10px;
   text-decoration: none;
