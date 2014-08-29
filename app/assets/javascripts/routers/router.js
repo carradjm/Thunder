@@ -1,4 +1,4 @@
-FinalProject.Routers.router = Backbone.Router.extend({
+Thunder.Routers.router = Backbone.Router.extend({
   
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
@@ -8,23 +8,23 @@ FinalProject.Routers.router = Backbone.Router.extend({
     'songs' : 'index',
     'songs/new' : 'songNew',
     'songs/:id' : 'songShow',
-    'users/new' : 'userNew',
+    'users/new' : 'Thunder',
     'users/:id' : 'userShow',
     'users/:id/edit' : 'userEdit'
   },
   
   index: function() {
-    var indexView = new FinalProject.Views.SongsIndex({
-      collection: FinalProject.songs
+    var indexView = new Thunder.Views.SongsIndex({
+      collection: Thunder.songs
     });
     
     this._swapView(indexView);
   },
   
   songNew: function() {
-   var song = new FinalProject.Models.Song;
+   var song = new Thunder.Models.Song;
 
-   var newSongView = new FinalProject.Views.SongsForm({
+   var newSongView = new Thunder.Views.SongsForm({
      model: song
    });
 
@@ -32,22 +32,19 @@ FinalProject.Routers.router = Backbone.Router.extend({
   },
   
   songShow: function(id) {
-    var song = FinalProject.songs.get(id);
-    var showView = new FinalProject.Views.SongsShow({
-      model: song
-    });
+   Thunder
 
     this._swapView(showView)
   },
   
   userShow: function(id) {
-    FinalProject.users = new FinalProject.Collections.Users();
+    Thunder.users = new Thunder.Collections.Users();
     var that = this;
-    FinalProject.users.fetch({
+    Thunder.users.fetch({
       success: function() {
-        var user = FinalProject.users.get(id);
+        var user = Thunder.users.get(id);
         console.log(JSON.stringify(user));
-        var showView = new FinalProject.Views.UsersShow({
+        var showView = new Thunder.Views.UsersShow({
           model: user
         });
 

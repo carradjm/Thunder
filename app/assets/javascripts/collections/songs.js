@@ -1,5 +1,5 @@
-FinalProject.Collections.Songs = Backbone.Collection.extend({
-  model: FinalProject.Models.Song,
+Thunder.Collections.Songs = Backbone.Collection.extend({
+  model: Thunder.Models.Song,
   
   url: "/api/songs"
 })

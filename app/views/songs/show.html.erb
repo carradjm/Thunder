@@ -2,10 +2,10 @@
 $(document).ready(function(){
   var $el = $(".song-show");
   var $id = $('#song_id').attr('data_id')
-  var song = new FinalProject.Models.Song({id: $id});
+  var song = new Thunder.Models.Song({id: $id});
   song.fetch({
     success: function() {
-      var showView = new FinalProject.Views.SongsShow({
+      var showView = new Thunder.Views.SongsShow({
         model: song
       });
       $el.html(showView.render().$el)

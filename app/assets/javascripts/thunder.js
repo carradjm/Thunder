@@ -1,13 +1,13 @@
-window.FinalProject = {
+window.Thunder = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-    FinalProject.users = var FinalProject.
+    Thunder.users;
     }
 };
 
 $(document).ready(function(){
-  FinalProject.initialize();
+  Thunder.initialize();
 });

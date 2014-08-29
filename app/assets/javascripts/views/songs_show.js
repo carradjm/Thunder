@@ -1,4 +1,4 @@
-FinalProject.Views.SongsShow = Backbone.View.extend({
+Thunder.Views.SongsShow = Backbone.View.extend({
 
   template: JST['songs/show'],
   
