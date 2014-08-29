@@ -38,7 +38,7 @@ class Notification < ActiveRecord::Base
       comment_user = comment.user
       song = Song.find(comment.song_id)
       "#{comment_user.username} commented on your song '#{song.title}'"
-    when :new_follow
+    when :new_follow_on_user
       user_follow = self.notifiable
       follower = User.find(user_follow.follower_id)
       "#{follower.username} is now following you! With every breath you take..."

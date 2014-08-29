@@ -15,13 +15,12 @@
       </div>
       
       <div class="music-player-widget">
-        <li>Music Player</li>
       </div> 
       
       <div class="song-buttons group">
         <li><%= render partial: "songs/like_button", locals: {song: song} %></li>
       
-        <li><%= link_to "Add to Playlist", new_playlist_song_url%></li>
+        <li><%= render partial: "playlist_songs/new", locals: {song: song}%></li>
         
         <li><%= song.genre.name %></li>
       </div>

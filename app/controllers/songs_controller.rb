@@ -16,7 +16,10 @@ class SongsController < ApplicationController
     @playlists = current_user.playlists
     @comments = @song.comments
     
-    render :show
+    respond_to do |format|
+      format.html
+      format.json { render @song }
+    end
   end
   
   def new

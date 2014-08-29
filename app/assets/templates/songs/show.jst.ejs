@@ -1,0 +1,24 @@
+<div class="song-show-info">
+  <div class="song-show-artist">
+    <a href="/#/users/<%= song.user_id %>">
+      <%= song.escape('uploader').escape('username') %>
+    </a>
+  </div>
+
+  <div class="song-show-title">
+    <%= song.escape('title') %>
+  </div>
+
+  <audio class="music-player-widget">
+
+  <div class="song-show-buttons group">
+    <div id="like-song">Like Song</div>
+    <div id="add-to-playlist">Add To Playlist</div>
+  </div>
+</div>
+
+<button id="add-comment">Add Comment</button>
+
+<div class="song-show-image">
+  <%= image_tag song.image.url %>
+</div>

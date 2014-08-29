@@ -5,4 +5,10 @@ class NotificationsController < ApplicationController
     notification.update(is_read: true)
     redirect_to notification.url
   end
-end
+  
+  def index
+    @notifications = current_user.notifications.where(is_read: false)
+    render :index
+  end
+  
+end 
