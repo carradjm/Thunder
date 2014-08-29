@@ -1,0 +1,31 @@
+<script>
+$(document).ready(function(){
+  var $el = $(".song-show");
+  var $id = $('#song_id').attr('data_id')
+  var song = new Thunder.Models.Song({id: $id});
+  song.fetch({
+    success: function() {
+      var showView = new Thunder.Views.SongsShow({
+        model: song
+      });
+      $el.html(showView.render().$el)
+    }
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  var $el = $(".user-show");
+  var $id = $('#user_id').attr('data_id')
+  var user = new Thunder.Models.User({id: $id});
+  user.fetch({
+    success: function() {
+      var showView = new Thunder.Views.UsersShow({
+        model: user
+      });
+      $el.html(showView.render().$el)
+    }
+  });
+});
+</script>

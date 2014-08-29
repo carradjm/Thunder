@@ -38,18 +38,17 @@ Thunder.Routers.Router = Backbone.Router.extend({
   },
   
   userShow: function(id) {
-    Thunder.users = new Thunder.Collections.Users();
+    var user = new Thunder.Models.User({id: id});
     var that = this;
-    Thunder.users.fetch({
+    user.fetch({
       success: function() {
-        var user = Thunder.users.get(id);
         var showView = new Thunder.Views.UsersShow({
           model: user
         });
-
+        
         that._swapView(showView)
       }
-    })
+    });
   },
   
   _swapView: function(view) {
