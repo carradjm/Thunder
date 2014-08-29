@@ -1,6 +1,18 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
 
   before_action :require_logged_in!, only: [:show, :index]
+  
+  respond_to :json
+  
+  def index
+    @users = User.all
+    
+    render :json => @users
+  end
+  
+  def show 
+    @user = User.find(params[:id])
+  end
   
   def new
     @user = User.new
@@ -17,22 +29,6 @@ class UsersController < ApplicationController
       flash.now[:errors] = @user.errors.full_messages
       render :new
     end
-  end
-  
-  def index
-    @users = User.all
-    render :index
-  end
-  
-  def show 
-    @user = User.find(params[:id])
-    @uploads = @user.uploaded_songs
-    @likes = @user.likes
-    @playlists = @user.playlists
-    @followers = @user.followers
-    @following = @user.following
-    
-    render :show
   end
   
   def edit

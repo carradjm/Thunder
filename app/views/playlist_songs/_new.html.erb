@@ -1,0 +1,9 @@
+<ul>
+  <% current_user.playlists.each do |playlist| %>
+    <% next if playlist.songs.include?(song) %>
+      <li><%= playlist.title %> | <%= button_to "Add to Playlist",
+          playlist_songs_url(playlist_id: playlist.id, song_id: song.id)%></li>
+  <% end %>
+</ul>
+<br>
+<br>

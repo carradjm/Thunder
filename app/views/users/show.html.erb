@@ -35,7 +35,9 @@
   			</ul>
   		<% end %>
   		<br>
-  		<a href="<%= new_song_url %>">Upload New Song</a>
+      <% if @user == current_user %>
+    		<a href="<%= new_song_url %>">Upload New Song</a>
+      <% end %>
   	</div>
 		
   	<div class="likes">
@@ -57,7 +59,9 @@
   		</ul>
   	<% end %>
   	<br>
-  	<a href="<%= new_playlist_url %>">Create New Playlist</a>	
+    <% if @user == current_user %>
+    	<a href="<%= new_playlist_url %>">Create New Playlist</a>
+    <% end %>	
   	</div>
 
   	<div class="following">

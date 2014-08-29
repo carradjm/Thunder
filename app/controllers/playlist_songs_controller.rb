@@ -1,13 +1,15 @@
 class PlaylistSongsController < ApplicationController
   
   def new
+    @playlists = current_user.playlists
+    
     render :new
   end
   
   def create
     song = Song.find(params[:song_id])
     playlist = Playlist.find(params[:playlist_id])
-      
+    
     playlist_song = PlaylistSong.new(playlist_id: playlist.id, song_id: song.id)
     
     playlist_song.save

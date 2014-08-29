@@ -22,7 +22,7 @@ FinalProject::Application.routes.draw do
   
   resource :session, only: [:new, :create, :destroy]
   
-  namespace :api do
+  namespace :api, :defaults => { format: :json } do
     root to: "sessions#new"
     resources :users do
       post 'follow', to: 'user_follows#create'

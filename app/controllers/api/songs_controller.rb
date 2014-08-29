@@ -1,13 +1,13 @@
-class SongsController < ApplicationController
+class Api::SongsController < ApplicationController
   
-  before_filter :require_logged_in!
+  respond_to :json
   
   def index
     @songs = Song.all
-    # @followed_songs = current_user.followers.songs
+   
     @playlists = current_user.playlists
     
-    render :index
+    render :json => @songs
   end
   
   def show
@@ -15,8 +15,6 @@ class SongsController < ApplicationController
     @user = current_user
     @playlists = current_user.playlists
     @comments = @song.comments
-    
-    render :show
   end
   
   def new
