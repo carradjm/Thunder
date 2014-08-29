@@ -41,7 +41,7 @@ class Notification < ActiveRecord::Base
     when :new_follow_on_user
       user_follow = self.notifiable
       follower = User.find(user_follow.follower_id)
-      "#{follower.username} is now following you! With every breath you take..."
+      "#{follower.username} is now following you!"
     end
   end
 
