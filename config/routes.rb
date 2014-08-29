@@ -1,5 +1,6 @@
 Thunder::Application.routes.draw do
-  root to: "sessions#new"
+  root to: "static_pages#root"
+  
   resources :users do
     post 'follow', to: 'user_follows#create'
     delete 'follow', to: 'user_follows#destroy'

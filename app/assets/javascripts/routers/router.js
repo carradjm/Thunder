@@ -1,4 +1,4 @@
-Thunder.Routers.router = Backbone.Router.extend({
+Thunder.Routers.Router = Backbone.Router.extend({
   
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
@@ -43,7 +43,6 @@ Thunder.Routers.router = Backbone.Router.extend({
     Thunder.users.fetch({
       success: function() {
         var user = Thunder.users.get(id);
-        console.log(JSON.stringify(user));
         var showView = new Thunder.Views.UsersShow({
           model: user
         });

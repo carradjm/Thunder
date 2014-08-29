@@ -31,8 +31,6 @@ class Api::UsersController < ApplicationController
     @playlists = @user.playlists
     @followers = @user.followers
     @following = @user.following
-    
-    render :show
   end
   
   def edit

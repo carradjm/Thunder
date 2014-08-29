@@ -1,0 +1,76 @@
+  <div class="username">
+    <h1><%= user.escape('username') %></h1>
+  </div>
+
+  <button class="follow-user">Follow</button>
+
+  <div class="user-show-image">
+    <% if (user.escape("picture")) { %>
+      <img src="<%= user.escape('picture') %>" width="200" height="200">
+    <% } else { %>
+      <img src="Daft-Punk.jpg" width="200" height="200" alt="Daft Punk">
+    <% } %>
+  </div>
+
+  <section class="show group">
+  	<div class="show-headers group">
+  		<div class="show-title">Uploaded Songs</div>
+      <div class="show-title">Likes</div>
+      <div class="show-title">Playlists</div>
+      <div class="show-title">Following</div>
+      <div class="show-title">Followers</div>
+    </div>
+  
+    <section class="show-content group">
+    	<div class="uploaded-songs">
+    		<% if (user.uploads()) { %>
+    			<ul>
+    				<% user.uploads().forEach( function (song) { %>
+    					<li><a href="song model show"><%= song.escape("title") %></a></li>
+    				<% }); %>
+    			</ul>
+    		<% } %>
+        <a href="# create and save new song">Upload New Song</a>
+    	</div>
+		
+    	<div class="likes">
+  		<% if (user.likes()) { %>
+  			<ul>
+  				<% user.likes().forEach( function (song) { %>
+  					<li><a href="song model show"><%= song.escape('title') %></a></li>
+  				<% }); %>
+  			</ul>
+  		<% } %>
+      </div>
+  
+    	<div class="playlists">
+  		<% if (user.playlists()) { %>
+  			<ul>
+  				<% user.playlists().forEach( function (playlist) { %>
+  					<li><a href="song model show"><%= playlist.escape("title") %></a></li>
+  				<% }); %>
+  			</ul>
+  		<% } %>
+    	<a href="">Create New Playlist</a>
+    	</div>
+     
+     	<div class="followers">
+     	<% if (user.followers()) { %>	
+   			<% user.followers().forEach( function(user) { %>
+   				<a href=""><%= user.email %></a>
+   				<a href=""><%= user.username %></a>
+   			<% }) %>			
+   		<% }%>
+     	</div>
+    	
+      <div class="following">
+    	<% if (user.following()) { %>	
+  			<% user.following().forEach( function(user) { %>
+  				<a href=""><%= user.email %></a>
+  				<a href=""><%= user.username %></a>
+  			<% }) %>			
+  		<% }%>
+      </div>
+      
+    </section>
+  </section>

@@ -2,6 +2,25 @@ class UsersController < ApplicationController
 
   before_action :require_logged_in!, only: [:show, :index]
   
+  def index
+    @users = User.all
+    render :index
+  end
+  
+  def show 
+    @user = User.find(params[:id])
+    @uploads = @user.uploaded_songs
+    @likes = @user.likes
+    @playlists = @user.playlists
+    @followers = @user.followers
+    @following = @user.following
+      
+    respond_to do |format|
+      format.html
+      format.json { render @user }
+    end
+  end
+  
   def new
     @user = User.new
     render :new
@@ -18,23 +37,7 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
-  def index
-    @users = User.all
-    render :index
-  end
-  
-  def show 
-    @user = User.find(params[:id])
-    @uploads = @user.uploaded_songs
-    @likes = @user.likes
-    @playlists = @user.playlists
-    @followers = @user.followers
-    @following = @user.following
     
-    render :show
-  end
-  
   def edit
     @user = User.find(params[:id])
     

@@ -1,98 +1,115 @@
-<div class="username">
-  <h1><%= @user.username %></h1>
-</div>
+<script>
+$(document).ready(function(){
+  var $el = $(".user-show");
+  var $id = $('#user_id').attr('data_id')
+  var user = new Thunder.Models.User({id: $id});
+  user.fetch({
+    success: function() {
+      var showView = new Thunder.Views.UsersShow({
+        model: user
+      });
+      $el.html(showView.render().$el)
+    }
+  });
+});
+</script>
 
-<div class="follow-button">
-	<%= render "follow", user: @user %>
-	<br>
-	<br>
-</div>
+<div id="user_id" data_id="<%= @user.id %>"></div>
 
-<div class="user-show-image">
-  <% if @user.picture.path.nil? %>
-    <img src="<%= asset_path("Daft-Punk.jpg") %>" width="200" height="200" alt="Daft Punk">
-  <% else %>
-    <%= image_tag @user.picture.url(:standard) %>
-  <% end %>
-</div>
-
-<section class="show group">
-	<div class="show-headers group">
-		<div class="show-title">Uploaded Songs</div>
-    <div class="show-title">Likes</div>
-    <div class="show-title">Playlists</div>
-    <div class="show-title">Following</div>
-    <div class="show-title">Followers</div>
+<section class="user-show">
+  <div class="username">
+    <h1><%= @user.username %></h1>
   </div>
-  
-  <section class="show-content group">
-  	<div class="uploaded-songs">
-  		<% unless @uploads.empty? %>
-  			<ul>
-  				<% @uploads.each do |song| %>
-  					<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
-  				<% end %>
-  			</ul>
-  		<% end %>
-  		<br>
-      <% if @user == current_user %>
-    		<a href="<%= new_song_url %>">Upload New Song</a>
-      <% end %>
-  	</div>
-		
-  	<div class="likes">
-  	<% unless @likes.empty? %>
-  		<ul>
-  			<% @likes.each do |song| %>
-  				<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
-  			<% end %>
-  		</ul>
-  	<% end %>
-  	</div>
-	
-  	<div class="playlists">
-  	<% unless @playlists.empty? %>
-  		<ul>
-  			<% @playlists.each do |playlist| %>
-  				<li><a href="<%= playlist_url(playlist) %>"><%= playlist.title %></a></li>
-  			<% end %>
-  		</ul>
-  	<% end %>
-  	<br>
-    <% if @user == current_user %>
-    	<a href="<%= new_playlist_url %>">Create New Playlist</a>
-    <% end %>	
-  	</div>
 
-  	<div class="following">
-  	<% unless @following.empty? %>	
-  		<ul>
-  			<% @following.each do |user| %>
-  				<% if user.username.nil? %>
-  					<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
-  				<% else %>
-  					<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
-  				<% end %>			
-  			<% end %>
-  		</ul>	
-  	<% end %>
-  	</div>
+  <div class="follow-button">
+  	<%= render "follow", user: @user %>
+  	<br>
+  	<br>
+  </div>
+
+  <div class="user-show-image">
+    <% if @user.picture.path.nil? %>
+      <img src="<%= asset_path("Daft-Punk.jpg") %>" width="200" height="200" alt="Daft Punk">
+    <% else %>
+      <%= image_tag @user.picture.url(:standard) %>
+    <% end %>
+  </div>
+
+  <section class="show group">
+  	<div class="show-headers group">
+  		<div class="show-title">Uploaded Songs</div>
+      <div class="show-title">Likes</div>
+      <div class="show-title">Playlists</div>
+      <div class="show-title">Following</div>
+      <div class="show-title">Followers</div>
+    </div>
+  
+    <section class="show-content group">
+    	<div class="uploaded-songs">
+    		<% unless @uploads.empty? %>
+    			<ul>
+    				<% @uploads.each do |song| %>
+    					<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+    				<% end %>
+    			</ul>
+    		<% end %>
+    		<br>
+        <% if @user == current_user %>
+      		<a href="<%= new_song_url %>">Upload New Song</a>
+        <% end %>
+    	</div>
+		
+    	<div class="likes">
+    	<% unless @likes.empty? %>
+    		<ul>
+    			<% @likes.each do |song| %>
+    				<li><a href="<%= song_url(song) %>"><%= song.title %></a></li>
+    			<% end %>
+    		</ul>
+    	<% end %>
+    	</div>
 	
-  	<div class="followers">
-  	<% unless @followers.empty? %>
-  		<ul>
-  			<% @followers.each do |user| %>
-  				<% if user.username.nil? %>
-  					<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
-  				<% else %>
-  					<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
-  				<% end %>			
-  			<% end %>
-  		</ul>	
-  	<% end %>
-  	</div>
+    	<div class="playlists">
+    	<% unless @playlists.empty? %>
+    		<ul>
+    			<% @playlists.each do |playlist| %>
+    				<li><a href="<%= playlist_url(playlist) %>"><%= playlist.title %></a></li>
+    			<% end %>
+    		</ul>
+    	<% end %>
+    	<br>
+      <% if @user == current_user %>
+      	<a href="<%= new_playlist_url %>">Create New Playlist</a>
+      <% end %>	
+    	</div>
+
+    	<div class="following">
+    	<% unless @following.empty? %>	
+    		<ul>
+    			<% @following.each do |user| %>
+    				<% if user.username.nil? %>
+    					<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
+    				<% else %>
+    					<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
+    				<% end %>			
+    			<% end %>
+    		</ul>	
+    	<% end %>
+    	</div>
+	
+    	<div class="followers">
+    	<% unless @followers.empty? %>
+    		<ul>
+    			<% @followers.each do |user| %>
+    				<% if user.username.nil? %>
+    					<li><a href="<%= user_url(user) %>"><%= user.email %></a></li>
+    				<% else %>
+    					<li><a href="<%= user_url(user) %>"><%= user.username %></a></li>
+    				<% end %>			
+    			<% end %>
+    		</ul>	
+    	<% end %>
+    	</div>
+    </section>
   </section>
 </section>
-
-<br>
-<br>
