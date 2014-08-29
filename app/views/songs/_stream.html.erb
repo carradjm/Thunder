@@ -11,11 +11,10 @@
     <ul class="group">
       <div class="song-artist-title">
         <li class="song-artist"><a href="<%= user_url(song.uploader) %>"><%= song.uploader.username %></a></li>
-        <li class="song-title"><a href="<%= song_url(song.id) %>"><%= song.title %></li>
+        <li class="song-title"><a href="<%= song_url(song.id) %>"><%= song.title %></a></li>
       </div>
       
-      <div class="music-player-widget">
-      </div> 
+      <div class="music-player-widget"></div> 
       
       <div class="song-buttons group">
         <li><%= render partial: "songs/like_button", locals: {song: song} %></li>

@@ -35,14 +35,14 @@ input[type="reset"], input[type="file"], button {
     color: yellow;
   }
   
-a {
+nav a {
   margin: 10px;
   text-decoration: none;
   color: orange;
   font-size: 20px;
 }
 
-a:hover {
+nav a:hover {
   text-decoration: underline;
   color: red;
   font-size: 20px;

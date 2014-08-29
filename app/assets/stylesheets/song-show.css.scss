@@ -19,10 +19,16 @@ input[type="reset"], input[type="file"], button {
   display: block;
   margin: 10px auto;
   padding: 10px;
+  border: 1px solid purple;
+}
+
+.song-stream a {
+   margin: 10px;
 }
 
 .song-stream > div {
   float: left;
+  border: 1px solid purple;
 }
 
 .song-info {
@@ -135,7 +141,3 @@ ul {
     float: left;
     margin: 5px;
 }
-
-
-
-
