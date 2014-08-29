@@ -3,7 +3,9 @@ window.FinalProject = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {  }
+  initialize: function() {
+    FinalProject.users = var FinalProject.
+    }
 };
 
 $(document).ready(function(){

@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-FinalProject::Application.config.secret_key_base = '51d8329d2b306f9d4895b72ec5fa86a9fc0315a849e09db797c6d074e2de3835836e1bb8df75b8a3aebafbb74c993ae5b7d8ba8c8f5583c768d30ed0973b56b2'
+Thunder::Application.config.secret_key_base = '51d8329d2b306f9d4895b72ec5fa86a9fc0315a849e09db797c6d074e2de3835836e1bb8df75b8a3aebafbb74c993ae5b7d8ba8c8f5583c768d30ed0973b56b2'

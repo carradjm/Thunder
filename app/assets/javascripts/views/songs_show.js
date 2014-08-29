@@ -1,6 +1,11 @@
 FinalProject.Views.SongsShow = Backbone.View.extend({
 
   template: JST['songs/show'],
+  
+  events: {
+    'click .add-comment' : 'addComment',
+    'click .song-like' : 'likeSong'
+  },
 
   initialize: function() {},
   
