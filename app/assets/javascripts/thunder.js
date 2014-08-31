@@ -4,6 +4,13 @@ window.Thunder = {
   Views: {},
   Routers: {},
   initialize: function() {
+    var data = JSON.parse($("#bootstrapped-json").html());
+
+    this.currentUser = new Thunder.Models.User(data["currentUser"], { parse: true });
+    this.users = new Thunder.Collections.Users(Thunder.currentUser);
+    this.songs = new Thunder.Collections.Songs();
+    this.playlists = new Thunder.Collections.Playlists();
+    
     var router = new Thunder.Routers.Router({
       $rootEl: $('.main')
     });

@@ -1,6 +1,6 @@
 <div class="song-show-info">
   <div class="song-show-artist">
-    <a href="/#/users/<%= song.user_id %>">
+    <a href="/#/users/<%= song.escape('user_id') %>">
       <%= song.escape('uploader') %>
     </a>
   </div>

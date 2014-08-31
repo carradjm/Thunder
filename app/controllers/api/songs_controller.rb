@@ -11,11 +11,12 @@ class Api::SongsController < ApplicationController
   end
   
   def show
-    @song = Song.find(params[:id])
-    @uploader = @song.uploader
     @user = current_user
     @playlists = current_user.playlists
-    @comments = @song.comments
+    
+    @song = Song.includes(:comments, :uploader).find(params[:id])
+    
+    render partial: "api/songs/show.json", locals: { song: @song}
   end
   
   def new

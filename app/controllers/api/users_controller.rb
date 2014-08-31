@@ -25,12 +25,11 @@ class Api::UsersController < ApplicationController
   end
   
   def show 
-    @user = User.find(params[:id])
-    @uploads = @user.uploaded_songs
-    @likes = @user.likes
-    @playlists = @user.playlists
-    @followers = @user.followers
-    @following = @user.following
+    @user = User.includes(:uploaded_songs, :likes, :playlists,
+                          :followers, :following)
+                          .find(params[:id])
+    
+    render partial: "api/users/show.json", locals: { user: @user }
   end
   
   def edit

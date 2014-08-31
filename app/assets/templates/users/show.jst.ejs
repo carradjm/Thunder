@@ -26,7 +26,7 @@
   		<% if (user.uploads()) { %>
   			<ul>
   				<% user.uploads().forEach( function (song) { %>
-  					<li><a href="song model show"><%= song.escape("title") %></a></li>
+  					<li><a href="#/songs/<%= song.id %>"><%= song.escape("title") %></a></li>
   				<% }); %>
   			</ul>
   		<% } %>
@@ -37,7 +37,7 @@
 		<% if (user.likes()) { %>
 			<ul>
 				<% user.likes().forEach( function (song) { %>
-					<li><a href="song model show"><%= song.escape('title') %></a></li>
+					<li><a href="#/songs/<%= song.id %>"><%= song.escape('title') %></a></li>
 				<% }); %>
 			</ul>
 		<% } %>
@@ -47,7 +47,7 @@
 		<% if (user.playlists()) { %>
 			<ul>
 				<% user.playlists().forEach( function (playlist) { %>
-					<li><a href="song model show"><%= playlist.escape("title") %></a></li>
+					<li><a href="#/playlists/<%= playlist.id %>"><%= playlist.escape("title") %></a></li>
 				<% }); %>
 			</ul>
 		<% } %>

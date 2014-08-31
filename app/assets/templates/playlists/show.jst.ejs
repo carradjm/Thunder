@@ -1,0 +1,9 @@
+<h1><%= playlist.escape('title') %></h1>
+
+<h3>Songs</h3>
+<ul>
+	<% playlist.songs().forEach( function(song) { %>
+		<li><%= song.escape('title') %></li>
+		<button>Remove From Playlist</button>
+	<% }) %>
+</ul>   

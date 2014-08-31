@@ -5,12 +5,14 @@ Thunder.Routers.Router = Backbone.Router.extend({
   },
   
   routes: {
-    'songs' : 'index',
+    'users' : 'usersIndex',
+    'songs' : 'songsIndex',
     'songs/new' : 'songNew',
     'songs/:id' : 'songShow',
     'users/new' : 'Thunder',
     'users/:id' : 'userShow',
-    'users/:id/edit' : 'userEdit'
+    'users/:id/edit' : 'userEdit',
+    'playlists/:id' : 'playlistShow'
   },
   
   index: function() {
@@ -32,23 +34,36 @@ Thunder.Routers.Router = Backbone.Router.extend({
   },
   
   songShow: function(id) {
-   Thunder
-
-    this._swapView(showView)
+    var song = Thunder.songs.getOrFetch(id);
+    
+  
+    var showView = new Thunder.Views.SongsShow({
+      model: song
+    });
+    
+    console.log(showView.model.get('title'))
+        
+    this._swapView(showView);
   },
   
   userShow: function(id) {
-    var user = new Thunder.Models.User({id: id});
-    var that = this;
-    user.fetch({
-      success: function() {
-        var showView = new Thunder.Views.UsersShow({
-          model: user
-        });
-        
-        that._swapView(showView)
-      }
+    var user = Thunder.users.getOrFetch(id);
+
+    var showView = new Thunder.Views.UsersShow({
+      model: user
     });
+    
+    this._swapView(showView)
+  },
+  
+  playlistShow: function(id) {
+    var playlist = Thunder.playlists.getOrFetch(id);
+    
+    var showView = new Thunder.Views.PlaylistsShow({
+      model: playlist
+    });
+        
+    this._swapView(showView) 
   },
   
   _swapView: function(view) {
