@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>FinalProject</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <header>
-  	<nav class="group">
-      <div class="nav-left">
-      	<% if current_user %>
-          <div id="current-user-id" data-id="<%= current_user.id %>"></div>
-      		<a href="<%= user_url(current_user) %>"><%= current_user.username %></a>
-          <a href="<%= songs_url %>">Stream</a>
-          <a href="<%= genres_url %>">Explore</a>
-        <% end %>
-      </div>
-      <div class="nav-right">
-      	<% if logged_in? %>
-          <a href="<%= notifications_url %>">Notifications</a>
-          <a href="<%= edit_user_url(current_user) %>">Edit Profile</a> 
-          <a href="<%= users_url %>">Users Index</a>
-      		<%= link_to "Sign Out", session_url, method: :delete %>	
-      	<% else %>
-      		<%= link_to "Sign In", new_session_url%>
-      		<%= link_to "Sign Up", new_user_url%>
-      	<% end %>
+  <head>
+    <title>FinalProject</title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+    	<nav class="group">
+        <div class="nav-left">
+        	<% if current_user %>
+            <div id="current-user-id" data-id="<%= current_user.id %>"></div>
+        		<a href="<%= user_url(current_user) %>"><%= current_user.username %></a>
+            <a href="<%= songs_url %>">Stream</a>
+            <a href="<%= genres_url %>">Explore</a>
+          <% end %>
         </div>
-  	</nav>
-  </header>
-  <div class="sidebar group">
-  </div>
-  <div class="main group">
-    <%= yield %>
-  </div>
-</body>
+        <div class="nav-right">
+        	<% if logged_in? %>
+            <a href="<%= notifications_url %>">Notifications</a>
+            <a href="<%= edit_user_url(current_user) %>">Edit Profile</a> 
+            <a href="<%= users_url %>">Users Index</a>
+        		<%= link_to "Sign Out", session_url, method: :delete %>	
+        	<% else %>
+        		<%= link_to "Sign In", new_session_url%>
+        		<%= link_to "Sign Up", new_user_url%>
+        	<% end %>
+        </div>
+    	</nav>
+    </header>
+    
+    <div class="wrapper group">
+      <div class="sidebar group">
+        <div class="sidebar-stuff">
+      		<div class="show-title">Uploaded Songs</div>
+          <div class="show-title">Likes</div>
+          <div class="show-title">Playlists</div>
+          <div class="show-title">Following</div>
+          <div class="show-title">Followers</div>
+        </div>
+      </div>
+    
+      <div class="main">
+        <%= yield %>
+      </div>
+    </div>
+    
+    <footer>
+      Stuff
+    </footer>
+    
+  </body>
 </html>

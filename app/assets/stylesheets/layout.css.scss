@@ -1,8 +1,7 @@
-html, head, body, nav, div, h1, h2, h3, ul, li, form, button, img, form, a, header{
+html, head, body, nav, div, h1, h2, h3, ul, li, form, button, img, form, a, header, footer {
   margin: 0;
   padding: 0;
   font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
-  border: 1px solid red;
 }
 
 html {
@@ -10,7 +9,7 @@ html {
 }
 
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
 .group:after {
@@ -24,8 +23,7 @@ input[type="reset"], input[type="file"], button {
   -webkit-appearance: button;
     display: inline-block;
     position: relative;
-    box-sizing: content-box;
-    margin: 5px;
+    box-sizing: content-box;  
     padding: 0;
     border: 0;
     outline: 0;
@@ -47,9 +45,17 @@ input[type="reset"], input[type="file"], button {
   width: 400px;
   height: 500px;
 }
+
+header {
+  float: left;
+  display: block;
+  width: 100%;
+  height: 40px;
+  background: black;
+  border: 1px solid yellow;
+}
   
 nav a {
-  margin: 10px;
   text-decoration: none;
   color: orange;
   font-size: 20px;
@@ -61,29 +67,48 @@ nav a:hover {
   font-size: 20px;
 }
 
-nav {
-  width: 100%;
-  height: 40px;
-  background: black;
-}
-
 .nav-left{
-  margin: 10px auto;
   float: left;
 }
 
 .nav-right {
-  margin: 10px auto;
   float: right;
 }
 
-.main {
-  background: white;
+#wrapper {
+   position: relative;
+   height: 100%;
+}
+
+.sidebar {
+  float: left;
+  display: block;
   height: 100%;
-  width: 1200px;
+  border: 1px solid blue;
+  width: 200px;
+  background: blue;
+  padding-bottom: 40px;
+}
+
+.sidebar-stuff {
+  border: 1px solid green;
+}
+
+.main {
+  float: left;
+  display: block;
+  background: white;
   padding: 20px;
-  margin: auto;
-  border-left: 3px solid #ddd;
-  border-right: 3px solid #ddd;
+  padding-bottom: 40px;
+  border: 1px solid purple;
+}
+
+footer {
+  float: left;
+  display: block;
+  width: 100%;
+  height: 40px;
+  background: black;
+  border: 1px solid yellow;
 }
 
