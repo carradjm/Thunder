@@ -5,7 +5,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
   },
   
   routes: {
-    'users' : 'usersIndex',
+    "" : "usersIndex",
     'songs' : 'songsIndex',
     'songs/new' : 'songNew',
     'songs/:id' : 'songShow',
@@ -15,12 +15,17 @@ Thunder.Routers.Router = Backbone.Router.extend({
     'playlists/:id' : 'playlistShow'
   },
   
-  index: function() {
-    var indexView = new Thunder.Views.SongsIndex({
-      collection: Thunder.songs
-    });
+  usersIndex: function() {
+    var that = this;
+    Thunder.users.fetch({
+      success: function() {
+        var indexView = new Thunder.Views.UsersIndex({
+          collection: Thunder.users
+        });
     
-    this._swapView(indexView);
+        that._swapView(indexView);
+      }
+    });
   },
   
   songNew: function() {
@@ -34,36 +39,36 @@ Thunder.Routers.Router = Backbone.Router.extend({
   },
   
   songShow: function(id) {
-    var song = Thunder.songs.getOrFetch(id);
-    
-  
-    var showView = new Thunder.Views.SongsShow({
-      model: song
-    });
-    
-    console.log(showView.model.get('title'))
-        
-    this._swapView(showView);
+    var that = this;
+    var song = Thunder.songs.getOrFetch(id, function(song) {
+      var showView = new Thunder.Views.SongsShow({
+        model: song
+      });
+      
+      that._swapView(showView);
+    });    
   },
   
   userShow: function(id) {
-    var user = Thunder.users.getOrFetch(id);
-
-    var showView = new Thunder.Views.UsersShow({
-      model: user
+    var that = this;
+    var user = Thunder.users.getOrFetch(id, function(user) {
+      var showView = new Thunder.Views.UsersShow({
+        model: user
+      });
+      
+      that._swapView(showView);
     });
-    
-    this._swapView(showView)
   },
   
   playlistShow: function(id) {
-    var playlist = Thunder.playlists.getOrFetch(id);
-    
-    var showView = new Thunder.Views.PlaylistsShow({
-      model: playlist
-    });
+    var that = this;
+    var playlist = Thunder.playlists.getOrFetch(id, function(playlist) {
+      var showView = new Thunder.Views.PlaylistsShow({
+        model: playlist
+      });
         
-    this._swapView(showView) 
+      this._swapView(showView) 
+    });
   },
   
   _swapView: function(view) {

@@ -3,20 +3,23 @@ Thunder.Collections.Songs = Backbone.Collection.extend({
   
   url: "/api/songs",
     
-  getOrFetch: function (id) {
-      var song = this.get(id);
+  getOrFetch: function (id, callback) {
+    var song = this.get(id);
 
-      if(!song) {
-        song = new Thunder.Models.Song({ id: id });
-        song.fetch({
-          success: function () {
-            Thunder.songs.add(song).bind(this);
-          }
-        });
-      } else {
-        song.fetch();
-      }
-      
-      return song;
+    if(!song) {
+      song = new Thunder.Models.Song({
+         id: id 
+       });
+      song.fetch({
+        success: function () {
+          Thunder.songs.add(song)
+          callback(song)
+        }
+      });
+    } else {
+      song.fetch({
+        success: callback(song)
+      });
     }
+  }
 })

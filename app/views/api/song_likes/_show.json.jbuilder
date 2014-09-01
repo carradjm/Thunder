@@ -1,0 +1,1 @@
+json.extract! like, :id, :song_id, :user_id

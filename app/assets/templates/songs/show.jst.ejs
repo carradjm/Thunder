@@ -9,12 +9,16 @@
     <%= song.escape('title') %>
   </div>
 
-  <audio class="music-player-widget">
+  <audio class="music-player-widget"></audio>
 
   <div class="song-show-buttons group">
-    <div id="like-song">Like Song</div>
-    <div id="add-to-playlist">Add To Playlist</div>
-  </div>
+    <% if (Thunder.currentUser.likes().findWhere({id: song.id})) { %>
+      <div id="unlike-song">Unlike Song</div>
+    <% } else { %>
+      <div id="like-song">Like Song</div>
+    <% } %>
+      <div id="add-to-playlist">Add To Playlist</div>
+    </div>
 </div>
 
 <button id="add-comment">Add Comment</button>

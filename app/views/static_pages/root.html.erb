@@ -1,3 +1,13 @@
+<script type="application/json" id="bootstrapped-json">
+  { "currentUser": <%= render(partial: "api/users/show.json", locals: { user: current_user }).html_safe %> }
+</script>
+
+<script>
+  $(document).ready(function() {
+    $(Thunder.initialize());
+  })
+</script>
+
 <div class="root-page">
   <p>THUNDER</p>
   <img src="http://upload.wikimedia.org/wikipedia/commons/8/8d/ACDC-Hughes-long_ago.jpg">

@@ -3,20 +3,21 @@ Thunder.Collections.Playlists = Backbone.Collection.extend({
   
   url:  '/api/playlists',
   
-  getOrFetch: function (id) {
-      var playlist = this.get(id);
+  getOrFetch: function (id, callback) {
+    var playlist = this.get(id);
 
-      if(!playlist) {
-        playlist = new Thunder.Model.Playlist({ id: id });
-        playlist.fetch({
-          success: function () {
-            Thunder.playlists.add(playlist).bind(this);
-          }
-        });
-      } else {
-        playlist.fetch();
-      }
-
-      return playlist;
+    if(!playlist) {
+      playlist = new Thunder.Models.Playlist({ id: id });
+      playlist.fetch({
+        success: function () {
+          Thunder.playlists.add(playlist);
+          callback(playlist)
+        }
+      });
+    } else {
+      playlist.fetch({
+        success: callback(playlist)
+      });
     }
+  }
 })

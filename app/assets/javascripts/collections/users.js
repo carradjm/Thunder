@@ -4,20 +4,22 @@ Thunder.Collections.Users = Backbone.Collection.extend({
   
   url: '/api/users',
   
-  getOrFetch: function (id) {
-      var user = this.get(id);
+  getOrFetch: function (id, callback) {
+    var user = this.get(id);
 
-      if(!user) {
-        user = new Thunder.Models.User({ id: id });
-        user.fetch({
-          success: function () {
-            Thunder.users.add(user).bind(this);
-          }
-        });
-      } else {
-        user.fetch();
+    if(!user) {
+      user = new Thunder.Models.User({ id: id });
+      user.fetch({
+        success: function () {
+          Thunder.users.add(user)
+          callback(user)
+        }
+      });
+    } else {
+      user.fetch({
+        success: callback(user)
       }
-
-      return user;
+      );
     }
+  }
 })

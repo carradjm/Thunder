@@ -41,6 +41,22 @@ Thunder.Models.User = Backbone.Model.extend({
     return this._following;
   },
   
+  songLikes: function() {
+    if (!this._songLikes) {
+      this._songLikes = new Thunder.Collections.Likes([], { user: this })
+    }
+    
+    return this._songLikes;
+  },
+  
+  userFollows: function() {
+    if (!this._userFollows) {
+      this._userFollows = new Thunder.Collections.UserFollows([], { user: this })
+    }
+    
+    return this._userFollows;
+  },
+  
   parse: function(response) {
     if(response.uploads) {
       this.uploads().set(response.uploads, { parse: true });
@@ -56,14 +72,27 @@ Thunder.Models.User = Backbone.Model.extend({
       this.playlists().set(response.playlists, { parse: true });
       delete response.playlists;
     }
+    
     if(response.following) {
       this.following().set(response.following, { parse: true });
       delete response.following;
     }
+    
     if(response.followers) {
       this.followers().set(response.followers, { parse: true });
       delete response.followers;
     }
+    
+    if(response.songLikes) {
+      this.songLikes().set(response.songLikes, { parse: true });
+      delete response.songLikes;
+    }
+    
+    if(response.userFollows) {
+      this.userFollows().set(response.userFollows, { parse: true });
+      delete response.userFollows;
+    }
+    
     
     return response;
   }

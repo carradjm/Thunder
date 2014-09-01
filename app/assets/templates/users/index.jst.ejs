@@ -1,0 +1,13 @@
+<h1>All Users</h1>
+<ul>
+	<% users.forEach( function(user) {%>
+		<% if (user.escape('username')) { %>
+			<li><a href="/#/users/<%= user.id %>"><%= user.escape('email') %></a></li>
+		<% } else { %>
+			<li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+		<% } %>
+	<% }); %>
+</ul>
+<br>
+
+<a href="/#/users/<%= Thunder.currentUser.id %>">Profile</a>

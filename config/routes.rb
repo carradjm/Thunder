@@ -30,20 +30,17 @@ Thunder::Application.routes.draw do
       delete 'follow', to: 'user_follows#destroy'
     end
     resources :songs, only: [:new, :create, :destroy, :show, :index] do
-      post 'like', to: 'song_likes#create'
-      delete 'like', to: 'song_likes#destroy'
       post 'comment', to: "comments#create"
     end
-    resources :playlists do
-      post 'songs', to: 'playlist_songs#create'
-      delete 'songs', to: 'playlist_songs#destroy'
-    end
+    resources :playlists
   
     resources :genres, only: [:index, :show] 
   
     resources :notifications, only: [:index, :show]
   
-    resource :playlist_song, only: [:new]
+    resources :playlist_song, only: [:index, :new, :create, :destroy]
+    
+    resources :song_likes, only: [:index, :create, :destroy]
   
     resource :session, only: [:new, :create, :destroy]
   end

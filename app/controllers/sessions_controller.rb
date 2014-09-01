@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     
     unless @user.nil?
       login_user(@user)
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new

@@ -1,6 +1,6 @@
-json.extract! @song, :title, :user_id, :description, 
+json.extract! @song, :id, :title, :user_id, :description, 
                      :duration, :created_at, :updated_at, 
-                     :genre_id, :image, :track
+                     :genre_id, :track, :image
                      
 json.uploader @song.uploader.username
 

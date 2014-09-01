@@ -2,6 +2,27 @@ class Api::UsersController < ApplicationController
 
   before_action :require_logged_in!, only: [:show, :index]
   
+  def index
+    @users = User.all
+    
+    render :index
+  end
+  
+  def show 
+    @user = User.includes(:uploaded_songs, :likes, :playlists,
+                          :followers, :following)
+                          .find(params[:id])
+    @song_likes = SongLike.where(user_id: params[:id])
+    @following = @user.following
+    @followers = @user.followers
+    
+    @user_follows = UserFollow.where(following_id: params[:id])
+    
+    render partial: "api/users/show.json", locals: { user: @user, song_likes: @song_likes, 
+                                                     followers: @followers, following: @following,
+                                                     user_follows: @user_follows}
+  end
+  
   def new
     @user = User.new
     render :new
@@ -17,19 +38,6 @@ class Api::UsersController < ApplicationController
       flash.now[:errors] = @user.errors.full_messages
       render :new
     end
-  end
-  
-  def index
-    @users = User.all
-    render :index
-  end
-  
-  def show 
-    @user = User.includes(:uploaded_songs, :likes, :playlists,
-                          :followers, :following)
-                          .find(params[:id])
-    
-    render partial: "api/users/show.json", locals: { user: @user }
   end
   
   def edit

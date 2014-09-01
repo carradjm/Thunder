@@ -9,7 +9,7 @@ window.Thunder = {
     this.currentUser = new Thunder.Models.User(data["currentUser"], { parse: true });
     this.users = new Thunder.Collections.Users(Thunder.currentUser);
     this.songs = new Thunder.Collections.Songs();
-    this.playlists = new Thunder.Collections.Playlists();
+    this.playlists = new Thunder.Collections.Playlists(Thunder.currentUser.playlists());
     
     var router = new Thunder.Routers.Router({
       $rootEl: $('.main')
@@ -18,7 +18,3 @@ window.Thunder = {
     Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  Thunder.initialize();
-});

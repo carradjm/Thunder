@@ -2,6 +2,13 @@ class Api::PlaylistsController < ApplicationController
   
   before_filter :require_logged_in!
   
+  def show
+    @playlist = Playlist.find(params[:id])
+    @songs = @playlist.songs
+    @playlist_songs = PlaylistSong.where(playlist_id: @playlist.id)
+    render partial: "api/playlists/show.json", locals: { playlist: @playlist, songs: @songs, playlist_songs: @playlist_songs }
+  end
+  
   def new
     @playlist = Playlist.new
     
@@ -21,12 +28,6 @@ class Api::PlaylistsController < ApplicationController
       flash.now[:errors] = @playlist.errors.full_messages
       render :new
     end
-  end
-  
-  def show
-    @playlist = Playlist.find(params[:id])
-    @songs = @playlist.songs
-    render :show
   end
   
   def destroy

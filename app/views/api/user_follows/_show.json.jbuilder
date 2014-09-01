@@ -1,0 +1,1 @@
+json.extract! user_follow, :id, :follower_id, :following_id

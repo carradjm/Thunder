@@ -1,3 +1,3 @@
-json.array!(users) do |user|
-  json.partial! "users/show.json", user: user
+json.array!(@users) do |user|
+  json.partial! "api/users/show.json", user: user
 end

@@ -1,0 +1,18 @@
+<% var likedItems = Thunder.currentUser.likes() %>
+
+<% if (likedItems.findWhere({ id: likedItem.id })) { %>
+    <form class="like">
+      Like
+      <input type="hidden" name="like[song_id]" value="<%= likedItem.escape("id") %>">
+      <input type="hidden" name="like[likeable_type]" value="<%= likeableType %>">
+      <input class="submit" type="submit" value="&#xf004;">
+    </form>
+<% } else { %>
+    <form class="unlike">
+      Unlike
+      <input type="hidden" name="like[liker_id]" value="<%= user.escape("id") %>">
+      <input type="hidden" name="like[likeable_id]" value="<%= likedItem.escape("id") %>">
+      <input type="hidden" name="like[likeable_type]" value="<%= likeableType %>">
+      <input class="submit" type="submit" value="&#xf004;">
+    </form>
+<% } %>
