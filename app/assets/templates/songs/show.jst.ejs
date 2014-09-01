@@ -1,28 +1,41 @@
-<div class="song-show-info">
-  <div class="song-show-artist">
-    <a href="/#/users/<%= song.escape('user_id') %>">
-      <%= song.escape('uploader') %>
-    </a>
-  </div>
-
-  <div class="song-show-title">
-    <%= song.escape('title') %>
-  </div>
-
-  <audio class="music-player-widget"></audio>
-
-  <div class="song-show-buttons group">
-    <% if (Thunder.currentUser.likes().findWhere({id: song.id})) { %>
-      <div id="unlike-song">Unlike Song</div>
-    <% } else { %>
-      <div id="like-song">Like Song</div>
-    <% } %>
-      <div id="add-to-playlist">Add To Playlist</div>
+<script src="waveform.js">
+</script>
+<section class="song-show-top">
+  
+  <div class="song-info song-show">
+    <div class="song-uploader song-show">
+      <a href="/#/users/<%= song.escape('user_id') %>">
+        <%= song.escape('uploader') %>
+      </a>
     </div>
-</div>
 
-<button id="add-comment">Add Comment</button>
+    <div class="song-title song-show">
+      <%= song.escape('title') %>
+    </div>
+    
+    <div class="music-player-widget" id="music-player-widget">
+    </div>
+    
+    <form id="add-comment">
+      <input type="text" name="comment[body]" placeholder="Write A Comment"></input>
+    </form>
 
-<div class="song-show-image">
-  <img src="<%= song.escape('image') %>"></img>
-</div>
+    <div class="song-buttons song-show group">
+      <ul>
+        <% if (Thunder.currentUser.likes().findWhere({id: song.id})) { %>
+          <li><div id="unlike-song">Unlike Song</div></li>
+        <% } else { %>
+          <li><div id="like-song">Like Song</div></li>
+        <% } %>
+          <li><div id="add-to-playlist">Add To Playlist</div></li>
+      </ul>
+    </div>
+  </div>
+  
+</section> 
+
+<section class="song-show-bottom">
+  <div class="image">
+    <img class="song-image song-show" src="<%= song.escape('image') %>"></img>
+  </div>
+</section>

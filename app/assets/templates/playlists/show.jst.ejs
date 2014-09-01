@@ -1,10 +1,5 @@
 <h1><%= playlist.escape('title') %></h1>
 
 <h3>Songs</h3>
-<ul>
-	<% playlist.songs().forEach( function(song) { %>
-		<a href="/#/songs/<%= song.id %>"><li><%= song.escape('title') %></li>
-      <br>
-		<a href="waaaah" class="remove-song" data-id="<%= song.id %>">Remove From Playlist</a>
-	<% }) %>
+<ul class="playlist-show-songs">
 </ul>   

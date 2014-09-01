@@ -22,11 +22,10 @@ class Api::UserFollowsController < ApplicationController
   end
   
   def destroy
-    user = User.find(params[:following_id])
-    user_follow = UserFollow.find_by_ids(current_user.id, user.id) #UserFollow class method
+    user_follow = UserFollow.find(params[:id])
     
     user_follow.destroy
-    render json: user_follow.errors.full_messages, status: :unprocessable_entity
+    render partial: "api/user_follows/show.json", locals: { user_follow: user_follow }
   end
   
 end

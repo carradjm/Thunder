@@ -1,7 +1,9 @@
-html, head, body, nav, div, h1, h2, h3, ul, li, form, button, img, form, a, header, footer {
+html, head, body, nav, div, h1, h2, h3, ul, li, form, button, img, form, a, header, footer, section {
   margin: 0;
   padding: 0;
-  font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 html {
@@ -12,6 +14,16 @@ html, body {
   height: 100%;
 }
 
+ul {
+  list-style: none;
+}
+
+body {
+  position: relative;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+}
+
 .group:after {
   content: "";
   display: block;
@@ -19,7 +31,7 @@ html, body {
 }
 
 input[type="button"], input[type="submit"],
-input[type="reset"], input[type="file"], button {
+input[type="reset"], input[type="file"], input[type="text"], button {
   -webkit-appearance: button;
     display: inline-block;
     position: relative;
@@ -47,23 +59,21 @@ input[type="reset"], input[type="file"], button {
 }
 
 header {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 40px;
   background: black;
-  border: 1px solid yellow;
+}
+
+header .wrap {
+  width: 1100px;
+  margin: auto;
 }
   
 nav a {
   text-decoration: none;
-  color: orange;
+  color: #ccc;
   font-size: 20px;
 }
 
 nav a:hover {
-  text-decoration: underline;
   color: red;
   font-size: 20px;
 }
@@ -76,43 +86,231 @@ nav a:hover {
   float: right;
 }
 
-#wrapper {
-   position: relative;
-   height: 100%;
+.nav-left > ul {
+/*  border-left: 1px solid #ccc;*/
 }
 
-.sidebar {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  border: 1px solid blue;
-  width: 200px;
-  background: blue;
-  padding-bottom: 40px;
+.nav-left > ul {
+/*  border-left: 1px solid #ccc;*/
 }
 
-.sidebar-stuff {
-  border: 1px solid green;
+.nav-left > ul > li {
+  float: left;
+  padding: 5px 10px;
+/*  border-right: 1px solid #ccc;*/
+}
+
+.nav-right > ul > li {
+  float: left;
+  padding: 5px 10px;
+  /*border-right: 1px solid #ccc;*/
 }
 
 .main {
-  position: absolute;
-  height: 100%;
-  top: 40px;
-  left: 200px;
+  width: 1040px;
+  margin: auto;
   background: white;
-  padding: 20px;
-  padding-bottom: 40px;
-  border: 1px solid purple;
+  padding: 30px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  height: 100%;
+}
+
+/* User Show Page */
+
+.user-show-page {
+  width: 1040px;
+  margin: 0 auto;
+}
+
+.user-show-sidebar {
+  float: left;
+  width: 220px;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+
+.user-show-stream {
+  float: left;
+  width: 580px;
+  box-sizing: border-box;
+  margin: 0 10px;
+  border-top: 1px solid transparent;
+}
+
+.user-show-content {
+  float: left;
+  width: 220px;
+  box-sizing: border-box;
+  padding-left: 12px;
+  border-left: 1px solid #ccc;
+}
+
+.user-show-image {
+}
+
+.user-show-image > a > img {
+  width: 200px;
+  height: 200px;
+}
+
+div.name {
+}
+
+.name > p {
+  padding: 2px;
+  margin: 0px;
+}
+
+p.username {
+  font-size: 16px;
+  color: #bbb;
+}
+
+.user-show.follow > div {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+/* Song Show Page*/
+
+section.song-show-top {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.song-show > a {
+ text-decoration: none;
+ color: #bbb;
+}
+
+.song-info.song-show {
+
+}
+
+.song-info.song-show .song-uploader {
+  margin: 5px;
+}
+
+.song-info.song-show .song-title {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 5px;
+}
+
+.music-player-widget {
+  align: left;
+  height: 100px;
+  background: black;
+}
+
+.song-buttons.song-show {
+}
+
+.song-buttons.song-show > ul {
+}
+
+.song-buttons.song-show > ul > li { 
+  float: left;
+  width: auto;
+  margin-right: 10px;
+  background: #0c6;
+  padding: 5px;
+}
+
+form#add-comment {
+  background: #ccc;
+  margin: 5px 0;
+  padding: 3px;
+}
+
+#add-comment > input[type="text"], {
+  display: block;
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 5px;
+  font-size: 12px;
+  width: 1020px;
+  margin: auto;
+}
+
+section.song-show-bottom {
+  
+}
+div.image {
+  margin-top: 20px;
+}
+
+img.song-show.song-image {
+  width: 200px;
+  height: 200px;
 }
 
 footer {
-/*  position: absolute;
-  bottom: 0px;
-  left: 0px;*/
-  width: 100%;
+  position: fixed;
+  width: 1100px;
+  bottom: 0;
+  left: 163px;
+  margin: 0px auto;
   height: 40px;
   background: black;
-  border: 1px solid yellow;
 }
+
+/* Song Stream on User Show Page */
+
+section.song-stream {
+  margin-bottom: 20px;
+}
+
+.song-uploader > a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #bbb;
+}
+
+.song-stream.song-image > img {
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+.song-info.song-stream {
+  float: left;
+  width: 466px;
+  border-bottom: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+.song-info.song-stream > .song-uploader {
+  font-size: 12px;
+
+}
+
+.song-info.song-stream > .song-title {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.music-player-widget {
+  align: left;
+  height: 100px;
+  background: black;
+}
+
+.song-buttons.song-show {
+}
+
+.song-buttons.song-stream > ul {
+}
+
+.song-buttons.song-stream > ul > li { 
+  float: left;
+  width: auto;
+  background: #0c6;
+  padding: 5px;
+  margin: 10px 10px 10px 0;
+}
+
 

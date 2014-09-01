@@ -1,6 +1,6 @@
-Thunder.Views.SongsShow = Backbone.View.extend({
+Thunder.Views.SongsStream = Backbone.View.extend({
 
-  template: JST['songs/show'],
+  template: JST['songs/stream'],
     
   events: {
     'click .add-comment' : 'addComment',
@@ -19,13 +19,6 @@ Thunder.Views.SongsShow = Backbone.View.extend({
     var content = this.template({song: this.model});
     this.$el.html(content);
     return this;
-  },
-  
-  waveform: function() {
-    // var waveform = new Waveform({
-   //    container: document.getElementById("music-player-widget"),
-   //    data: [1, 0.2, 0.5]
-   //  });
   },
     
   likeSong: function() {

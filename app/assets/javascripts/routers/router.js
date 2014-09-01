@@ -5,7 +5,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
   },
   
   routes: {
-    "" : "usersIndex",
+    "" : "stream",
     'songs' : 'songsIndex',
     'songs/new' : 'songNew',
     'songs/:id' : 'songShow',
@@ -26,6 +26,12 @@ Thunder.Routers.Router = Backbone.Router.extend({
         that._swapView(indexView);
       }
     });
+  },
+  
+  stream: function() {
+    var streamView = new Thunder.Views.StreamShow();
+    
+    this._swapView(streamView);
   },
   
   songNew: function() {
@@ -67,7 +73,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
         model: playlist
       });
         
-      this._swapView(showView) 
+      that._swapView(showView) 
     });
   },
   

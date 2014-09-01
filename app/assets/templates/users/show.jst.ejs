@@ -1,103 +1,139 @@
-<div class="username">
-  <h1><%= user.escape('username') %></h1>
-</div>
+<script src="waveform.js">
+</script>
+<section class='user-show-page group'>
+  <section class='user-show-sidebar'>
+    <div class="user-show-image">
+      <a href="/#/users/<%= user.id %>">
+        <% if (user.escape("picture")) { %>
+          <img src="<%= user.escape('picture') %>" width="200" height="200">
+        <% } else { %>
+          <img src="Daft-Punk.jpg" width="200" height="200" alt="Daft Punk">
+        <% } %>
+      </a>
+    </div>
 
-<div class="user-show user-follow-button">
-  <% if (Thunder.currentUser !== user) { %>
-    <% if (Thunder.currentUser.following().findWhere({id: user.id})) { %>
-      <div id="unfollow">Unfollow</div>
-    <% } else { %>
-      <div id="follow">Follow</div>
-    <% } %>
-  <% } %>
-</div>
+    <div class="name">
+      <p class="first-name"><%= user.escape('first_name') %></p>
+      <p class="last-name"><%= user.escape('last_name') %></p>
+      <p class="username"><%= user.escape('username') %></p>
+    </div>
+  
+    <div class="user-show follow">
+      <% if (Thunder.currentUser !== user) { %>
+        <% if (Thunder.currentUser.following().findWhere({id: user.id})) { %>
+          <div id="unfollow">Unfollow</div>
+        <% } else { %>
+          <div id="follow">Follow</div>
+        <% } %>
+      <% } %>
+    </div>
+  </section>
 
-<div class="user-show-image">
-  <% if (user.escape("picture")) { %>
-    <img src="<%= user.escape('picture') %>" width="200" height="200">
-  <% } else { %>
-    <img src="Daft-Punk.jpg" width="200" height="200" alt="Daft Punk">
-  <% } %>
-</div>
+  <section class="user-show-stream">
+  
+  </section>
 
-<section class="show group">
-  <% if (user === Thunder.currentUser) { %>
-    <section class="show-content group">
-    	<div class="uploaded-songs">
-    		<% if (user.uploads()) { %>
+  <section class="user-show-content group">
+    <% if (user === Thunder.currentUser) { %>
+      <section class="show-content group">
+      	<div class="uploaded-songs">
+      		<% if (user.uploads()) { %>
+      			<ul>
+      				<% user.uploads().forEach( function (song) { %>
+      					<li><a href="#/songs/<%= song.id %>"><%= song.escape("title") %></a></li>
+      				<% }); %>
+      			</ul>
+            <a href="# create and save new song">Upload New Song</a>
+      		<% } %>
+      	</div>
+
+      	<div class="playlists">
+    		<% if (user.playlists()) { %>
     			<ul>
-    				<% user.uploads().forEach( function (song) { %>
-    					<li><a href="#/songs/<%= song.id %>"><%= song.escape("title") %></a></li>
+    				<% user.playlists().forEach( function (playlist) { %>
+    					<a href="#/playlists/<%= playlist.id %>"><%= playlist.escape("title") %></a></li>
     				<% }); %>
     			</ul>
+          <a href="">Create New Playlist</a>
     		<% } %>
-        <a href="# create and save new song">Upload New Song</a>
-    	</div>
-
-    	<div class="playlists">
-  		<% if (user.playlists()) { %>
-  			<ul>
-  				<% user.playlists().forEach( function (playlist) { %>
-  					<a href="#/playlists/<%= playlist.id %>"><%= playlist.escape("title") %></a></li>
-  				<% }); %>
-  			</ul>
-  		<% } %>
-    	<a href="">Create New Playlist</a>
-    	</div>
+      	</div>
     
-    	<div class="likes">
-  		<% if (user.likes()) { %>
-  			<ul>
-  				<% user.likes().forEach( function (song) { %>
-  					<li><a href="#/songs/<%= song.id %>"><%= song.escape('title') %></a></li>
-  				<% }); %>
-  			</ul>
-  		<% } %>
-      </div>
-   
-     	<div class="followers">
-     	<% if (user.followers()) { %>	
-        <ul>
-   			  <% user.followers().forEach( function(user) { %>
-   				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
-   			  <% }) %>	
-        </ul>		
-   		<% }%>
-     	</div>
-  	
-      <div class="following">
-    	<% if (user.following()) { %>	
-        <ul>
-   			  <% user.following().forEach( function(user) { %>
-   				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
-   			  <% }) %>	
-        </ul>		
-  		<% }%>
-      </div> 
-    </section>
-    <% } else { %>
-    <section class="show-content group">
-    	<div class="uploaded-songs">
-    		<% if (user.uploads()) { %>
+      	<div class="likes">
+    		<% if (user.likes()) { %>
     			<ul>
-    				<% user.uploads().forEach( function (song) { %>
-    					<li><a href="#/songs/<%= song.id %>"><%= song.escape("title") %></a></li>
+    				<% user.likes().forEach( function (song) { %>
+    					<li><a href="#/songs/<%= song.id %>"><%= song.escape('title') %></a></li>
     				<% }); %>
     			</ul>
     		<% } %>
-        <a href="# create and save new song">Upload New Song</a>
-    	</div>
-
-    	<div class="playlists">
-  		<% if (user.playlists()) { %>
-  			<ul>
-  				<% user.playlists().forEach( function (playlist) { %>
-  					<a href="#/playlists/<%= playlist.id %>"><%= playlist.escape("title") %></a></li>
-  				<% }); %>
-  			</ul>
-  		<% } %>
-    	<a href="">Create New Playlist</a>
-    	</div>
-    </section>
-    <% } %>
+        </div>
+   
+       	<div class="followers">
+       	<% if (user.followers()) { %>	
+          <ul>
+     			  <% user.followers().forEach( function(user) { %>
+     				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+     			  <% }) %>	
+          </ul>		
+     		<% }%>
+       	</div>
+  	
+        <div class="following">
+      	<% if (user.following()) { %>	
+          <ul>
+     			  <% user.following().forEach( function(user) { %>
+     				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+     			  <% }) %>	
+          </ul>		
+    		<% }%>
+        </div> 
+      </section>
+      <% } else { %>
+      <section class="show-content group">
+      	<div class="playlists">
+          Playlists
+    		<% if (user.playlists()) { %>
+    			<ul>
+    				<% user.playlists().forEach( function (playlist) { %>
+    					<a href="#/playlists/<%= playlist.id %>"><%= playlist.escape("title") %></a></li>
+    				<% }); %>
+    			</ul>
+    		<% } %>
+      	</div>
+      
+      	<div class="likes">
+          Likes
+    		<% if (user.likes()) { %>
+    			<ul>
+    				<% user.likes().forEach( function (song) { %>
+    					<li><a href="#/songs/<%= song.id %>"><%= song.escape('title') %></a></li>
+    				<% }); %>
+    			</ul>
+    		<% } %>
+        </div>
+      
+       	<div class="followers">
+          Followed by
+       	<% if (user.followers()) { %>	
+          <ul>
+     			  <% user.followers().forEach( function(user) { %>
+     				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+     			  <% }) %>	
+          </ul>		
+     		<% }%>
+       	</div>
+  	
+        <div class="following">
+          Following
+      	<% if (user.following()) { %>	
+          <ul>
+     			  <% user.following().forEach( function(user) { %>
+     				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+     			  <% }) %>	
+          </ul>		
+    		<% }%>
+        </div>
+      </section>
+      <% } %>
+  </section>
 </section>

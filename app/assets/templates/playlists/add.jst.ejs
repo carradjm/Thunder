@@ -1,0 +1,7 @@
+<ul>
+  <% Thunder.currentUser.playlists().forEach( function(playlist) { %>
+    <% if (!_.contains(playlist.songs(), song)) { %>
+      <li><%= playlist.escape('title') %> | <div id="add-playlist-song" data-id="<%= playlist.id %>">Add</div><li>
+    <% } %>
+  <% })%>
+</ul>

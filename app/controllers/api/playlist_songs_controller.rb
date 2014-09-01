@@ -1,9 +1,11 @@
 class Api::PlaylistSongsController < ApplicationController
   
-  def new
-    @playlists = current_user.playlists
-    
-    render :new
+  def index
+    @playlist_songs = PlaylistSong.where(playlist_id: params[:id])
+    render :index
+  end
+  
+  def show
   end
   
   def create
@@ -17,13 +19,10 @@ class Api::PlaylistSongsController < ApplicationController
   end
   
   def destroy
-    song = Song.find(params[:song_id])
-    playlist = Playlist.find(params[:playlist_id])
-    
-    playlist_song = PlaylistSong.find_by_ids(playlist.id, song.id)
+    playlist_song = PlaylistSong.find(params[:id])
     
     playlist_song.destroy
-    redirect_to :back
+    render partial: "api/playlists/show.json", locals: { playlist: playlist_song.playlist }
   end
   
 end

@@ -25,10 +25,7 @@ Thunder::Application.routes.draw do
   
   namespace :api, :defaults => { format: :json } do
     root to: "sessions#new"
-    resources :users do
-      post 'follow', to: 'user_follows#create'
-      delete 'follow', to: 'user_follows#destroy'
-    end
+    resources :users 
     resources :songs, only: [:new, :create, :destroy, :show, :index] do
       post 'comment', to: "comments#create"
     end
@@ -38,11 +35,13 @@ Thunder::Application.routes.draw do
   
     resources :notifications, only: [:index, :show]
   
-    resources :playlist_song, only: [:index, :new, :create, :destroy]
+    resources :playlist_songs, only: [:index, :show, :create, :destroy]
     
     resources :song_likes, only: [:index, :create, :destroy]
   
     resource :session, only: [:new, :create, :destroy]
+    
+    resources :user_follows, only: [:create, :destroy]
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

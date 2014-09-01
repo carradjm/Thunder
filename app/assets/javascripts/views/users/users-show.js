@@ -6,16 +6,27 @@ Thunder.Views.UsersShow = Backbone.View.extend({
     'click #follow' : 'followUser',
     'click #unfollow' : 'unfollowUser'
   },
+  
+  className: 'user-show-page',
 
   initialize: function() {
     this.listenTo(Thunder.currentUser.following(), "add sync", this.render);
-    this.listenTo(Thunder.currentUser, "sync", this.render)
   },
   
   render: function() {
     var content = this.template({user: this.model});
     this.$el.html(content);
+    this.renderUploads();
     return this;
+  },
+  
+  renderUploads: function() {
+    var that = this;
+    var $songStreamEl = this.$el.find('.user-show-stream')
+    this.model.uploads().forEach( function(song) {
+      var songStream = new Thunder.Views.SongsStream({model: song});
+      $songStreamEl.append(songStream.render().$el);
+    }) 
   },
   
   followUser: function() {

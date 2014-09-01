@@ -36,7 +36,6 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to song_url(@song)
     else
-      fail
       flash.now[:errors] = @song.errors.full_messages
       render :new
     end

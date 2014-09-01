@@ -1,0 +1,32 @@
+<section class="song-stream group">
+  <div class="song-image song-stream">
+    <img src="<%= song.escape('image') %>"></img>
+  </div>
+
+  <div class="song-info song-stream">
+    <div class="song-uploader">
+      <a href="/#/users/<%= song.escape('user_id') %>">
+        <%= song.escape('uploader') %>
+      </a>
+    </div>
+
+    <div class="song-title">
+      <%= song.escape('title') %>
+    </div>
+
+    <div class="music-player-widget">
+      <audio class="music-player-widget"></audio>
+    </div>
+
+    <div class="song-buttons song-stream group">
+      <ul>
+        <% if (Thunder.currentUser.likes().findWhere({id: song.id})) { %>
+          <li><div id="unlike-song">Unlike Song</div></li>
+        <% } else { %>
+          <li><div id="like-song">Like Song</div></li>
+        <% } %>
+          <li><div id="add-to-playlist">Add To Playlist</div></li>
+      </ul>
+    </div>
+  </div>
+</section>

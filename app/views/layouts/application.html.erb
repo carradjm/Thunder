@@ -5,51 +5,44 @@
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
   </head>
   <body>
-    <div class="wrapper group">
-      <header>
-      	<nav class="group">
-          <div class="nav-left">
-          	<% if current_user %>
-              <div id="current-user-id" data-id="<%= current_user.id %>"></div>
-          		<a href="/#/users/<%= current_user.id %>"><%= current_user.username %></a>
-              <a href="<%= songs_url %>">Stream</a>
-              <a href="<%= genres_url %>">Explore</a>
-            <% end %>
-          </div>
-          <div class="nav-right">
-          	<% if logged_in? %>
-              <a href="<%= notifications_url %>">Notifications</a>
-              <a href="<%= edit_user_url(current_user) %>">Edit Profile</a> 
-              <a href="#">Users Index</a>
-          		<%= link_to "Sign Out", session_url, method: :delete %>	
-          	<% else %>
-          		<%= link_to "Sign In", new_session_url%>
-          		<%= link_to "Sign Up", new_user_url%>
-          	<% end %>
-          </div>
-      	</nav>
-      </header>
+    <header class="header">
+      <div class="header wrap group">
+        
+        <nav class="nav-left">
+          <% if current_user %>
+            <ul class='group'>
+              <li><a href="/#/">Stream</a></li>
+              <li><a href="<%= genres_url %>">Explore</a></li>
+            </ul>
+          <% end %>
+        </nav>
     
-    
-      <div class="sidebar group">
-        <div class="sidebar-stuff">
-      		<div class="show-title">Uploaded Songs</div>
-          <div class="show-title">Likes</div>
-          <div class="show-title">Playlists</div>
-          <div class="show-title">Following</div>
-          <div class="show-title">Followers</div>
-        </div>
+        <nav class="nav-right">
+          <% if logged_in? %>
+          <ul class="group">
+            <li><a href="/#/users/<%= current_user.id %>"><%= current_user.username %></a></li>
+            <li><a href="<%= notifications_url %>">Notifications</a></li>
+            <li><a href="<%= edit_user_url(current_user) %>">*</a></li> 
+            <li><%= link_to "Sign Out", session_url, method: :delete %>	
+          </ul>
+          <% else %>
+            <%= link_to "Sign In", new_session_url%>
+            <%= link_to "Sign Up", new_user_url%>
+          <% end %>
+        </nav>
+   
       </div>
+    </header>
   
-      <div class="main">
-        <%= yield %>
-      </div>
-
-      <footer>
-        Stuff
-      </footer>
+    <div class="main group">
+    <%= yield %>
     </div>
+
+    <footer>
+    Stuff
+    </footer>
   </body>
 </html>

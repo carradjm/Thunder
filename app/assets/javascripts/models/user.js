@@ -92,8 +92,7 @@ Thunder.Models.User = Backbone.Model.extend({
       this.userFollows().set(response.userFollows, { parse: true });
       delete response.userFollows;
     }
-    
-    
+      
     return response;
   }
 })

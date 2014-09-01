@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require jquery.serializeJSON
+//= require waveform
 //= require backbone
 //= require thunder
 //= require_tree ../templates

@@ -9,18 +9,9 @@ class Api::UsersController < ApplicationController
   end
   
   def show 
-    @user = User.includes(:uploaded_songs, :likes, :playlists,
-                          :followers, :following)
-                          .find(params[:id])
-    @song_likes = SongLike.where(user_id: params[:id])
-    @following = @user.following
-    @followers = @user.followers
+    @user = User.find(params[:id])
     
-    @user_follows = UserFollow.where(following_id: params[:id])
-    
-    render partial: "api/users/show.json", locals: { user: @user, song_likes: @song_likes, 
-                                                     followers: @followers, following: @following,
-                                                     user_follows: @user_follows}
+    render partial: 'api/users/show', locals: {user: @user}
   end
   
   def new
