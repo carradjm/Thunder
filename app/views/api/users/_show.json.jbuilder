@@ -1,6 +1,8 @@
 json.extract! user, :id, :email, :username, :session_token, 
                     :first_name, :last_name, :country, :city, :user_follows_count,
-                   :picture, :songs_count, :notifications_count
+                    :songs_count, :notifications_count
+                   
+json.picture asset_path(user.picture.url(:picture))
                     
 json.uploads user.uploaded_songs do |song|
   json.partial! "api/songs/show.json", song: song

@@ -10,7 +10,7 @@ Thunder.Views.UsersShow = Backbone.View.extend({
   className: 'user-show-page',
 
   initialize: function() {
-    this.listenTo(Thunder.currentUser.following(), "add sync", this.render);
+    this.listenTo(Thunder.currentUser, "add sync", this.render);
   },
   
   render: function() {

@@ -3,7 +3,7 @@ class Song < ActiveRecord::Base
   has_attached_file :track
   do_not_validate_attachment_file_type :track
       
-  has_attached_file :image, :styles => { :standard => "200x200" }
+  has_attached_file :image, :styles => { :standard => "200x200" }, default_url: 'Daft-Punk.jpg'
   do_not_validate_attachment_file_type :image
   
   belongs_to(
