@@ -1,0 +1,30 @@
+<h1>Upload New Song</h1>
+
+<form class="new-song" enctype="multipart/form-data">
+	
+	<label>
+		Title
+		<input type="text" name="song[title]" value="" placeholder="title">
+	</label>
+  
+	<label>
+		Genre
+	</label>
+	
+	<label>
+		Description
+		<textarea name="song[description]" value="" placeholder="description"></textarea>
+	</label>
+	
+  <label>
+    Choose File
+    <input type="file" name="song[track]">
+  </label>
+  
+  <label>
+    Choose Image
+    <input type="file" name="song[image]">
+  </label>
+	
+	<button>Upload New Song</button>
+</form>

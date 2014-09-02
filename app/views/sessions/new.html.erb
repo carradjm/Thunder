@@ -1,24 +1,69 @@
-<h1>Sign In</h1>
+<section class="new-session-buttons group">
+  <div class="sign-in">Sign In</div>
+  <div class="sign-up">Sign Up</div>
+</section>
 
-<% if flash[:errors]%>
-	<% flash[:errors].each do |error| %>
-		<%= error %>
-	<% end %>
-<% end %>
+<section id="modal" class="sign-in">
+  <section id="sign-in">
+    <h1>Sign In</h1>
+  
+    <section class="facebook-sign-in">
+       <a href="/auth/facebook" class="fb-signin"><img src="https://www.musicgivz.com/images/facebooklogin.png" width="270" height="46"></a>
+    </section>
+  
+    <% if flash[:errors]%>
+    	<% flash[:errors].each do |error| %>
+    		<%= error %>
+    	<% end %>
+    <% end %>
 
-<form action="<%= session_url %>" method="post">
-	<%= auth_token %>
+    <form action="<%= session_url %>" method="post">
+    	<%= auth_token %>
 	
-	<label>
-		E-mail
-		<input type="text" name="user[email]" value="<%= @user.email %>" placeholder="email">
-	</label>
+    	<label>
+    		E-mail
+    		<input type="text" name="user[email]" value="" placeholder="email">
+    	</label>
 	
-	<label>
-		Password
-		<input type="password" name="user[password]" value="<%= @user.password %>" placeholder="password">
-	</label>
+    	<label>
+    		Password
+    		<input type="password" name="user[password]" value="" placeholder="password">
+    	</label>
 	
-	<button>Log In</button>
+    	<button>Log In</button>
+    </form>
+  </section>
+</section>
 
-</form>
+<section id="modal" class="sign-up">
+  <section id="sign-up">
+    <% @user = User.new %>
+    <%= render 'users/new', user: @user %>
+  </section>
+</section>
+
+<script>
+$(document).ready(function(){
+
+  $(".sign-in").on("click", function(event){
+    $("#modal.sign-in").addClass("is-active");
+  });
+  
+  $(".sign-up").on("click", function(event){
+    $("#modal.sign-up").addClass("is-active");
+  });
+
+  $(".hide-modal").on("click", function(event){
+    event.preventDefault();
+    $("#modal").removeClass("is-active");
+  });
+
+  $("#modal").on("click", function(event){
+    if(event.target.id == this.id){
+      event.preventDefault();
+      $("#modal").removeClass("is-active");
+    }
+  });
+
+});
+</script>

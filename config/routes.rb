@@ -23,6 +23,8 @@ Thunder::Application.routes.draw do
   
   resource :session, only: [:new, :create, :destroy]
   
+  get '/auth/facebook/callback', to: 'oauth_callbacks#facebook'
+  
   namespace :api, :defaults => { format: :json } do
     root to: "sessions#new"
     resources :users 

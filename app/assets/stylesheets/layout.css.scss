@@ -60,6 +60,7 @@ input[type="reset"], input[type="file"], input[type="text"], button {
 
 header {
   background: black;
+  height: 40px;
 }
 
 header .wrap {
@@ -106,6 +107,88 @@ nav a:hover {
   /*border-right: 1px solid #ccc;*/
 }
 
+section.new-session-buttons {
+  margin: 5px;
+  margin: 375px auto;
+}
+
+section.new-session-buttons > div {
+}
+
+div.sign-in {
+  float: left;
+  background: black;
+  margin-left: 310px;
+  width: auto;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+div.sign-up {
+  float: right;
+  background: black;
+  margin-right: 310px;
+  width: auto;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#modal {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  border: 1px solid red;
+}
+
+#modal.is-active {
+  display: block;
+  border: 1px solid red;
+}
+
+#modal:before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#modal > section {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 400px;
+  margin-bottom: 100px;
+  margin-left: -250px;
+  min-height: 200px;
+  padding: 50px;
+  background: white;
+  border-radius: 5px;
+}
+
+#modal .hide-modal {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  color: gray;
+}
+
+#modal .hide-modal:hover {
+  color: black;
+}
+
 .main {
   width: 1040px;
   margin: auto;
@@ -114,6 +197,7 @@ nav a:hover {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
   height: 100%;
+  border: 1px solid purple;
 }
 
 /* User Show Page */

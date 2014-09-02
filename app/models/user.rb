@@ -52,6 +52,28 @@ class User < ActiveRecord::Base
     return nil unless user && user.is_password?(password)
     user
   end
+  
+  def self.find_or_create_by_fb_auth_hash(hash)
+    user = User.find_by(uid: hash[:uid], provider: hash[:provider])
+    
+    if user.nil?
+      user = User.create!(
+        email: hash[:info][:email], 
+        first_name: hash[:info][:first_name], 
+        last_name: hash[:info][:last_name],
+        password_digest: SecureRandom::urlsafe_base64(16),
+        picture: User.process_uri(hash[:info][:image])
+      )
+    end
+    
+    user
+  end
+  
+  def self.process_uri(uri)
+    open(uri, allow_redirections: :safe) do |r|
+      r.base_uri.to_s
+    end
+  end
 
   def password=(password)
     @password = password
