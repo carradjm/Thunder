@@ -35,12 +35,16 @@ gem 'bcrypt'
 
 gem 'seed_dump'
 
+gem 'pg_search'
+
 gem "figaro"
 gem "paperclip"
 gem "aws-sdk"
 
 gem "omniauth-facebook"
 gem 'open_uri_redirections'
+
+gem 'audiojs'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

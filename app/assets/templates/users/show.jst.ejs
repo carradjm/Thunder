@@ -34,19 +34,9 @@
   <section class="user-show-content group">
     <% if (user === Thunder.currentUser) { %>
       <section class="show-content group">
-      	<div class="uploaded-songs">
-      		<% if (user.uploads()) { %>
-      			<ul>
-      				<% user.uploads().forEach( function (song) { %>
-      					<li><a href="#/songs/<%= song.id %>"><%= song.escape("title") %></a></li>
-      				<% }); %>
-      			</ul>
-            <a href="# create and save new song">Upload New Song</a>
-      		<% } %>
-      	</div>
-
       	<div class="playlists">
     		<% if (user.playlists()) { %>
+           <div class="sidebar-right-header">Playlists</div>
     			<ul>
     				<% user.playlists().forEach( function (playlist) { %>
     					<a href="#/playlists/<%= playlist.id %>"><%= playlist.escape("title") %></a></li>
@@ -58,9 +48,10 @@
     
       	<div class="likes">
     		<% if (user.likes()) { %>
-    			<ul>
+           <div class="sidebar-right-header"><%= user.likes().size() %> likes</div>
+    			<ul class="likes group">
     				<% user.likes().forEach( function (song) { %>
-    					<li><a href="#/songs/<%= song.id %>"><%= song.escape('title') %></a></li>
+    					<li><a href="#/songs/<%= song.id %>"><img src="<%= song.escape('image') %>" width="50" height="50"></a></li>
     				<% }); %>
     			</ul>
     		<% } %>
@@ -68,25 +59,29 @@
    
        	<div class="followers">
        	<% if (user.followers()) { %>	
-          <ul>
+          <div class="sidebar-right-header">Followed by</div>
+          <ul class="followers group">
      			  <% user.followers().forEach( function(user) { %>
-     				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+     				  <li><a href="/#/users/<%= user.id %>"><img src="<%= user.escape('picture') %>" width="50" height="50"></a></li>
      			  <% }) %>	
           </ul>		
      		<% }%>
        	</div>
   	
         <div class="following">
-      	<% if (user.following()) { %>	
-          <ul>
+      	<% if (user.following()) { %>
+           <div class="sidebar-right-header"><%= user.following().size() %> following</div>	
+          <ul class="following group">
      			  <% user.following().forEach( function(user) { %>
-     				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+     				  <li><a href="/#/users/<%= user.id %>"><img src="<%= user.escape('picture') %>" width="50" height="50"></a></li>
      			  <% }) %>	
           </ul>		
     		<% }%>
         </div> 
       </section>
+      
       <% } else { %>
+        
       <section class="show-content group">
       	<div class="playlists">
           Playlists
@@ -100,33 +95,33 @@
       	</div>
       
       	<div class="likes">
-          Likes
     		<% if (user.likes()) { %>
-    			<ul>
+           <div class="sidebar-right-header"><%= user.likes().size() %> likes</div>
+    			<ul class="likes group">
     				<% user.likes().forEach( function (song) { %>
-    					<li><a href="#/songs/<%= song.id %>"><%= song.escape('title') %></a></li>
+    					<li><a href="#/songs/<%= song.id %>"><img src="<%= song.escape('image') %>" width="50" height="50"></a></li>
     				<% }); %>
     			</ul>
     		<% } %>
         </div>
-      
+   
        	<div class="followers">
-          Followed by
        	<% if (user.followers()) { %>	
-          <ul>
+          <div class="sidebar-right-header">Followed by</div>
+          <ul class="followers group">
      			  <% user.followers().forEach( function(user) { %>
-     				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+     				  <li><a href="/#/users/<%= user.id %>"><img src="<%= user.escape('picture') %>" width="50" height="50"></a></li>
      			  <% }) %>	
           </ul>		
      		<% }%>
        	</div>
   	
         <div class="following">
-          Following
-      	<% if (user.following()) { %>	
-          <ul>
+      	<% if (user.following()) { %>
+           <div class="sidebar-right-header"><%= user.following().size() %> following</div>	
+          <ul class="following group">
      			  <% user.following().forEach( function(user) { %>
-     				  <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+     				  <li><a href="/#/users/<%= user.id %>"><img src="<%= user.escape('picture') %>" width="50" height="50"></a></li>
      			  <% }) %>	
           </ul>		
     		<% }%>
@@ -134,4 +129,15 @@
       </section>
       <% } %>
   </section>
+  
+  <% if (user !== Thunder.currentUser) { %>
+    <section class="upcoming-shows">
+      <script type='text/javascript' src='http://widget.bandsintown.com/javascripts/bit_widget.js'></script>
+      <a href="http://www.bandsintown.com/<%= user.escape('username') %>" class="bit-widget-initializer" data-artist="<%= user.escape('username') %>" data-display-limit=5 data-width='40%' data-force-narrow-layout="true"><%= user.escape('username') %> Tour Dates</a>
+    </section>
+  <% } %>
+  
+  
+  
 </section>
+

@@ -13,7 +13,17 @@ Thunder.Views.PlaylistsShow = Backbone.View.extend({
   render: function() {
     var content = this.template({playlist: this.model});
     this.$el.html(content);
+    this.renderSongs();
     return this;
+  },
+  
+  renderSongs: function() {
+    var that = this;
+    var $songsEl = this.$el.find('.playlist-show-songs')
+    this.model.songs().forEach( function(song) {
+      var songStream = new Thunder.Views.SongsStream({model: song});
+      $songsEl.append(songStream.render().$el);
+    }) 
   },
   
   removeSong: function(event) {

@@ -6,8 +6,6 @@ Thunder.Views.UsersIndex = Backbone.View.extend({
     'click .add-comment' : 'addComment',
     'click .song-like' : 'likeSong'
   },
-
-  initialize: function() {},
   
   render: function() {
     var content = this.template({users: this.collection});

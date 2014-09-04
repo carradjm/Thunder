@@ -7,11 +7,16 @@ html, head, body, nav, div, h1, h2, h3, ul, li, form, button, img, form, a, head
 }
 
 html {
-  background: #ddd;
+  background: #eee;
+}
+
+img {
+  border: 1px solid #aaa;
+  box-sizing: border-box;
 }
 
 html, body {
-  height: 100%;
+  height: 100%
 }
 
 ul {
@@ -30,21 +35,65 @@ body {
   clear: both;
 }
 
+a {
+  text-decoration: none;
+}
+
 input[type="button"], input[type="submit"],
-input[type="reset"], input[type="file"], input[type="text"], button {
-  -webkit-appearance: button;
-    display: inline-block;
-    position: relative;
-    box-sizing: content-box;  
-    padding: 0;
-    border: 0;
-    outline: 0;
-    width: auto;
-    font: inherit;
-    vertical-align: baseline;
-    background: transparent;
-    color: yellow;
-  }
+input[type="reset"], input[type="file"], input[type="text"], input[type="password"], button {
+-webkit-appearance: button;
+  display: inline-block;
+  position: relative;
+  box-sizing: content-box;  
+  padding: 0;
+  border: 0;
+  outline: 0;
+  width: auto;
+  font: inherit;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+div.audiojs {
+  position: fixed;
+  width: 1100px;
+  bottom: 0;
+  left: 163px;
+  height: 40px;
+  background: inherit;
+  overflow: hidden;
+  font-family: inherit;
+  font-size: 12px;
+ /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444));
+  background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%);
+  -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);*/
+}
+
+.audiojs .scrubber {
+  position: relative;
+  float: left;
+  width: 932px;
+  background: #5a5a5a;
+  height: 14px;
+  margin: 10px;
+  border-top: 1px solid #3f3f3f;
+  border-left: 0px;
+  border-bottom: 0px;
+  overflow: hidden;
+}
+
+footer {
+  position: fixed;
+  width: 1100px;
+  bottom: 0;
+  left: 163px;
+  margin: 0px auto;
+  height: 40px;
+  background: black;
+}
   
 .root-page {
   font-size: 50px;
@@ -127,6 +176,43 @@ div.sign-in {
   border-radius: 5px;
 }
 
+section#sign-in {
+  margin: 5px;
+}
+
+section.facebook-sign-in {
+  margin: 5px 60px;
+  margin-bottom: 40px;
+  width: 280;
+}
+
+form#sign-in {
+}
+
+form#sign-in > input[type="text"], input[type="password"] {
+  float: left;
+  width: 230px;
+  padding: 5px 10px;
+  text-align: center;
+  outline: 1px solid #ccc;
+}
+
+form#sign-in > button {
+  float: right;
+  padding: 10px 15px;
+  margin: auto;
+  color: white;
+  background: black;
+  text-transform: uppercase;
+  border-radius: 2px;
+  font-size: 24px;
+
+}
+
+form#sign-in > button:hover {
+  background-color: #3E3E3E;
+}
+
 div.sign-up {
   float: right;
   background: black;
@@ -194,10 +280,8 @@ div.sign-up {
   margin: auto;
   background: white;
   padding: 30px;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  height: 100%;
-  border: 1px solid purple;
+  min-height: 110%;
+  height: auto;
 }
 
 /* User Show Page */
@@ -239,6 +323,7 @@ div.sign-up {
 }
 
 div.name {
+  margin-top: 20px;
 }
 
 .name > p {
@@ -254,6 +339,30 @@ p.username {
 .user-show.follow > div {
   font-size: 25px;
   margin-top: 10px;
+}
+
+.sidebar-right-header {
+  
+}
+
+ul.likes > li {
+  float: left;
+  margin: 3px 3px 0 0;
+}
+
+ul.followers > li {
+  float: left;
+  margin: 3px 3px 0 0;
+}
+
+ul.following > li {
+  float: left;
+  margin: 3px 3px 0 0;
+}
+
+section.upcoming-shows {
+  width: 190px;
+  margin-top: 20px;
 }
 
 /* Song Show Page*/
@@ -315,36 +424,105 @@ form#add-comment {
   border: 1px solid #eee;
   padding: 5px;
   font-size: 12px;
-  width: 1020px;
-  margin: auto;
+  width: 1021px;
+  align: left;
+}
+
+.add-comment {
+  align: right;
 }
 
 section.song-show-bottom {
   
 }
+
 div.image {
   margin-top: 20px;
 }
 
 img.song-show.song-image {
+  float: left;
   width: 200px;
   height: 200px;
 }
 
-footer {
-  position: fixed;
-  width: 1100px;
-  bottom: 0;
-  left: 163px;
-  margin: 0px auto;
-  height: 40px;
-  background: black;
+div.comments {
+  float: left;
+  width: 600px;
+  margin: 0px 15px;
+}
+
+div.comments > ul {
+}
+
+div.comments > ul > li {
+  padding: 5px 10px 5px 0;
+  float: left;
+
+  width: 600px;
+  border-bottom: 1px solid #ccc;
+}
+
+div.comment-user-pic {
+  float: left;
+  margin-top: 2px;
+}
+
+div.comment-username {
+  float: left;
+  width: 545px;
+  color: #aaa;
+  margin-top: 5px;
+  padding-left: 5px;
+  float: left;
+}
+
+div.comment-body {
+  float: left;
+  padding-left: 5px;
+}
+
+.play-button {
+  color: white;
 }
 
 /* Song Stream on User Show Page */
 
 section.song-stream {
+  float: left;
   margin-bottom: 20px;
+  width: 800px;
+}
+
+.stream-page-right {
+  float: right;
+  width: 220px;
+  border-left: 1px solid #ccc;
+  height: 100%;
+  padding: 0 0 0 15px;
+}
+
+.stream-page-right > ul {
+  float: right;
+  width: 220px;
+  border-left: 1px solid #ccc;
+  height: 100%;
+  padding: 0 0 0 15px;
+}
+
+.stream-page-right > ul > li {
+  margin: 10px;
+}
+
+.stream-page-right > ul > li > a {
+  float: left;
+
+}
+
+.stream-page-username {
+  float: right;
+  width: auto;
+  margin: 14px 0 14px 5px;
 }
 
 .song-uploader > a {
@@ -368,7 +546,6 @@ section.song-stream {
 
 .song-info.song-stream > .song-uploader {
   font-size: 12px;
-
 }
 
 .song-info.song-stream > .song-title {
@@ -393,8 +570,18 @@ section.song-stream {
   float: left;
   width: auto;
   background: #0c6;
-  padding: 5px;
-  margin: 10px 10px 10px 0;
+  padding: 5px 7px;
+  margin: 10px 10px 5px 0;
+  border-radius: 5px;
 }
+
+.song-buttons.song-stream > ul > li:hover { 
+  background: #15A244;
+}
+
+/* STREAM PAGE */
+
+
+
 
 

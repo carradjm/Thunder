@@ -1,4 +1,7 @@
 class Song < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:title, :uploader]
+  
   validates :title, :track, presence: true
   has_attached_file :track
   do_not_validate_attachment_file_type :track

@@ -1,0 +1,6 @@
+<h1>Notifications</h1>
+<ul>
+<% notifications.forEach( function(notification) { %>
+  <li><a href="<%= notification.escape("url") %>"><%= notification.escape("text") %></a></li>
+<% }) %>
+<ul>

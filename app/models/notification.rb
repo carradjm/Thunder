@@ -30,6 +30,17 @@ class Notification < ActiveRecord::Base
       user_url(user_follow.following_id)
     end
   end
+  
+  def json_url #for use with jBuilder - returned URL is for Backbone
+    case self.event_name
+    when :new_comment_on_song
+      comment = self.notifiable
+      "/#/songs/#{comment.song_id}"
+    when :new_follow_on_user
+      user_follow = self.notifiable
+      "/#/users/#{user_follow.follower_id}"
+    end
+  end
 
   def text
     case self.event_name

@@ -57,40 +57,53 @@ Thunder.Models.User = Backbone.Model.extend({
     return this._userFollows;
   },
   
+  notifications: function() {
+    if (!this._notifications) {
+      this._notifications = new Thunder.Collections.Notifications([], { user: this })
+    }
+    
+    return this._notifications;
+  },
+  
   parse: function(response) {
-    if(response.uploads) {
+    if (response.uploads) {
       this.uploads().set(response.uploads, { parse: true });
       delete response.uploads;
     }
     
-    if(response.likes) {
+    if (response.likes) {
       this.likes().set(response.likes, { parse: true });
       delete response.likes;
     }
     
-    if(response.playlists) {
+    if (response.playlists) {
       this.playlists().set(response.playlists, { parse: true });
       delete response.playlists;
     }
     
-    if(response.following) {
+    if (response.following) {
       this.following().set(response.following, { parse: true });
       delete response.following;
     }
     
-    if(response.followers) {
+    if (response.followers) {
       this.followers().set(response.followers, { parse: true });
       delete response.followers;
     }
     
-    if(response.songLikes) {
-      this.songLikes().set(response.songLikes, { parse: true });
+    if (response.songLikes) {
+      this.songLikes().set(response.songLikes);
       delete response.songLikes;
     }
     
-    if(response.userFollows) {
-      this.userFollows().set(response.userFollows, { parse: true });
+    if (response.userFollows) {
+      this.userFollows().set(response.userFollows);
       delete response.userFollows;
+    }
+    
+    if (response.notifications) {
+      this.notifications().set(response.notifications);
+      delete response.notifications;
     }
       
     return response;

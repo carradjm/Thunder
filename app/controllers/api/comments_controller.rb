@@ -4,10 +4,9 @@ class Api::CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
   
     if @comment.save
-      redirect_to song_url(@comment.song_id)
+      render partial: "api/comments/show.json", locals: { comment: @comment }
     else
-      flash[:errors] = @comment.errors.full_messages
-      render redirect_to song_url(@commment.song_id)
+      render json: @comment.errors.full_messages, status: :unprocessable_entity
     end
   end
   

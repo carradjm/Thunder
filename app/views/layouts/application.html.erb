@@ -6,6 +6,13 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.css' rel='stylesheet'>
+    <script>
+    audiojs.events.ready(function() {
+      var as = audiojs.createAll();
+    });
+    </script>
   </head>
   <body>
     <header class="header">
@@ -23,14 +30,12 @@
         <nav class="nav-right">
           <% if logged_in? %>
           <ul class="group">
+            <li><a href="<%= new_song_url %>">Upload</a></li>
             <li><a href="/#/users/<%= current_user.id %>"><%= current_user.username %></a></li>
-            <li><a href="<%= notifications_url %>">Notifications</a></li>
+            <li><a href="/#/notifications">Notifications</a></li>
             <li><a href="<%= edit_user_url(current_user) %>">*</a></li> 
             <li><%= link_to "Sign Out", session_url, method: :delete %>	
           </ul>
-          <%# else %>
-            <%#= link_to "Sign In", new_session_url%>
-            <%#= link_to "Sign Up", new_user_url%>
           <% end %>
         </nav>
    
@@ -42,7 +47,7 @@
     </div>
 
     <footer>
-    Stuff
+      <audio id="audio-player" src="http://s3.amazonaws.com/Soundcloud-Clone-Malcolm-Dev/songs/tracks/000/000/002/original/Looking_glass_-_Brandi_you're_a_fine_girl.mp3?1409251382" preload="auto">
     </footer>
-  </body>
+  </body>  
 </html>

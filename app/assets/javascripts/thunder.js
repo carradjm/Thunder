@@ -10,11 +10,15 @@ window.Thunder = {
     this.users = new Thunder.Collections.Users(Thunder.currentUser);
     this.songs = new Thunder.Collections.Songs();
     this.playlists = new Thunder.Collections.Playlists(Thunder.currentUser.playlists());
+    this.notifications = new Thunder.Collections.Notifications();
+    this.users.fetch({
+      success: function() {
+        var router = new Thunder.Routers.Router({
+          $rootEl: $('.main')
+        });
     
-    var router = new Thunder.Routers.Router({
-      $rootEl: $('.main')
-    });
-    
-    Backbone.history.start();
+        Backbone.history.start();
+      }
+    })    
   }
 };

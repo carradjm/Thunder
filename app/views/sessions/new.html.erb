@@ -5,8 +5,7 @@
 
 <section id="modal" class="sign-in">
   <section id="sign-in">
-    <h1>Sign In</h1>
-  
+      
     <section class="facebook-sign-in">
        <a href="/auth/facebook" class="fb-signin"><img src="https://www.musicgivz.com/images/facebooklogin.png" width="270" height="46"></a>
     </section>
@@ -17,19 +16,13 @@
     	<% end %>
     <% end %>
 
-    <form action="<%= session_url %>" method="post">
+    <form id="sign-in" action="<%= session_url %>" method="post" class="group">
     	<%= auth_token %>
-	
-    	<label>
-    		E-mail
-    		<input type="text" name="user[email]" value="" placeholder="email">
-    	</label>
-	
-    	<label>
-    		Password
-    		<input type="password" name="user[password]" value="" placeholder="password">
-    	</label>
-	
+	    
+      <input type="text" name="user[email]" value="" placeholder="email">
+      
+      <input type="password" name="user[password]" value="" placeholder="password">
+
     	<button>Log In</button>
     </form>
   </section>

@@ -44,6 +44,10 @@ Thunder::Application.routes.draw do
     resource :session, only: [:new, :create, :destroy]
     
     resources :user_follows, only: [:create, :destroy]
+    
+    resources :comments, only: [:create, :destroy]
+    
+    get '/search', to: 'search#search', as: :search
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

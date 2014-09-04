@@ -7,7 +7,7 @@ Thunder.Views.UsersShow = Backbone.View.extend({
     'click #unfollow' : 'unfollowUser'
   },
   
-  className: 'user-show-page',
+  className: 'user-show-page group',
 
   initialize: function() {
     this.listenTo(Thunder.currentUser, "add sync", this.render);

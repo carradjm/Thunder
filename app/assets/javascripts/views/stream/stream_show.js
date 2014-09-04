@@ -3,10 +3,12 @@ Thunder.Views.StreamShow = Backbone.View.extend({
   
   render: function() {
     var content = this.template();
-    this.$el.html(content);
     this.renderSongStreams();
+    this.$el.append(content);
     return this;
   },
+  
+  className: "stream-page group",
   
   renderSongStreams: function() {
     var that = this;

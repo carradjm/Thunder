@@ -6,17 +6,24 @@ Thunder.Routers.Router = Backbone.Router.extend({
   
   routes: {
     "" : "stream",
-    'songs' : 'songsIndex',
+    'users' : 'usersIndex',
+    'notifications' : 'notificationsIndex',
     'songs/new' : 'songNew',
     'songs/:id' : 'songShow',
-    'users/new' : 'Thunder',
     'users/:id' : 'userShow',
     'users/:id/edit' : 'userEdit',
-    'playlists/:id' : 'playlistShow'
+    'playlists/:id' : 'playlistShow'    
+  },
+  
+  stream: function() {
+    var streamView = new Thunder.Views.StreamShow();
+    
+    this._swapView(streamView);
   },
   
   usersIndex: function() {
     var that = this;
+    
     Thunder.users.fetch({
       success: function() {
         var indexView = new Thunder.Views.UsersIndex({
@@ -28,12 +35,21 @@ Thunder.Routers.Router = Backbone.Router.extend({
     });
   },
   
-  stream: function() {
-    var streamView = new Thunder.Views.StreamShow();
-    
-    this._swapView(streamView);
+  notificationsIndex: function() {
+    var that = this;
+    console.log('now here!')
+    Thunder.notifications.fetch({
+      success: function() {
+        console.log('and now')
+        var notificationsIndex = new Thunder.Views.NotificationsIndex({
+          collection: Thunder.notifications
+        });
+
+        that._swapView(notificationsIndex);
+      }
+    })
   },
-  
+    
   songNew: function() {
    var song = new Thunder.Models.Song;
 
@@ -72,7 +88,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
       var showView = new Thunder.Views.PlaylistsShow({
         model: playlist
       });
-        
+      console.log(playlist.songs())
       that._swapView(showView) 
     });
   },

@@ -6,7 +6,8 @@ Thunder.Views.SongsStream = Backbone.View.extend({
     'click .add-comment' : 'addComment',
     'click #like-song' : 'likeSong',
     'click #unlike-song' : 'unlikeSong',
-    'click #add-to-playlist' : 'addToPlaylist'
+    'click #add-to-playlist' : 'addToPlaylist',
+    'click #music-player-widget' : 'changeTrack'
   },
 
   initialize: function() {
@@ -19,6 +20,18 @@ Thunder.Views.SongsStream = Backbone.View.extend({
     var content = this.template({song: this.model});
     this.$el.html(content);
     return this;
+  },
+  
+  changeTrack: function() {
+    var audio = $("#audio-player");
+        
+    $("#audio-player").attr("src", this.model.get('track'));
+    audio[0].pause();
+    audio[0].load();//suspends and restores all audio element
+    audio[0].play();
+    
+    $('.audiojs').removeClass('playing')
+    $('.audiojs').addClass('playing')
   },
     
   likeSong: function() {

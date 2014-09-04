@@ -1,5 +1,3 @@
-<script src="waveform.js">
-</script>
 <section class="song-show-top">
   
   <div class="song-info song-show">
@@ -17,15 +15,16 @@
     </div>
     
     <form id="add-comment">
-      <input type="text" name="comment[body]" placeholder="Write A Comment"></input>
+      <input type="text" name="comment[body]" placeholder="Write A Comment">
+      <input type="hidden" name="comment[song_id]" value="<%= song.id %>">
     </form>
 
     <div class="song-buttons song-show group">
       <ul>
         <% if (Thunder.currentUser.likes().findWhere({id: song.id})) { %>
-          <li><div id="unlike-song">Unlike Song</div></li>
+          <li><div id="unlike-song">Unlike</div></li>
         <% } else { %>
-          <li><div id="like-song">Like Song</div></li>
+          <li><div id="like-song">Like</div></li>
         <% } %>
           <li><div id="add-to-playlist">Add To Playlist</div></li>
       </ul>
@@ -34,8 +33,25 @@
   
 </section> 
 
-<section class="song-show-bottom">
+<section class="song-show-bottom group">
   <div class="image">
     <img class="song-image song-show" src="<%= song.escape('image') %>"></img>
+  </div>
+  
+  <div class="description">
+    <%= song.escape('description') %>
+  </div>
+  
+  <div class="comments">
+    <% if (song.comments().size() == 1) { %>
+      <%= song.comments().size() %> comment
+    <% } else { %>
+      <%= song.comments().size() %> comments
+    <% } %>
+    <ul class="comments group"></ul>
+  </div>
+  
+  <div class="song-stats-likes">
+    <%= song.likes().size() %> Likes
   </div>
 </section>

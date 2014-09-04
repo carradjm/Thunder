@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902132434) do
+ActiveRecord::Schema.define(version: 20140903210448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20140902132434) do
     t.string   "notifiable_type"
     t.integer  "event_id"
     t.boolean  "is_read"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pg_search_documents", force: true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,6 +103,9 @@ ActiveRecord::Schema.define(version: 20140902132434) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "genre_id"
+    t.integer  "song_likes_count"
+    t.integer  "shares_count"
+    t.integer  "comments_count"
   end
 
   add_index "songs", ["title"], name: "index_songs_on_title", using: :btree

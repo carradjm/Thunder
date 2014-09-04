@@ -1,3 +1,11 @@
-<div class="stream">
-  
+<div class='stream-page-right'>
+  <ul class='stream-page-users'>
+    <% Thunder.users.forEach( function(user) { %>
+        <li class="group">
+          <a href="/#/users/<%= user.id %>"><img src="<%= user.escape('picture') %>" width="50" height="50">
+          <div class="stream-page-username"><%= user.escape('username') %></div>
+            </a>
+        </li>
+    <% }) %>
+ </ul>	
 </div>

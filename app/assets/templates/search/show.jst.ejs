@@ -1,0 +1,11 @@
+<ul>
+  <% results.songs().forEach(function(song) { %>
+    <li><a href="/#/songs/<%= song.id %>"></a><%= song.escape('title') %></li>
+  <% }) %>
+</ul> 
+
+<ul>
+  <% results.users().forEach(function(user) { %>
+    <li><a href="/#/users<%= user.id %>"></a><%= user.escape('username') %></li>
+  <% }) %>
+</ul> 

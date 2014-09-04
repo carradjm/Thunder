@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.update(user_update_params)
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :edit

@@ -5,3 +5,24 @@
     <% } %>
   <% })%>
 </ul>
+
+<script>
+$(document).ready(function(){
+
+  $(".add-to-playlist").on("click", function(event){
+    $("#modal.add-to-playlist").addClass("is-active");
+  });
+  
+  $(".hide-modal").on("click", function(event){
+    event.preventDefault();
+    $("#modal").removeClass("is-active");
+  });
+
+  $("#modal").on("click", function(event){
+    if(event.target.id == this.id){
+      event.preventDefault();
+      $("#modal").removeClass("is-active");
+    }
+  });
+});
+</script>
