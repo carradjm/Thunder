@@ -11,7 +11,7 @@ Thunder.Models.Song = Backbone.Model.extend({
    
   likes: function() {
     if (!this._likes) {
-      this._likes = new Thunder.Collections.Likes([], {});
+      this._likes = new Thunder.Collections.Likes([], { song: this });
     };
     
     return this._likes;
@@ -19,7 +19,8 @@ Thunder.Models.Song = Backbone.Model.extend({
   
   comments: function() {
     if (!this._comments) {
-      this._comments = new Thunder.Collections.Comments([], {});
+      var that = this;
+      this._comments = new Thunder.Collections.Comments([], { song: this });
     };
     
     return this._comments;
@@ -32,7 +33,9 @@ Thunder.Models.Song = Backbone.Model.extend({
     }; 
     
     if (response.comments) {
+      var that = this;
       this.comments().set(response.comments, { parse: true });
+      this.comments().forEach( function(comment) {comment.set('song', that)});
       delete response.comments;
     };
     

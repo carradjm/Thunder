@@ -10,6 +10,13 @@ class Api::CommentsController < ApplicationController
     end
   end
   
+  def destroy
+    @comment = Comment.find(params[:id])
+    
+    @comment.destroy
+    render partial: "api/comments/show.json", locals: { comment: @comment }
+  end
+  
   private
   def comment_params
     params.require(:comment).permit(:song_id, :body)

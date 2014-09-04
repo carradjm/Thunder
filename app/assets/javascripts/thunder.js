@@ -16,7 +16,18 @@ window.Thunder = {
         var router = new Thunder.Routers.Router({
           $rootEl: $('.main')
         });
+        
+        $(".search-box").keyup(function(event){
+          if (event.keyCode == 13) {
+            $(".search-button").click();
+          }
+        });
     
+        $('.search-button').on('click', function (event) { 
+           var terms = $('.search-box').val();
+           router.navigate("#/search?q=" + terms, {trigger: true});
+         });
+  
         Backbone.history.start();
       }
     })    

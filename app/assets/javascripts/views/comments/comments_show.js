@@ -1,5 +1,9 @@
 Thunder.Views.CommentsShow = Backbone.View.extend({
   
+  events: {
+    'click button.remove-comment' : 'removeComment'
+  },
+  
   template: JST['comments/show'],
   
   tagName: 'li',
@@ -10,5 +14,15 @@ Thunder.Views.CommentsShow = Backbone.View.extend({
     var content = this.template({ comment: this.model });
     this.$el.html(content);
     return this;
+  },
+  
+  removeComment: function() {
+    var comment = this.model;
+    var song = comment.get('song')
+    comment.destroy({
+      success: function() {
+        song.fetch();
+      }
+    })
   }
 })

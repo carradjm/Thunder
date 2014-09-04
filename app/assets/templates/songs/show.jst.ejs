@@ -6,18 +6,26 @@
         <%= song.escape('uploader') %>
       </a>
     </div>
-
-    <div class="song-title song-show">
-      <%= song.escape('title') %>
+    
+    <div class="song-title-line group">
+      <div id="play-button">&#9654</div><div id="pause-button" style='display:none'>&#9616;&#9616;</div>
+    
+      <div class="song-title song-show">
+        <%= song.escape('title') %>
+      </div>
     </div>
     
-    <div class="music-player-widget" id="music-player-widget">
+    <div class="waveform">
+      <div class="waveform-progress-bar"></div>
+      <img class='music-player-widget' id="music-player-widget" width=1040 src="<%= song.escape('waveform') %>">
     </div>
     
-    <form id="add-comment">
-      <input type="text" name="comment[body]" placeholder="Write A Comment">
-      <input type="hidden" name="comment[song_id]" value="<%= song.id %>">
-    </form>
+    <div class='comment-form'>
+      <form id="add-comment">
+        <input type="text" name="comment[body]" placeholder="Write A Comment">
+        <input type="hidden" name="comment[song_id]" value="<%= song.id %>">
+      </form>
+    </div>
 
     <div class="song-buttons song-show group">
       <ul>
@@ -37,11 +45,7 @@
   <div class="image">
     <img class="song-image song-show" src="<%= song.escape('image') %>"></img>
   </div>
-  
-  <div class="description">
-    <%= song.escape('description') %>
-  </div>
-  
+    
   <div class="comments">
     <% if (song.comments().size() == 1) { %>
       <%= song.comments().size() %> comment

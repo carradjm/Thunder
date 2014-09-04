@@ -1,16 +1,16 @@
-Thunder.Models.SearchResults = Backbone.Model.extend({
+Thunder.Models.SearchResult = Backbone.Model.extend({
   
   songs: function() {
     if (!this._songs) {
       this._songs = new Thunder.Collections.Songs([], {});
     }
     
-    return this._likes;
+    return this._songs;
   },
   
   users: function() {
     if (!this._users) {
-      this._users = new Thunder.Collection.Users([], {}) 
+      this._users = new Thunder.Collections.Users([], {}) 
     };
     
     return this._users

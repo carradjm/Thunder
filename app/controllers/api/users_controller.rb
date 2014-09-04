@@ -3,13 +3,15 @@ class Api::UsersController < ApplicationController
   before_action :require_logged_in!, only: [:show, :index]
   
   def index
-    @users = User.all
+    @users = User.all.includes(:likes, :uploaded_songs, :following, :followers,
+                          :song_likes, :user_following, :comments)
     
     render :index
   end
   
   def show 
-    @user = User.find(params[:id])
+    @user = User.includes(:likes, :uploaded_songs, :following, :followers,
+                          :song_likes, :user_following, :comments).find(params[:id])
     
     render partial: 'api/users/show', locals: {user: @user}
   end

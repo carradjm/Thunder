@@ -6,6 +6,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
   
   routes: {
     "" : "stream",
+    "search?q=:query": "search",
     'users' : 'usersIndex',
     'notifications' : 'notificationsIndex',
     'songs/new' : 'songNew',
@@ -19,6 +20,24 @@ Thunder.Routers.Router = Backbone.Router.extend({
     var streamView = new Thunder.Views.StreamShow();
     
     this._swapView(streamView);
+  },
+  
+  search: function(query) {
+    var that = this;
+ 
+   $.ajax({
+     url: '/api/search',
+     type: 'GET',
+     data: {
+       query: query
+     },
+     success: function (data) {
+       // that.$subHeader.html("<h2 class='search-header'>Showing results for: " + terms + "</h2>");
+       var results = new Thunder.Models.SearchResult(data, { parse: true })
+       var searchView = new Thunder.Views.SearchShow({model: results});
+       that._swapView(searchView);
+     }
+   });
   },
   
   usersIndex: function() {
@@ -66,7 +85,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
       var showView = new Thunder.Views.SongsShow({
         model: song
       });
-      
+            
       that._swapView(showView);
     });    
   },

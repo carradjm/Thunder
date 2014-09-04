@@ -37,8 +37,16 @@ gem 'seed_dump'
 
 gem 'pg_search'
 
+gem 'cocaine'
+
 gem "figaro"
+gem 'waveform'
 gem "paperclip"
+gem 'paperclip_waveform'
+gem 'ruby-audio'
+gem "chunky_png"
+gem "oily_png"
+
 gem "aws-sdk"
 
 gem "omniauth-facebook"

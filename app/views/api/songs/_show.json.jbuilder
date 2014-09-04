@@ -2,6 +2,7 @@ json.extract! song, :id, :title, :user_id, :description,
                      :duration, :created_at, :updated_at, 
                      :track, :image
 
+json.waveform song.track(:waveform)
 json.genre song.genre.name                     
 json.uploader song.uploader.username
 

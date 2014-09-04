@@ -17,15 +17,19 @@
   <body>
     <header class="header">
       <div class="header wrap group">
-        
-        <nav class="nav-left">
-          <% if current_user %>
-            <ul class='group'>
-              <li><a href="/#/">Stream</a></li>
-              <li><a href="<%= genres_url %>">Explore</a></li>
-            </ul>
-          <% end %>
-        </nav>
+        <% if current_user %>
+         <nav class="nav-left">
+          <ul class='group'>
+            <li><a href="/#/">Stream</a></li>
+            <li><a href="<%= genres_url %>">Explore</a></li>
+          </ul>  
+         </nav>
+      
+         <nav class="nav-middle group">
+          <input type='text' placeholder='Search' class="search-box">
+          <input type='submit' class="search-button">
+         </nav>
+        <% end %>
     
         <nav class="nav-right">
           <% if logged_in? %>
@@ -47,7 +51,7 @@
     </div>
 
     <footer>
-      <audio id="audio-player" src="http://s3.amazonaws.com/Soundcloud-Clone-Malcolm-Dev/songs/tracks/000/000/002/original/Looking_glass_-_Brandi_you're_a_fine_girl.mp3?1409251382" preload="auto">
+      <audio id="audio-player" preload="auto">
     </footer>
   </body>  
 </html>

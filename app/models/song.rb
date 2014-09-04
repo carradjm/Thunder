@@ -3,7 +3,8 @@ class Song < ActiveRecord::Base
   multisearchable :against => [:title, :uploader]
   
   validates :title, :track, presence: true
-  has_attached_file :track
+  has_attached_file :track, styles: { waveform: { format: :png, convert_options: { color: :transparent } } },
+                    processors: [ :waveform ]
   do_not_validate_attachment_file_type :track
       
   has_attached_file :image, :styles => { :standard => "200x200" }, default_url: 'Daft-Punk.jpg'

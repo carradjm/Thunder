@@ -5,7 +5,7 @@ class Api::SearchController < ApplicationController
       @results = PgSearch.multisearch(params[:query])
                          .includes(:searchable)
     else
-      @results = PgSearch::Document.all.page(params[:page])
+      @results = PgSearch::Document.all
     end
   end
   

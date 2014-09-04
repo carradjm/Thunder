@@ -7,5 +7,8 @@
 <div class="comment-body">
   <%= comment.escape('body') %>
 </div>
+<% if (comment.get("author_id") === Thunder.currentUser.id) { %>
+ <button class="remove-comment">&#10005;</button>
+<% }; %>
 
 
