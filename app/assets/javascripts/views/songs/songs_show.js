@@ -8,13 +8,15 @@ Thunder.Views.SongsShow = Backbone.View.extend({
     'click #unlike-song' : 'unlikeSong',
     'click #add-to-playlist' : 'addToPlaylist',
     'click #play-button' : 'playTrack',
-    'click #pause-button' : 'pauseTrack'
+    'click #pause-button' : 'pauseTrack',
   },
 
   initialize: function() {
-    this.listenTo(Thunder.currentUser, "sync", this.render);
-    this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model.comments(), "sync add", this.render);
+    // this.listenTo(Thunder.currentUser, "sync", this.render);
+    // this.listenTo(this.model, "change", this.render);
+    // this.listenTo(this.model, "request", this.render);
+    this.listenTo(this.model.comments(), "add destroy", this.renderComments);
+    this.listenTo(Thunder.router, 'route', this.closeInterval())
     var that = this
     $('p.play').on('click', function() {
       that.playTrack();
@@ -25,30 +27,55 @@ Thunder.Views.SongsShow = Backbone.View.extend({
   },
   
   render: function() {
-    var content = this.template({song: this.model});
+    var that = this;
+    var content = this.template({ song: this.model });
     this.$el.html(content);
-    var audio = $("#audio-player");
-    if (!$('#audio-player').attr("src")) {
-      $("#audio-player").attr("src", this.model.get('track'));
-      audio[0].load();//suspends and restores all audio element
+    
+    var $audio = $("#audio-player");
+    
+    if (!$audio.attr("src")) {
+      $audio.attr("src", this.model.get('track'));
+      $audio[0].load();
     }
-    var $waveformEl = this.$el.find('div.waveform')
+    
     this.renderComments();
-    window.setInterval(function() {
-      $progress = $('.progress').attr('style').slice(7)
-      $('.waveform-progress-bar').css('width', parseInt($progress))
+            
+    if (Thunder.currentUser.likes().findWhere({id: this.model.id})) {
+      this.$el.find('.like-buttons').toggleClass('is-liked');
+    }
+    
+    var playerSource = $('#audio-player').attr('src')
+    var song = this.model.get('track')
+    if (playerSource === song){
+      if ($(".audiojs").hasClass("playing")) {
+        this.$el.find('.play-pause-buttons').toggleClass('is-playing')
+      }
+    }
+        
+    var that = this;
+    this.waveformInterval = setInterval(function() {
+      that.renderWaveform();
     }, 400)
+    
     return this;
   },
   
+  closeInterval: function() {
+    clearInterval(this.waveformInterval)
+  },
+  
   renderWaveform: function() {
-    var waveform = new Thunder.Views.Waveform({model: this.model});
-    var $waveformEl = this.$el.find('div.waveform')
-    $waveformEl.html(waveform.render().$el)
+    var playerSource = $('#audio-player').attr('src')
+    var song = this.model.get('track')
+    if (playerSource === song){
+      $progress = parseInt($('.progress').attr('style').slice(7));
+      $('#song-show' + this.model.id).css('width', parseInt($progress));
+    }
   },
   
   renderComments: function() {
     var $commentsEl = this.$el.find('ul.comments')
+    $commentsEl.empty();
     this.model.comments().forEach(function(comment) {
       var commentView = new Thunder.Views.CommentsShow({ model: comment });
       $commentsEl.append(commentView.render().$el)
@@ -56,34 +83,34 @@ Thunder.Views.SongsShow = Backbone.View.extend({
   },
   
   playTrack: function() {
-    var audio = $("#audio-player");
+    var $audio = $("#audio-player");
         
-    if ($('#audio-player').attr("src") === this.model.get('track')) {
-      audio[0].play();
+    if ($audio.attr("src") === this.model.get('track')) {
+      $audio[0].play();
     } else {
-      $("#audio-player").attr("src", this.model.get('track'));
-      audio[0].pause();
-      audio[0].load();//suspends and restores all audio element
-      audio[0].play();
+      $audio.attr("src", this.model.get('track'));
+      $audio[0].pause();
+      $audio[0].load();//suspends and restores all audio element
+      $audio[0].play();
     }
     
-    $('#audiojs_wrapper0').addClass('playing')
-    $('#play-button').css('display', 'none')
-    $('#pause-button').css('display', 'block')
+    $('#audiojs_wrapper0').toggleClass('playing')
+    this.$el.find('.play-pause-buttons').toggleClass('is-playing')    
   },
   
   pauseTrack: function() {
     var audio = $("#audio-player");
     
     audio[0].pause();
-    $('#pause-button').css('display', 'none')
-     $('#play-button').css('display', 'block')
+    $('#audiojs_wrapper0').toggleClass('playing')
+    this.$el.find('.play-pause-buttons').toggleClass('is-playing')  
   },
       
-  likeSong: function() {
+  likeSong: function() { 
     var songLike = new Thunder.Models.Like({user_id: Thunder.currentUser.id, song_id: this.model.id});
     var that = this;
     
+    this.$el.find('.like-buttons').toggleClass('is-liked');
     songLike.save(null, {
       success: function() {
         Thunder.currentUser.fetch();
@@ -91,14 +118,11 @@ Thunder.Views.SongsShow = Backbone.View.extend({
     });
   },
   
-  unlikeSong: function() {   
+  unlikeSong: function() { 
     var songLike = Thunder.currentUser.songLikes().findWhere({song_id: this.model.id});
-    
-    songLike.destroy({
-      success: function() {
-        Thunder.currentUser.fetch();
-      } 
-    });
+    var that = this;
+    this.$el.find('.like-buttons').toggleClass('is-liked');
+    songLike.destroy({});
   },
     
   addComment: function(event) {
@@ -110,14 +134,14 @@ Thunder.Views.SongsShow = Backbone.View.extend({
     
 	  comment.save({}, {
       success: function() {
-          that.model.comments().add(comment);
-          that.model.fetch();
+        that.model.comments().add(comment);
+        that.model.fetch();
         that.$("text[name=comment\\[body\\]]").val("");
       }
     });
   },
     
-  addToPlaylist: function() {
+  addToPlaylist: function() { 
     var playlistAdd = new Thunder.Views.PlaylistsAdd({ song: this.model });
     this.$el.html(playlistAdd.render().$el);
   }  

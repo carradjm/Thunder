@@ -1,15 +1,18 @@
-<% if (results.songs()) { %>
-  <ul>
-    <% results.songs().forEach(function(song) { %>
-      <li><a href="/#/songs/<%= song.id %>"><%= song.escape('title') %></a></li>
-    <% }) %>
-  </ul> 
-<% } %>
+<% if (results) { %>
+Showing results for: '<%= query %>'
+  <% if (results.songs()) { %>
+    <ul>
+      <% results.songs().forEach(function(song) { %>
+        <li><a href="/#/songs/<%= song.id %>"><%= song.escape('title') %></a></li>
+      <% }) %>
+    </ul> 
+  <% } %>
 
-<% if (results.users()) { %>
-  <ul>
-    <% results.users().forEach(function(user) { %>
-      <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
-    <% }) %>
-  </ul> 
+  <% if (results.users()) { %>
+    <ul>
+      <% results.users().forEach(function(user) { %>
+        <li><a href="/#/users/<%= user.id %>"><%= user.escape('username') %></a></li>
+      <% }) %>
+    </ul> 
+  <% } %>
 <% } %>

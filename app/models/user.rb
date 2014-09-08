@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     class_name: "UserFollow",
     foreign_key: :follower_id,
     primary_key: :id,
-    inverse_of: :following
+    inverse_of: :follower
   )
   
   has_many(
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     class_name: "UserFollow",
     foreign_key: :following_id,
     primary_key: :id,
-    inverse_of: :follower
+    inverse_of: :following
   )
   
   has_many :following, through: :user_following, source: :following

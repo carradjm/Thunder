@@ -15,16 +15,13 @@
       <p class="last-name"><%= user.escape('last_name') %></p>
       <p class="username"><%= user.escape('username') %></p>
     </div>
-  
-    <div class="user-show follow">
-      <% if (Thunder.currentUser !== user) { %>
-        <% if (Thunder.currentUser.following().findWhere({id: user.id})) { %>
-          <div id="unfollow">Unfollow</div>
-        <% } else { %>
-          <div id="follow">Follow</div>
-        <% } %>
-      <% } %>
+    
+    <% if (!(Thunder.currentUser === user)) { %>
+    <div class="follow-buttons">
+      <div id="unfollow">Unfollow</div>
+      <div id="follow">Follow</div>
     </div>
+    <% } %>
   </section>
 
   <section class="user-show-stream">

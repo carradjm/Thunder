@@ -40,12 +40,6 @@ gem 'pg_search'
 gem 'cocaine'
 
 gem "figaro"
-gem 'waveform'
-gem "paperclip"
-gem 'paperclip_waveform'
-gem 'ruby-audio'
-gem "chunky_png"
-gem "oily_png"
 
 gem "aws-sdk"
 
@@ -53,6 +47,12 @@ gem "omniauth-facebook"
 gem 'open_uri_redirections'
 
 gem 'audiojs'
+gem 'waveform'
+gem "paperclip"
+gem 'paperclip_waveform'
+gem 'ruby-audio'
+gem "chunky_png"
+gem "oily_png"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

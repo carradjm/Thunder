@@ -8,7 +8,7 @@ html, head, body, nav, div, h1, h2, h3, ul, li, form, button, img, form, a, head
 
 html {
   background: #eee;
-  }a
+}
 
 img {
   border: 1px solid #aaa;
@@ -40,7 +40,7 @@ a {
 }
 
 input[type="button"], input[type="submit"],
-input[type="reset"], input[type="file"], input[type="text"], input[type="password"], button {
+input[type="reset"], input[type="file"], input[type="text"], input[type="password"], input[type="textarea"], button {
 -webkit-appearance: button;
   display: inline-block;
   position: relative;
@@ -58,7 +58,7 @@ div.audiojs {
   position: fixed;
   width: 1100px;
   bottom: 0;
-  left: 163px;
+  left: 160px;
   height: 40px;
   background: inherit;
   overflow: hidden;
@@ -98,9 +98,9 @@ div.audiojs {
 
 footer {
   position: fixed;
-  width: 1100px;
+  width: 1095px;
   bottom: 0;
-  left: 163px;
+  left: 160px;
   margin: 0px auto;
   height: 40px;
   background: black;
@@ -143,10 +143,15 @@ nav a:hover {
   float: left;
 }
 
-.nav-left > ul {
+.nav-left > ul > li {
+  float: left;
+  padding: 5px 10px;
+  margin-top: 1px;
 }
 
-.nav-left > ul > li {
+.nav-right > ul > li {
+  float: left;
+  padding: 5px 10px;
   margin-top: 1px;
 }
 
@@ -194,17 +199,6 @@ nav a:hover {
 /*  border-left: 1px solid #ccc;*/
 }
 
-.nav-left > ul > li {
-  float: left;
-  padding: 5px 10px;
-/*  border-right: 1px solid #ccc;*/
-}
-
-.nav-right > ul > li {
-  float: left;
-  padding: 5px 10px;
-  /*border-right: 1px solid #ccc;*/
-}
 
 section.new-session-buttons {
   margin: 5px;
@@ -241,18 +235,18 @@ form#sign-in {
 
 form#sign-in > input[type="text"], input[type="password"] {
   float: left;
-  width: 230px;
+  width: 377px;
   padding: 5px 10px;
   text-align: center;
   outline: 1px solid #ccc;
 }
 
 form#sign-in > button {
-  float: right;
-  padding: 10px 15px;
-  margin: auto;
+  padding: 5px 10px;
+  margin: 10px auto;
+  width: 377px;
   color: white;
-  background: black;
+  background: #202020;
   text-transform: uppercase;
   border-radius: 2px;
   font-size: 24px;
@@ -386,9 +380,19 @@ p.username {
   color: #bbb;
 }
 
-.user-show.follow > div {
+.follow-buttons {
   font-size: 25px;
   margin-top: 10px;
+}
+
+.follow-buttons #unfollow,
+.follow-buttons.followed #follow, {
+  display: none;
+}
+
+.follow-buttons #follow,
+.follow-buttons.followed #unfollow {
+  display: block;
 }
 
 .sidebar-right-header {
@@ -485,13 +489,8 @@ div.waveform {
   background: orange;
 }
 
-.song-buttons.song-show {
-}
 
-.song-buttons.song-show > ul {
-}
-
-.song-buttons.song-show > ul > li { 
+.like-buttons.song-show > button, .song-show#add-to-playlist {
   float: left;
   width: auto;
   margin: 5px 10px 0 0;
@@ -500,15 +499,33 @@ div.waveform {
   cursor: pointer;
 }
 
-.song-buttons.song-show > ul > li:hover { 
+.like-buttons.song-show > button:hover { 
   color: orange;
   background: #707070;
 }
-
-div.comment-form {
-  float: left;
+ 
+.like-buttons.song-show #unlike-song,
+.like-buttons.song-show.is-liked #like-song, {
+  display: none;
 }
 
+.like-buttons.song-show #like-song,
+.like-buttons.song-show.is-liked #unlike-song {
+  display: block;
+}
+
+.play-pause-buttons #pause-button,
+.play-pause-buttons.is-playing #play-button {
+  display: none ;
+}
+
+.play-pause-buttons #play-button,
+.play-pause-buttons.is-playing #pause-button {
+  display: block;
+}
+
+div.comment-form {
+}
 
 form#add-comment {
   background: #ccc;
@@ -552,14 +569,10 @@ div.comments {
   margin: 0px 15px;
 }
 
-div.comments > ul {
-  
-}
-
 div.comments > ul > li {
   padding: 5px 10px 5px 0;
   float: left;
-  width: auto;
+  width: 588px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -568,18 +581,25 @@ div.comment-user-pic {
   margin-top: 2px;
 }
 
-div.comment-username {
+div.comment-body {
   float: left;
-  width: 400px;
+  width: auto;
+  padding-left: 5px;
+}
+
+div.comment-username {
+  width: px;
   color: #aaa;
   margin-top: 5px;
   padding-left: 5px;
   float: left;
 }
 
-div.comment-body {
-  float: left;
+div.comment-text {
+  width: px;
+  color: black;
   padding-left: 5px;
+  float: left;
 }
 
 ul.comments {
@@ -588,10 +608,9 @@ ul.comments {
 }
 
 button.remove-comment {
-  font-size: 25px;
-  text-align: right;
-  margin-left: 110px;
+  float: right;
   margin-top: 11px;
+  font-size: 25px;
   cursor: pointer;
 }
 
@@ -644,7 +663,7 @@ section.song-stream {
   color: #bbb;
 }
 
-.song-stream.song-image > img {
+.song-image-stream {
   float: left;
   width: 100px;
   height: 100px;
@@ -667,34 +686,133 @@ section.song-stream {
   line-height: 1.3;
 }
 
+.song-title-line {
+}
+
+.song-info.song-stream #play-button {
+  font-size: 15px;
+  margin: 0px 6px 0 0;
+  vertical-align: center;
+  float: left;
+}
+
+.song-info.song-stream #play-button:hover {
+  color: red;
+}
+
+.song-info.song-stream #pause-button {
+  font-size: 15px;
+  margin: 0px 5px 0px -7px;
+  vertical-align: center;
+  float: left;
+}
+
+.song-info.song-stream #pause-button:hover {
+   color: red;
+}
+
 .music-player-widget {
   align: left;
   height: 100px;
-  background-image: "http://www.djban.com.br/wp-content/uploads/soundcloud-waveform.png";
 }
 
-.song-buttons.song-show {
+
+.like-buttons.song-stream #unlike-song,
+.like-buttons.song-stream.is-liked #like-song, {
+  display: none;
 }
 
-.song-buttons.song-stream > ul {
+.like-buttons.song-stream #like-song,
+.like-buttons.song-stream.is-liked #unlike-song {
+  display: block;
 }
 
-.song-buttons.song-stream > ul > li { 
+.like-buttons.song-stream > button, .song-stream#add-to-playlist { 
   float: left;
   width: auto;
-  background: #0c6;
-  padding: 5px 7px;
-  margin: 10px 10px 5px 0;
-  border-radius: 5px;
+  margin: 5px 10px 5px 0;
+  background: #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-.song-buttons.song-stream > ul > li:hover { 
-  background: #15A244;
+.like-buttons.song-stream > button:hover { 
+  color: orange;
+  background: #707070;
 }
 
 /* STREAM PAGE */
 
+/* NEW SONG PAGE*/
 
+h1.new-song {
+  margin: 15px auto;
+  width: 170px;
+  text-transform: uppercase;
+}
+
+form.new-song {
+  margin: 5px;
+}
+
+
+#new-song-title {
+   margin: 5px;
+}
+
+#new-song-genre {
+   margin: 5px;
+}
+
+#new-song-description {
+   margin: 5px;
+}
+
+#new-song-file {
+   margin: 5px;
+}
+
+#new-song-image {
+  margin: 5px;
+}
+
+.input-box > input[type="file"] {
+  width: 360px;
+  padding: 5px 10px;
+}
+
+.input-box > textarea {
+  width: 374px;
+}
+
+section.new-song {
+  border: 1px solid black;
+  margin: 5px auto;
+  width: 400px;
+}
+
+div.input-label {
+  margin: 5px auto;
+  text-align: center;
+  padding: 5px 10px;
+}
+
+div.input-box {
+  margin: 5px auto;
+  border: 1px solid #ccc;
+}
+
+button.upload-song {
+  margin: 10px auto;
+  padding: 5px 10px;
+  width: 370px;
+  color: white;
+  background: black;
+}
+
+.select-genre {
+  width: 378px;
+}
 
 
 

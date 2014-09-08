@@ -8,11 +8,6 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.css' rel='stylesheet'>
-    <script>
-    audiojs.events.ready(function() {
-      var as = audiojs.createAll();
-    });
-    </script>
   </head>
   <body>
     <header class="header">
@@ -51,7 +46,7 @@
     </div>
 
     <footer>
-      <audio id="audio-player" preload="auto">
+      <audio id="audio-player" preload="metadata">
     </footer>
   </body>  
 </html>

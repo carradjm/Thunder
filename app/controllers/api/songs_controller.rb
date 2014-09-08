@@ -26,7 +26,6 @@ class Api::SongsController < ApplicationController
   def create
     @song = Song.new(song_params)
     @song.uploader = current_user
-    
     if @song.save
       redirect_to song_url(@song)
     else

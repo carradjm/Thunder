@@ -10,13 +10,16 @@ Thunder.Views.UsersShow = Backbone.View.extend({
   className: 'user-show-page group',
 
   initialize: function() {
-    this.listenTo(Thunder.currentUser, "add sync", this.render);
+    // this.listenTo(Thunder.currentUser, "add sync", this.render);    
   },
   
   render: function() {
     var content = this.template({user: this.model});
     this.$el.html(content);
     this.renderUploads();
+    if (Thunder.currentUser.following().findWhere({ id: this.model.id })) {
+      this.$el.find('.follow-buttons').toggleClass('followed');
+    }
     return this;
   },
   
@@ -33,6 +36,7 @@ Thunder.Views.UsersShow = Backbone.View.extend({
     var userFollow = new Thunder.Models.UserFollow({follower_id: Thunder.currentUser.id, following_id: this.model.id});
     var that = this;
     
+    this.$el.find('.follow-buttons').toggleClass('followed')
     userFollow.save(null, {
       success: function() {
         Thunder.currentUser.fetch();
@@ -42,13 +46,8 @@ Thunder.Views.UsersShow = Backbone.View.extend({
   
   unfollowUser: function() {
     var userFollow = Thunder.currentUser.userFollows().findWhere({following_id: this.model.id});
-    
-    userFollow.destroy({
-      success: function() {
-        console.log('hello!')
-        Thunder.currentUser.fetch();
-      } 
-    });
+    this.$el.find('.follow-buttons').toggleClass('followed')
+    userFollow.destroy();
   }
   
 })

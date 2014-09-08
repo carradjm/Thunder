@@ -8,7 +8,10 @@
     </div>
     
     <div class="song-title-line group">
-      <div id="play-button">&#9654</div><div id="pause-button" style='display:none'>&#9616;&#9616;</div>
+      <div class="play-pause-buttons">
+        <div id="play-button">&#9654</div>
+        <div id="pause-button">&#9616;&#9616;</div>
+      </div>
     
       <div class="song-title song-show">
         <%= song.escape('title') %>
@@ -16,7 +19,7 @@
     </div>
     
     <div class="waveform">
-      <div class="waveform-progress-bar"></div>
+      <div class="waveform-progress-bar" id="song-show<%= song.id %>"></div>
       <img class='music-player-widget' id="music-player-widget" width=1040 src="<%= song.escape('waveform') %>">
     </div>
     
@@ -26,16 +29,14 @@
         <input type="hidden" name="comment[song_id]" value="<%= song.id %>">
       </form>
     </div>
-
-    <div class="song-buttons song-show group">
-      <ul>
-        <% if (Thunder.currentUser.likes().findWhere({id: song.id})) { %>
-          <li><div id="unlike-song">Unlike</div></li>
-        <% } else { %>
-          <li><div id="like-song">Like</div></li>
-        <% } %>
-          <li><div id="add-to-playlist">Add To Playlist</div></li>
-      </ul>
+    
+    <div class='buttons group'>
+      <div class="like-buttons song-show">
+        <button id="unlike-song">Unlike</button>
+        <button id="like-song">Like</button>
+      </div>
+    
+      <button class='song-show' id="add-to-playlist">Add To Playlist</button>
     </div>
   </div>
   
@@ -56,6 +57,10 @@
   </div>
   
   <div class="song-stats-likes">
-    <%= song.likes().size() %> Likes
+    <% if (song.likes().size() == 1) { %>
+      <%= song.likes().size() %> like
+    <% } else { %>
+      <%= song.likes().size() %> likes
+    <% } %>
   </div>
 </section>

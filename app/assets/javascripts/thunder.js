@@ -13,8 +13,12 @@ window.Thunder = {
     this.notifications = new Thunder.Collections.Notifications();
     this.users.fetch({
       success: function() {
-        var router = new Thunder.Routers.Router({
+        Thunder.router = new Thunder.Routers.Router({
           $rootEl: $('.main')
+        });
+        
+        audiojs.events.ready(function() {
+          audioPlayerJS = audiojs.createAll();
         });
         
         $(".search-box").keyup(function(event){
@@ -25,7 +29,7 @@ window.Thunder = {
     
         $('.search-button').on('click', function (event) { 
            var terms = $('.search-box').val();
-           router.navigate("#/search?q=" + terms, {trigger: true});
+           Thunder.router.navigate("#/search?q=" + terms, {trigger: true});
          });
   
         Backbone.history.start();

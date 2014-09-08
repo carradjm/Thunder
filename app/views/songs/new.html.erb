@@ -1,52 +1,55 @@
-<h1>Upload New Song</h1>
-
-<% if flash[:errors]%>
-	<% flash[:errors].each do |error| %>
-		<%= error %>
-	<% end %>
-<% end %>
-
-<form action="<%= songs_url %>" method="post" enctype="multipart/form-data">
-	<%= auth_token %>
-	
-	<label>
-		Title
-		<input type="text" name="song[title]" value="<%= @song.title %>" placeholder="title">
-	</label>
-	<br>
-	<br>
+<section class='new-song'>
   
-	<label>
-		Genre
-    <select name="song[genre_id]">
-      <% @genres.each do |genre| %> %>
-        <option value="<%= genre.id %>"><%= genre.name %></option>
-      <% end %>
-    </select>
-	</label>
-	<br>
-  <br>
-	
-	<label>
-		Description
-		<textarea name="song[description]" value="<%= @song.description %>" placeholder="description"></textarea>
-	</label>
-	<br>
-  <br>
-	
-  <label>
-    Choose File
-    <input type="file" name="song[track]">
-  </label>
-  <br>
-  <br>
+
+  <% if flash[:errors]%>
+  	<% flash[:errors].each do |error| %>
+  		<%= error %>
+  	<% end %>
+  <% end %>
+
+  <form action="<%= songs_url %>" method="post" enctype="multipart/form-data" class="new-song group">
+  	<%= auth_token %>
+	  
+    <h1 class='new-song'>Upload New Song</h1>
+    
+  	<div id='new-song-title'>
+  		<div class='input-label'>Title</div>
+  		<div class='input-box'><input type="text" name="song[title]" value="<%= @song.title %>" placeholder="title"></div>
+    </div>
   
-  <label>
-    Choose Image
-    <input type="file" name="song[image]">
-  </label>
-  <br>
-  <br>
+  	<div id='new-song-genre'>
+  		<div class='input-label'>Genre</div>
+        <div class='input-box'>
+          <select class='select-genre' name="song[genre_id]">
+          <% @genres.each do |genre| %> %>
+            <option value="<%= genre.id %>"><%= genre.name %></option>
+          <% end %>
+        </select>
+      </div>
+  	</div>
 	
-	<button>Upload New Song</button>
-</form>
+  	<div id='new-song-description'>
+  		<div class='input-label'>Description</div>
+  		<div class='input-box'>
+        <textarea name="song[description]" value="<%= @song.description %>" placeholder="description"></textarea>
+      </div>
+  	</div>
+  
+    <div id='new-song-file'>
+      <div class='input-label'>Choose File</div>
+      <div class='input-box'>
+        <input type="file" name="song[track]">
+      </div>
+    </div>
+  
+  
+    <div id='new-song-image'>
+      <div class='input-label'>Choose Image</div>
+      <div class='input-box'>
+        <input type="file" name="song[image]">
+      </div>
+    </div>
+	
+  	<button class='upload-song'>Upload New Song</button>
+  </form>
+</section>

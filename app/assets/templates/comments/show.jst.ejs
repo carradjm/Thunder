@@ -1,11 +1,14 @@
 <div class="comment-user-pic">
   <a href="/#/users/<%= comment.escape('author_id') %>"><img src="<%= comment.escape('author_pic') %>" width="50" height="50"></a></li> 
 </div>
-<div class="comment-username">
-  <%= comment.escape('username') %>
-</div>
-<div class="comment-body">
-  <%= comment.escape('body') %>
+<div class='comment-body'>
+  <div class="comment-username">
+    <%= comment.escape('username') %>
+  </div>
+  <br>
+  <div class="comment-text">
+    <%= comment.escape('body') %>
+  </div>
 </div>
 <% if (comment.get("author_id") === Thunder.currentUser.id) { %>
  <button class="remove-comment">&#10005;</button>

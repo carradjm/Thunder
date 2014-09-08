@@ -34,7 +34,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
      success: function (data) {
        // that.$subHeader.html("<h2 class='search-header'>Showing results for: " + terms + "</h2>");
        var results = new Thunder.Models.SearchResult(data, { parse: true })
-       var searchView = new Thunder.Views.SearchShow({model: results});
+       var searchView = new Thunder.Views.SearchShow({model: results, query: query});
        that._swapView(searchView);
      }
    });
@@ -81,6 +81,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
   
   songShow: function(id) {
     var that = this;
+
     var song = Thunder.songs.getOrFetch(id, function(song) {
       var showView = new Thunder.Views.SongsShow({
         model: song

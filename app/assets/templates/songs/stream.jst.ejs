@@ -1,6 +1,6 @@
 <section class="song-stream group">
   <div class="song-image song-stream">
-    <img src="<%= song.escape('image') %>"></img>
+    <a href='/#/songs/<%= song.id %>'><img class="song-image-stream" src="<%= song.escape('image') %>"></img></a>
   </div>
 
   <div class="song-info song-stream">
@@ -9,25 +9,30 @@
         <%= song.escape('uploader') %>
       </a>
     </div>
-
-    <div class="song-title">
-      <a href="/#/songs/<%= song.id %>">
-        <%= song.escape('title') %>
-      </a>
+    
+    <div class="song-title-line group">
+      <div class="play-pause-buttons">
+        <div id="play-button">&#9654</div>
+        <div id="pause-button">&#9616;&#9616;</div>
+      </div>
+      
+      <div class="song-title song-stream">
+        <a href="/#/songs/<%= song.id %>">
+          <%= song.escape('title') %>
+        </a>
+      </div>
     </div>
 
-    <div class="music-player-widget" id="music-player-widget">
+    <div class="waveform">
+      <div class="waveform-progress-bar song-stream" id="song-stream<%= song.id %>"></div>
+      <img class='music-player-widget' id="music-player-widget" width=450 src="<%= song.escape('waveform') %>">
     </div>
 
-    <div class="song-buttons song-stream group">
-      <ul>
-        <% if (Thunder.currentUser.likes().findWhere({id: song.id})) { %>
-          <li><div id="unlike-song">Unlike</div></li>
-        <% } else { %>
-          <li><div id="like-song">Like</div></li>
-        <% } %>
-          <li><div id="add-to-playlist">Add To Playlist</div></li>
-      </ul>
+    <div class="like-buttons song-stream">
+      <button id="unlike-song">Unlike</button>
+      <button id="like-song">Like</button>
     </div>
+    
+    <button class='song-stream' id="add-to-playlist">Add To Playlist</button>
   </div>
 </section>
