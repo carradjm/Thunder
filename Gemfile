@@ -52,8 +52,8 @@ gem 'audiojs'
 gem 'waveform'
 gem "paperclip"
 gem 'paperclip_waveform'
-gem 'ruby-audio'
-gem 'ruby-audio-heroku'
+# gem 'ruby-audio'
+# gem 'ruby-audio-heroku'
 gem "chunky_png"
 gem "oily_png"
 
