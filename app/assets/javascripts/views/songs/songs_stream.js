@@ -44,6 +44,7 @@ Thunder.Views.SongsStream = Backbone.View.extend({
     
     var playerSource = $('#audio-player').attr('src')
     var song = this.model.get('track')
+    
     if (playerSource === song){
       if ($(".audiojs").hasClass("playing")) {
         this.$el.find('.play-pause-buttons').toggleClass('is-playing')
@@ -53,9 +54,28 @@ Thunder.Views.SongsStream = Backbone.View.extend({
     this.$el.find('.music-player-widget').on('click', function(event) {
       var offset = $(this).offset();
       that.scrollPosition = event.clientX - offset.left
-      console.log('scroll position is' + that.scrollPosition)
-      $audio[0].currentTime = that.scrollPosition
+      console.log('scroll position is ' + that.scrollPosition)
+      var newCurrentTime = (that.scrollPosition/450) * $audio[0].duration
+      $audio[0].currentTime = newCurrentTime
+      console.log('newCurrentTime is ' + newCurrentTime)
+      console.log("duration of song is " + $audio[0].duration)
       console.log('currentTime is now ' + $audio[0].currentTime)
+      console.log($('div.progress').attr("style"))
+    })
+    
+    $('p.play').on('click', function(event) {
+      if (playerSource === song) {
+        that.$el.find('.play-pause-buttons').toggleClass('is-playing')
+        console.log("play button press - button change!")
+      }
+    })
+    
+    $('p.pause').on('click', function(event) {
+      that.played = parseInt($audio[0].currentTime);
+      if (playerSource === song) {
+        that.$el.find('.play-pause-buttons').toggleClass('is-playing')
+        console.log("pause button press - button change!")
+      }
     })
     
     return this;
@@ -65,7 +85,7 @@ Thunder.Views.SongsStream = Backbone.View.extend({
     var playerSource = $('#audio-player').attr('src')
     var song = this.model.get('track')
     if (playerSource === song){
-      $progress = parseInt($('.progress').attr('style').slice(7)) * .437;
+      $progress = parseInt($('.progress').attr('style').slice(7)) * .488;
       $('#song-stream' + this.model.id).css('width', $progress);
     } else {
       this.$el.find('.play-pause-buttons').removeClass('is-playing')
@@ -81,16 +101,13 @@ Thunder.Views.SongsStream = Backbone.View.extend({
       setTimeout(function() {
         $audio[0].currentTime = that.played
         $audio[0].play();
-        console.log('playing from paused state')
         if (!$(".audiojs").hasClass("playing")) {
           $('.audiojs').toggleClass('playing')
         }
       }, 50)
     } else {
       if (!$(".audiojs").hasClass("playing")) {
-        $('.audiojs').toggleClass('playing')
-        console.log('playing from beginning')
-    
+        $('.audiojs').toggleClass('playing')    
         $audio[0].pause()
         $audio[0].load();//suspends and restores all audio element
         $audio[0].play();

@@ -18,7 +18,15 @@ window.Thunder = {
         });
         
         audiojs.events.ready(function() {
-          audioPlayerJS = audiojs.createAll();
+          var ajso = audiojs.createAll();
+           $('.audiojs .play-pause').on('click', function(){
+             console.log('this has also been activated!')
+              var thisIndex = $(this).parents('.audiojs').index('.audiojs');
+              console.log(ajso)
+              $.each(ajso, function(index,val){
+                  if ( index == thisIndex && ajso[index].playing ) ajso[index].pause(); 
+              });
+          });
         });
         
         $(".search-box").keyup(function(event){

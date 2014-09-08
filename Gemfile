@@ -51,12 +51,12 @@ gem 'open_uri_redirections'
 gem 'audiojs'
 gem "paperclip"
 
-# gem 'waveform'
-# gem 'paperclip_waveform'
-# gem 'ruby-audio'
-# gem 'ruby-audio-heroku'
-# gem "chunky_png"
-# gem "oily_png"
+gem 'waveform'
+gem 'paperclip_waveform'
+gem 'ruby-audio'
+gem 'ruby-audio-heroku'
+gem "chunky_png"
+gem "oily_png"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
