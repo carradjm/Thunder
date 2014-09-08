@@ -54,8 +54,8 @@ gem "paperclip"
 gem 'paperclip_waveform'
 # gem 'ruby-audio'
 # gem 'ruby-audio-heroku'
-gem "chunky_png"
-gem "oily_png"
+# gem "chunky_png"
+# gem "oily_png"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

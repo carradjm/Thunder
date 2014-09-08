@@ -110,8 +110,6 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    oily_png (1.1.1)
-      chunky_png (~> 1.3.0)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -222,14 +220,12 @@ DEPENDENCIES
   bcrypt
   better_errors
   binding_of_caller
-  chunky_png
   cocaine
   coffee-rails (~> 4.0.0)
   figaro
   jbuilder (~> 1.2)
   jquery-rails
   newrelic_rpm
-  oily_png
   omniauth-facebook
   open_uri_redirections
   paperclip
