@@ -56,7 +56,6 @@ Thunder.Views.SongsStream = Backbone.View.extend({
       console.log('scroll position is' + that.scrollPosition)
       $audio[0].currentTime = that.scrollPosition
       console.log('currentTime is now ' + $audio[0].currentTime)
-      
     })
     
     return this;

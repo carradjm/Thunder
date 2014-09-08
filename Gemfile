@@ -43,6 +43,8 @@ gem "figaro"
 
 gem "aws-sdk"
 
+gem 'newrelic_rpm'
+
 gem "omniauth-facebook"
 gem 'open_uri_redirections'
 
@@ -51,6 +53,7 @@ gem 'waveform'
 gem "paperclip"
 gem 'paperclip_waveform'
 gem 'ruby-audio'
+gem 'ruby-audio-heroku'
 gem "chunky_png"
 gem "oily_png"
 
