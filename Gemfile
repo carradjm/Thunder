@@ -49,9 +49,10 @@ gem "omniauth-facebook"
 gem 'open_uri_redirections'
 
 gem 'audiojs'
-gem 'waveform'
 gem "paperclip"
-gem 'paperclip_waveform'
+
+# gem 'waveform'
+# gem 'paperclip_waveform'
 # gem 'ruby-audio'
 # gem 'ruby-audio-heroku'
 # gem "chunky_png"
