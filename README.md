@@ -6,8 +6,8 @@ A clone of the popular music-sharing website Soundcloud.com.  Please feel free t
 
 ###Rails
 * Uses RESTful routes and models to easily create / read / update / destroy models.
-* Uses custom jBuilder to return only select / necessary data to Backbone.js models
-* Creates individual Follow, Like, and PlaylistSong models to keep track of who a user is following, what songs they have liked, and what songs each of their playlists contains
+* Uses custom jBuilder to return only select / necessary data to Backbone.js models.
+* Creates individual Follow, Like, and PlaylistSong models to keep track of who a user is following, what songs they have liked, and what songs each of their playlists contains.
 
 ###Backbone.js
 * Combines the MVC design paradigm with custom JSON returned from jBuilder views in Rails to allow the site to allow quick navigation and loading of user / song data.
@@ -18,7 +18,7 @@ A clone of the popular music-sharing website Soundcloud.com.  Please feel free t
   * By using the setInterval() function in Javascript along with a custom renderProgressBar function I created, I was able to mirror the progress bar at the bottom of the page.  This progress bar is tied to each view but also checks to see if the view's model has the same Track source as the audio player.  This allows the progress bar to appear at the correct location no matter where a song is displayed. Test it out for yourself! Start playing a song from it's Show page and the progress bar will be there if you go back to the Stream page.
 
 ###Paperclip
-* Combined with Amazon S3 - allows the site to quickly upload and save user images and song files / images
+* Combined with Amazon S3 - allows the site to quickly upload and save user images and song files / images.
 
 ###waveform-paperclip
 * Normally, this gem allows you to create custom waveform images when you upload with Paperclip. Unfortunately, this gem requires the uses of libsndfile, which lives locally on your desktop and is not uploaded to Heroku.  Thus, if you upload using the live site, it cannot create these custom images which is a total bummer.
