@@ -1,8 +1,8 @@
-#THUNDERCLAP
+#Thunderclap
 
 A clone of the popular music-sharing website Soundcloud.com.  Please feel free to log-in as the demo user and play around and listen to some great music!
 
-##TECHNOLOGIES
+##Technologies
 
 ###Rails
 ###Backbone.js
@@ -11,7 +11,7 @@ A clone of the popular music-sharing website Soundcloud.com.  Please feel free t
   
   
 
-##TO-DO
+##To-do
 
 
 
