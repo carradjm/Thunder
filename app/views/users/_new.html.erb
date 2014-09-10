@@ -6,40 +6,36 @@
 	<% end %>
 <% end %>
 
-<form action="<%= users_url %>" method="post" enctype="multipart/form-data">
+<form action="<%= users_url %>" method="post" enctype="multipart/form-data" class="new-user-form">
 	<%= auth_token %>
-	
-	<label>
-		*E-mail
-		<input type="text" name="user[email]" value="<%= @user.email %>" placeholder="email">
-	</label>
-  <br>
-  <br>
-  	
-	<label>
-		*Password
-		<input type="password" name="user[password]" value="<%= @user.password %>" placeholder="password">
-	</label>
-  <br>
-  <br>
-  
-	<label>
-		*Username
-		<input type="text" name="user[username]" value="<%= @user.username %>" placeholder="username">
-	</label>
-  <br>
-  <br>
-  
-  <label>
-    Choose Profile Picture
-    <input type="file" name="user[picture]">
-  </label>
-  <br>
-  <br>
-  
-  Fields with '*' are required.
-  <br>
-  <br>
 	 
+   <div id="new-user-email">
+		*E-mail
+    <div class="input-box">
+		  <input type="text" name="user[email]" value="<%= @user.email %>" placeholder="email">
+    </div>
+  </div>
+  
+  <div id="new-user-password">
+		*Password
+    <div class="input-box">
+		  <input type="password" name="user[password]" value="<%= @user.password %>" placeholder="password">
+    </div>
+  </div>
+  
+  <div id="new-user-username"> 
+		*Username
+    <div class="input-box">
+		  <input type="text" name="user[username]" value="<%= @user.username %>" placeholder="username">
+    </div>
+  </div>
+  
+  <div id="new-user-picture">
+    Choose Profile Picture
+    <input type="file" name="user[picture]" class="user-picture">
+  </div>
+  
+  <p>Fields with '*' are required.</p>
+  	 
 	<button>Sign Up</button>
 </form>

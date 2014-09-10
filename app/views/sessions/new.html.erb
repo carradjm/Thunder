@@ -6,6 +6,7 @@
   <div class="sign-in">Sign In</div>
   <div class="sign-up">Sign Up</div>
 </section>
+
 <section id="modal" class="sign-in">
   <section id="sign-in">
       
@@ -18,13 +19,15 @@
     		<%= error %>
     	<% end %>
     <% end %>
+    
+    <button class="demo-user">Sign In As Guest</button>
 
     <form id="sign-in" action="<%= session_url %>" method="post" class="group">
     	<%= auth_token %>
 	    
-      <input type="text" name="user[email]" value="" placeholder="email">
+      <input type="text" name="user[email]" value="" placeholder="email" class='email-login'>
       
-      <input type="password" name="user[password]" value="" placeholder="password">
+      <input type="password" name="user[password]" value="" placeholder="password" class='password-login'>
 
     	<button>Log In</button>
     </form>
@@ -60,6 +63,11 @@ $(document).ready(function(){
       $("#modal").removeClass("is-active");
     }
   });
+
+  $(".demo-user").on("click", function(event) {
+    $('.email-login').val("demo@music.com");
+    $('.password-login').val("guestpassword")
+  })
 
 });
 </script>

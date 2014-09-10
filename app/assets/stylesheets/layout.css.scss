@@ -213,6 +213,22 @@ section.new-session-buttons {
 section.new-session-buttons > div {
 }
 
+.demo-user {
+  padding: 5px 10px;
+  margin: 10px auto;
+  width: 377px;
+  color: white;
+  background: #202020;
+  text-transform: uppercase;
+  border-radius: 2px;
+  font-size: 24px;
+}
+
+.demo-user:hover {
+  background-color: #3E3E3E;
+  cursor: pointer;
+}
+
 div.sign-in {
   float: left;
   background: black;
@@ -255,11 +271,11 @@ form#sign-in > button {
   text-transform: uppercase;
   border-radius: 2px;
   font-size: 24px;
-
 }
 
 form#sign-in > button:hover {
   background-color: #3E3E3E;
+  cursor: pointer;
 }
 
 div.sign-up {
@@ -805,6 +821,7 @@ div.input-label {
 div.input-box {
   margin: 5px auto;
   border: 1px solid #ccc;
+  text-align: center;
 }
 
 button.upload-song {
