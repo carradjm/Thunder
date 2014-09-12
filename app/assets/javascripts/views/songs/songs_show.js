@@ -81,18 +81,18 @@ Thunder.Views.SongsShow = Backbone.View.extend({
       }
     })
         
-    this.waveformInterval = setInterval(function() {
-      that.renderWaveform();
+    this.progressInterval = setInterval(function() {
+      that.renderProgressBar();
     }, 400)
     
     return this;
   },
   
   closeInterval: function() {
-    clearInterval(this.waveformInterval)
+    clearInterval(this.progressInterval)
   },
   
-  renderWaveform: function() {
+  renderProgressBar: function() {
     var playerSource = $('#audio-player').attr('src')
     var song = this.model.get('track')
     if (playerSource === song){

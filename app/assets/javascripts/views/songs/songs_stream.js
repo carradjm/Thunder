@@ -38,8 +38,8 @@ Thunder.Views.SongsStream = Backbone.View.extend({
       $audio[0].load();
     }
         
-    this.waveformInterval = setInterval(function() {
-      that.renderWaveform();
+    this.progressInterval = setInterval(function() {
+      that.renderProgressBar();
     }, 400)
     
     var playerSource = $('#audio-player').attr('src')
@@ -81,7 +81,7 @@ Thunder.Views.SongsStream = Backbone.View.extend({
     return this;
   },
   
-  renderWaveform: function() {
+  renderProgressBar: function() {
     var playerSource = $('#audio-player').attr('src')
     var song = this.model.get('track')
     if (playerSource === song){
