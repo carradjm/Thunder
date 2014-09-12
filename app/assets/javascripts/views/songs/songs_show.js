@@ -13,7 +13,7 @@ Thunder.Views.SongsShow = Backbone.View.extend({
 
   initialize: function() {
     // this.listenTo(Thunder.currentUser, "sync", this.render);
-    // this.listenTo(this.model, "change", this.render);
+    this.listenTo(this.model, "sync", this.render);
     // this.listenTo(this.model, "request", this.render);
     this.listenTo(this.model.comments(), "add destroy", this.renderComments);
     this.listenTo(Thunder.router, 'route', this.closeInterval())
@@ -152,7 +152,7 @@ Thunder.Views.SongsShow = Backbone.View.extend({
     this.$el.find('.like-buttons').toggleClass('is-liked');
     songLike.save(null, {
       success: function() {
-        Thunder.currentUser.fetch();
+        that.model.fetch();
       }
     });
   },
@@ -161,7 +161,11 @@ Thunder.Views.SongsShow = Backbone.View.extend({
     var songLike = Thunder.currentUser.songLikes().findWhere({song_id: this.model.id});
     var that = this;
     this.$el.find('.like-buttons').toggleClass('is-liked');
-    songLike.destroy({});
+    songLike.destroy({
+      success: function() {
+        that.model.fetch
+      }
+    });
   },
     
   addComment: function(event) {
