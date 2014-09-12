@@ -18,7 +18,7 @@ Thunder.Views.CommentsShow = Backbone.View.extend({
   
   removeComment: function() {
     var comment = this.model;
-    var song = comment.get('song')
+    var song = comment.get('song');
     comment.destroy({
       success: function() {
         song.fetch();

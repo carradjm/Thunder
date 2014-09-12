@@ -14,8 +14,8 @@ Thunder.Views.SongsShow = Backbone.View.extend({
   initialize: function() {
     // this.listenTo(Thunder.currentUser, "sync", this.render);
     this.listenTo(this.model, "sync", this.render);
-    // this.listenTo(this.model, "request", this.render);
-    this.listenTo(this.model.comments(), "add destroy", this.renderComments);
+    // this.listenTo(this.comments, "destroy", this.render);
+    this.listenTo(this.model.comments(), "add destroy", this.render);
     this.listenTo(Thunder.router, 'route', this.closeInterval())
     var that = this
     $('p.play').on('click', function() {
@@ -44,7 +44,7 @@ Thunder.Views.SongsShow = Backbone.View.extend({
     
     this.renderComments();
             
-    if (Thunder.currentUser.likes().findWhere({id: this.model.id})) {
+    if (this.model.likes().findWhere({user_id: Thunder.currentUser.id})) {
       this.$el.find('.like-buttons').toggleClass('is-liked');
     }
     
@@ -163,7 +163,7 @@ Thunder.Views.SongsShow = Backbone.View.extend({
     this.$el.find('.like-buttons').toggleClass('is-liked');
     songLike.destroy({
       success: function() {
-        that.model.fetch
+        that.model.fetch();
       }
     });
   },
