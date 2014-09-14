@@ -6,6 +6,8 @@ Thunder.Routers.Router = Backbone.Router.extend({
   
   routes: {
     "" : "stream",
+    "explore" : "explore",
+    "explore/:id" : "genreShow",
     "search?q=:query": "search",
     'users' : 'usersIndex',
     'notifications' : 'notificationsIndex',
@@ -22,6 +24,34 @@ Thunder.Routers.Router = Backbone.Router.extend({
     this._swapView(streamView);
   },
   
+  explore: function() {
+    var that = this;
+    
+    Thunder.genres.fetch({
+      success: function() {
+        var exploreView = new Thunder.Views.ExploreGenres({
+          collection: Thunder.genres
+        });
+        
+        that._swapView(exploreView) 
+      }
+    });
+  },
+  
+  genreShow: function(id) {
+    var that = this;
+    
+    var genre = Thunder.genres.getOrFetch(id, function(genre) {
+      var showGenre = new Thunder.Views.ShowGenre({
+        model: genre
+      });
+      
+      console.log(genre);
+            
+      that._swapView(showGenre);
+    });
+  },
+  
   search: function(query) {
     var that = this;
  
@@ -32,7 +62,6 @@ Thunder.Routers.Router = Backbone.Router.extend({
        query: query
      },
      success: function (data) {
-       // that.$subHeader.html("<h2 class='search-header'>Showing results for: " + terms + "</h2>");
        var results = new Thunder.Models.SearchResult(data, { parse: true })
        var searchView = new Thunder.Views.SearchShow({model: results, query: query});
        that._swapView(searchView);

@@ -8,6 +8,7 @@ window.Thunder = {
 
     this.currentUser = new Thunder.Models.User(data["currentUser"], { parse: true });
     this.users = new Thunder.Collections.Users(Thunder.currentUser);
+    this.genres = new Thunder.Collections.Genres();
     this.songs = new Thunder.Collections.Songs();
     this.playlists = new Thunder.Collections.Playlists(Thunder.currentUser.playlists());
     this.notifications = new Thunder.Collections.Notifications();
@@ -20,9 +21,7 @@ window.Thunder = {
         audiojs.events.ready(function() {
           var ajso = audiojs.createAll();
            $('.audiojs .play-pause').on('click', function(){
-             console.log('this has also been activated!')
               var thisIndex = $(this).parents('.audiojs').index('.audiojs');
-              console.log(ajso)
               $.each(ajso, function(index,val){
                   if ( index == thisIndex && ajso[index].playing ) ajso[index].pause(); 
               });

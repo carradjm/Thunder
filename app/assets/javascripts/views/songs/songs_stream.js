@@ -3,7 +3,6 @@ Thunder.Views.SongsStream = Backbone.View.extend({
   template: JST['songs/stream'],
     
   events: {
-    'click .add-comment' : 'addComment',
     'click #like-song' : 'likeSong',
     'click #unlike-song' : 'unlikeSong',
     'click #add-to-playlist' : 'addToPlaylist',

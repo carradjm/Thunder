@@ -7,7 +7,7 @@ class Api::GenresController < ApplicationController
   end
   
   def show
-    @genre = Genre.find(params[:id])
+    @genre = Genre.includes(:songs).find(params[:id])
     @songs = @genre.songs
    
     render :show
