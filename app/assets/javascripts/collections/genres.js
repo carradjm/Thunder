@@ -18,8 +18,7 @@ Thunder.Collections.Genres = Backbone.Collection.extend({
     } else {
       genre.fetch({
         success: callback(genre)
-      }
-      );
+      });
     }
   }
   

@@ -1,3 +1,16 @@
+PgSearch::Document.create!([
+  {content: "Funkadelic", searchable_id: 10, searchable_type: "User"},
+  {content: "Kygo", searchable_id: 7, searchable_type: "User"},
+  {content: "Daft Punk", searchable_id: 8, searchable_type: "User"},
+  {content: "Klingande", searchable_id: 9, searchable_type: "User"},
+  {content: "Malcolm Carradine", searchable_id: 6, searchable_type: "User"},
+  {content: "Ellie Goulding - High For This (Kygo Remix) #<User:0x0000010393b828>", searchable_id: 8, searchable_type: "Song"},
+  {content: "M83 - Wait (Kygo Remix) #<User:0x00000102245f10>", searchable_id: 9, searchable_type: "Song"},
+  {content: "Passenger - Caravan (Kygo Remix) #<User:0x000001029b90f8>", searchable_id: 10, searchable_type: "Song"},
+  {content: "Da Funk - Daftendirekt #<User:0x000001021cd1f0>", searchable_id: 11, searchable_type: "Song"},
+  {content: "Around The World #<User:0x000001030e8338>", searchable_id: 12, searchable_type: "Song"},
+  {content: "Klingande - Jubel #<User:0x000001038298e0>", searchable_id: 13, searchable_type: "Song"}
+])
 Genre.create!([
   {name: "Rock"},
   {name: "Electronic"},
