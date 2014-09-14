@@ -20,11 +20,11 @@
     
     <div class="waveform">
       <div class="waveform-progress-bar" id="song-show<%= song.id %>"></div>
-      <% if (song.escape("waveform")) { %>
+      <% if (song.escape('waveform')) { %>
         <img class='music-player-widget' id="music-player-widget" width=1040 src="<%= song.escape('waveform') %>">
       <% } else { %>
-        <img class='music-player-widget' id="music-player-widget" width=1040 src="https://s3.amazonaws.com/Soundcloud-Clone-Malcolm-Dev/songs/tracks/000/000/013/waveform_copy/waveform/Klingande_-_Jubel.png">
-      <%  end %>
+        <img class='music-player-widget' id="music-player-widget" width=1040 src="https://s3.amazonaws.com/Soundcloud-Clone-Malcolm-Dev/songs/tracks/000/000/013/waveform_copy/waveform/Klingande.png">
+      <% } %>
     </div>
     
     <div class='comment-form'>
