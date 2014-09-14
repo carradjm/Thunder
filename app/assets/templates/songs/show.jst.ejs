@@ -20,7 +20,11 @@
     
     <div class="waveform">
       <div class="waveform-progress-bar" id="song-show<%= song.id %>"></div>
-      <img class='music-player-widget' id="music-player-widget" width=1040 src="<%= song.escape('waveform') %>">
+      <% if (song.escape("waveform")) { %>
+        <img class='music-player-widget' id="music-player-widget" width=1040 src="<%= song.escape('waveform') %>">
+      <% } else { %>
+        <img class='music-player-widget' id="music-player-widget" width=1040 src="http://s3.amazonaws.com/Soundcloud-Clone-Malcolm-Dev/songs/tracks/000/000/013/waveform/Klingande_-_Jubel_(Official_Video_HD).png?1410205896">
+      <%  else %>
     </div>
     
     <div class='comment-form'>
