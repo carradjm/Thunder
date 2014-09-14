@@ -53,6 +53,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    chunky_png (1.3.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -109,6 +110,8 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    oily_png (1.1.1)
+      chunky_png (~> 1.3.0)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -125,6 +128,9 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    paperclip_waveform (0.1.0)
+      paperclip
+      waveform (~> 0.1.2)
     pg (0.17.1)
     pg_search (0.7.6)
       activerecord (>= 3.1)
@@ -167,6 +173,8 @@ GEM
       json (~> 1.4)
     rename (1.0.2)
       rails (>= 3.0.0)
+    ruby-audio (1.6.1)
+    ruby-audio-heroku (1.6.2)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -201,6 +209,9 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    waveform (0.1.2)
+      chunky_png
+      ruby-audio
 
 PLATFORMS
   ruby
@@ -212,15 +223,18 @@ DEPENDENCIES
   bcrypt
   better_errors
   binding_of_caller
+  chunky_png
   cocaine
   coffee-rails (~> 4.0.0)
   figaro
   jbuilder (~> 1.2)
   jquery-rails
   newrelic_rpm
+  oily_png
   omniauth-facebook
   open_uri_redirections
   paperclip
+  paperclip_waveform
   pg
   pg_search
   pry-rails
@@ -228,8 +242,11 @@ DEPENDENCIES
   rails (= 4.0.2)
   rails_12factor
   rename
+  ruby-audio
+  ruby-audio-heroku
   sass-rails (~> 4.0.0)
   sdoc
   seed_dump
   turbolinks
   uglifier (>= 1.3.0)
+  waveform
