@@ -1,4 +1,4 @@
-html, head, body, nav, div, h1, h2, h3, ul, li, form, button, img, form, a, header, footer, section {
+html, head, body, nav, div, h1, h2, h3, ul, li, form, button, img, form, a, header, footer, section, p {
   margin: 0;
   padding: 0;
   border: 0;
@@ -52,6 +52,11 @@ input[type="reset"], input[type="file"], input[type="text"], input[type="passwor
   font: inherit;
   vertical-align: baseline;
   background: transparent;
+}
+
+.employers-message {
+  font-size: 18px;
+  text-align: center;
 }
 
 div.audiojs {
