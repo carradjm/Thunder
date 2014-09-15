@@ -1,15 +1,15 @@
 PgSearch::Document.create!([
-  {content: "Funkadelic", searchable_id: 10, searchable_type: "User"},
   {content: "Kygo", searchable_id: 7, searchable_type: "User"},
   {content: "Daft Punk", searchable_id: 8, searchable_type: "User"},
   {content: "Klingande", searchable_id: 9, searchable_type: "User"},
   {content: "Malcolm Carradine", searchable_id: 6, searchable_type: "User"},
-  {content: "Ellie Goulding - High For This (Kygo Remix) #<User:0x0000010393b828>", searchable_id: 8, searchable_type: "Song"},
-  {content: "M83 - Wait (Kygo Remix) #<User:0x00000102245f10>", searchable_id: 9, searchable_type: "Song"},
-  {content: "Passenger - Caravan (Kygo Remix) #<User:0x000001029b90f8>", searchable_id: 10, searchable_type: "Song"},
-  {content: "Da Funk - Daftendirekt #<User:0x000001021cd1f0>", searchable_id: 11, searchable_type: "Song"},
-  {content: "Around The World #<User:0x000001030e8338>", searchable_id: 12, searchable_type: "Song"},
-  {content: "Klingande - Jubel #<User:0x000001038298e0>", searchable_id: 13, searchable_type: "Song"}
+  {content: "Ellie Goulding - High For This (Kygo Remix) #<User:0x00000103c90b68>", searchable_id: 8, searchable_type: "Song"},
+  {content: "M83 - Wait (Kygo Remix) #<User:0x00000102e3d7c8>", searchable_id: 9, searchable_type: "Song"},
+  {content: "Passenger - Caravan (Kygo Remix) #<User:0x00000103c12fb0>", searchable_id: 10, searchable_type: "Song"},
+  {content: "Da Funk - Daftendirekt #<User:0x00000102dd1050>", searchable_id: 11, searchable_type: "Song"},
+  {content: "Around The World #<User:0x00000103ad8b18>", searchable_id: 12, searchable_type: "Song"},
+  {content: "Klingande - Jubel #<User:0x00000102c6e438>", searchable_id: 13, searchable_type: "Song"},
+  {content: "Bootsy Collins", searchable_id: 1, searchable_type: "User"}
 ])
 Genre.create!([
   {name: "Rock"},
@@ -32,11 +32,12 @@ Genre.create!([
 ])
 
 User.create!([
-  {id: 10, email: "bootsy@funkadelic.com", password_digest: "$2a$10$KWMRPSXfeB/l5dT.9JpkAu16Rg1/CYcF6uRgXC7jtnNgQjx8N6nHW", username: "Funkadelic", session_token: "IzG3yChoNu-1hBuS1WOJDQ", first_name: "Bootsy", last_name: "Collins", full_name: nil, country: "", city: "", picture_file_name: nil, picture_content_type: nil, picture_file_size: nil, picture_updated_at: nil, user_follows_count: nil, songs_count: nil, notifications_count: nil, uid: nil, provider: nil},  
   {id: 7, email: "kygo@kygo", password_digest: "$2a$10$XWUAVOE1So4xLNFrpuusgO6/MxrVQOuPBec5NnomShqc7smyGT62C", username: "Kygo", session_token: "V9HfAX79urBUhFSkYocgcA", first_name: nil, last_name: nil, full_name: nil, country: nil, city: nil, picture_file_name: "Kygo.jpg", picture_content_type: "image/jpeg", picture_file_size: 7057, picture_updated_at: "2014-09-08 19:36:59", user_follows_count: nil, songs_count: 3, notifications_count: nil, uid: nil, provider: nil},
   {id: 8, email: "daftpunk@france.com", password_digest: "$2a$10$Y82n4G9OoXhz7G2nQC9bFuP6mJVW0AkFewAtjVDdUF6yFTXXaoz2u", username: "Daft Punk", session_token: "qCnSg7DYhG7bAmtMZbs-wQ", first_name: nil, last_name: nil, full_name: nil, country: nil, city: nil, picture_file_name: "Daft-Punk.jpg", picture_content_type: "image/jpeg", picture_file_size: 329169, picture_updated_at: "2014-09-08 19:42:06", user_follows_count: nil, songs_count: 2, notifications_count: nil, uid: nil, provider: nil},
   {id: 9, email: "klingande@music.com", password_digest: "$2a$10$4QWzIrKhvu3hr3Hg9xCpie4KMFAjPbogc2l07.nbrCH0PZaP2rWn6", username: "Klingande", session_token: "QxgDQkiCa5PDQgDZgHIqCg", first_name: nil, last_name: nil, full_name: nil, country: nil, city: nil, picture_file_name: "Klingande.jpg", picture_content_type: "image/jpeg", picture_file_size: 36138, picture_updated_at: "2014-09-08 19:50:23", user_follows_count: nil, songs_count: 1, notifications_count: nil, uid: nil, provider: nil},
-  {id: 6, email: "malcolm.carradine@gmail.com", password_digest: "$2a$10$9KJh2eW860QJrXilqvjfouP5NCy31fqCpRaC0gLup5Yi4jpWtp.D.", username: "Malcolm Carradine", session_token: "bt0YZCspbmAV705fuU1iSg", first_name: nil, last_name: nil, full_name: nil, country: nil, city: nil, picture_file_name: "malcolm_pic.jpg", picture_content_type: "image/jpeg", picture_file_size: 158758, picture_updated_at: "2014-09-08 19:36:37", user_follows_count: nil, songs_count: nil, notifications_count: nil, uid: nil, provider: nil}
+  {id: 6, email: "malcolm.carradine@gmail.com", password_digest: "$2a$10$9KJh2eW860QJrXilqvjfouP5NCy31fqCpRaC0gLup5Yi4jpWtp.D.", username: "Malcolm Carradine", session_token: "bt0YZCspbmAV705fuU1iSg", first_name: nil, last_name: nil, full_name: nil, country: nil, city: nil, picture_file_name: "malcolm_pic.jpg", picture_content_type: "image/jpeg", picture_file_size: 158758, picture_updated_at: "2014-09-08 19:36:37", user_follows_count: nil, songs_count: nil, notifications_count: nil, uid: nil, provider: nil},
+  {id: 1, email: "bootsy@funkadelic.com", password_digest: "$2a$10$LIs67oKDaVejhB5JlQYXxOznv2TRv1S/JCDTGBWXJxWLvbBa/s63u", username: "Bootsy Collins", session_token: "zW5M43UPleZAJOm_dydUeg", first_name: nil, last_name: nil, full_name: nil, country: nil, city: nil, picture_file_name: "bootsy-collins.jpg", picture_content_type: "image/jpeg", picture_file_size: 16724, picture_updated_at: "2014-09-15 19:29:29", user_follows_count: nil, songs_count: nil, notifications_count: nil, uid: nil, provider: nil}
+  
 ])
 
 Song.create!([
@@ -47,3 +48,4 @@ Song.create!([
   {id: 12, title: "Around The World", user_id: 8, description: "", duration: nil, track_file_name: "07_Around_the_World.mp3", track_content_type: "audio/mp3", track_file_size: 4103839, track_updated_at: "2014-09-08 19:43:49", image_file_name: "around-the-world.jpeg", image_content_type: "image/jpeg", image_file_size: 67827, image_updated_at: "2014-09-08 19:44:02", genre_id: 2, song_likes_count: nil, shares_count: nil, comments_count: nil},
   {id: 13, title: "Klingande - Jubel", user_id: 9, description: "", duration: nil, track_file_name: "Klingande_-_Jubel_(Official_Video_HD).mp3", track_content_type: "audio/mp3", track_file_size: 3345659, track_updated_at: "2014-09-08 19:51:36", image_file_name: "klingande-jubel.jpg", image_content_type: "image/jpeg", image_file_size: 22065, image_updated_at: "2014-09-08 19:51:46", genre_id: 13, song_likes_count: nil, shares_count: nil, comments_count: nil}
 ])
+
