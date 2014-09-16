@@ -1,0 +1,3 @@
+<% genres.forEach(function(genre) { %>
+  <li><h2><a href="/#/explore/<%= genre.id %>"><%= genre.escape("name") %></a></h2></li>
+<% }) %>

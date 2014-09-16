@@ -40,7 +40,7 @@ Thunder.Routers.Router = Backbone.Router.extend({
   
   genreShow: function(id) {
     var that = this;
-    
+    console.log(id)
     var genre = Thunder.genres.getOrFetch(id, function(genre) {
       var showGenre = new Thunder.Views.ShowGenre({
         model: genre

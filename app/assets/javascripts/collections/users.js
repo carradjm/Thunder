@@ -17,9 +17,11 @@ Thunder.Collections.Users = Backbone.Collection.extend({
       });
     } else {
       user.fetch({
-        success: callback(user)
-      }
-      );
+        success: function() {
+          callback(user)
+        }
+      });
     }
-  }
+  } 
+  
 })
