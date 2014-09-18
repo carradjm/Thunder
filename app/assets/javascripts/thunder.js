@@ -3,6 +3,7 @@ window.Thunder = {
   Collections: {},
   Views: {},
   Routers: {},
+  Utils: {},
   initialize: function() {
     var data = JSON.parse($("#bootstrapped-json").html());
 

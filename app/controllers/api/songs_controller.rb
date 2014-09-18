@@ -3,7 +3,7 @@ class Api::SongsController < ApplicationController
   before_filter :require_logged_in!
   
   def index
-    @songs = Song.all
+    @songs = Song.all.includes(:comments, :uploader, :song_likes)
     
     render :index
   end
@@ -11,7 +11,7 @@ class Api::SongsController < ApplicationController
   def show
     @user = current_user
     
-    @song = Song.includes(:comments, :uploader).find(params[:id])
+    @song = Song.includes(:comments, :uploader, :song_likes).find(params[:id])
       
     render partial: "api/songs/show.json", locals: { song: @song }
   end
