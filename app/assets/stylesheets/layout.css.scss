@@ -63,18 +63,11 @@ div.audiojs {
   position: fixed;
   width: 1100px;
   bottom: 0;
-  left: 160px;
-  height: 40px;
+  left: 169px;
   background: inherit;
   overflow: hidden;
   font-family: inherit;
   font-size: 12px;
- /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444));
-  background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%);
-  -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
-  -o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);*/
 }
 
 .audiojs .scrubber {
@@ -102,12 +95,6 @@ div.audiojs {
 }
 
 footer {
-  position: fixed;
-  width: 1095px;
-  bottom: 0;
-  left: 160px;
-  margin: 0px auto;
-  height: 40px;
   background: black;
 }
   
