@@ -27,8 +27,8 @@ A clone of the popular music-sharing website Soundcloud.com.  Please feel free t
 * All custom CSS! No uses of Bootstrap or any other styling framework.
   
 ##To-do
-* Implement an Explore page to allow users to explore songs by genre.
-* Fix search! In taming my seed data I managed to break search.  It works in the Rails console so fixing it on the live site shouldn't be too bad.
+* Implement an Explore page to allow users to explore songs by genre. (9/16/2014 - Finished! Needs some CSS love).
+* Fix search! In taming my seed data I managed to break search.  It works in the Rails console so fixing it on the live site shouldn't be too bad. (9/14/2014 - Fixed! Just had some bad seed data.  Still needs some CSS love).
 * Modal views for adding / removing songs from playlists.
 * Make sure that the duration in the bottom progress bar updates consistently, as it does not always update properly when you start playing a new song.  Unfortunately, this leads to the progress bar sometimes getting out of whack.
 
