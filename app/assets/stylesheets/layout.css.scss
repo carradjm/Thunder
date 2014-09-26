@@ -63,7 +63,7 @@ div.audiojs {
   position: fixed;
   width: 1100px;
   bottom: 0;
-  left: 169px;
+  margin: auto;
   background: inherit;
   overflow: hidden;
   font-family: inherit;
@@ -96,6 +96,8 @@ div.audiojs {
 
 footer {
   background: black;
+  width: 1100px;
+  margin: auto;
 }
   
 .root-page {
