@@ -15,11 +15,7 @@ Thunder::Application.routes.draw do
     delete 'songs', to: 'playlist_songs#destroy'
   end
   
-  resources :genres, only: [:index, :show] 
-  
   resources :notifications, only: [:index, :show]
-  
-  resource :playlist_song, only: [:new]
   
   resource :session, only: [:new, :create, :destroy]
   
